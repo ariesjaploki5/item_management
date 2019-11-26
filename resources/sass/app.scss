@@ -1,0 +1,104 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+$fa-font-path: "../webfonts";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~admin-lte/dist/css/adminlte.css';
+
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+// @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+// @import '~@fortawesome/fontawesome-free/scss/solid.scss';
+// @import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+.po_item{
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+.card {
+    background-color: rgb(74, 101, 114) !important;
+}
+
+.card-body {
+
+    background-color: #eeecec !important;
+}
+
+.card .card-header .form-label {
+    color: #F9AA33 !important;
+}
+
+.navbar-laravel {
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.router-link-exact-active{
+    border-bottom: 1px solid #344955 !important;
+    
+    color: #F9AA33 !important;
+}
+.content-header h1 {
+    font-size: 1.8rem!important;
+    margin: 0 !important;
+    color: #F9AA33 !important;
+}
+
+.content-wrapper {
+    background: rgb(35, 47, 52) !important;
+}
+
+[class*='sidebar-dark-'] {
+    background-color: #4A6572 !important;
+}
+
+[class*='sidebar-dark'] .brand-link {
+    background-color: #232F34 !important;
+    color: #F9AA33 !important;
+}
+
+[class*='sidebar-dark-'] .sidebar a {
+    color: #F9AA33 !important;
+}
+
+@media print {
+    .nav.nav-tabs li:not(.active){
+        display: none;
+    }
+    .invoice{
+    	padding: 10px 20px;
+    }
+
+    .invoice{
+		background-position: center center;
+		background-repeat: no-repeat;
+
+	}
+	.table-responsive table{
+		background-color: transparent !important;
+	}
+
+}
+
+@page {
+    margin: 0;
+}
+
+.fade-scale {
+    transform: scale(0);
+    opacity: 0;
+    -webkit-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
+  }
+  
+  .fade-scale.in {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+.row {
+    margin-bottom: 1px !important;
+}
