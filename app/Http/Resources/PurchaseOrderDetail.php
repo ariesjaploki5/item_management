@@ -26,9 +26,9 @@ class PurchaseOrderDetail extends JsonResource
             'country_desc' => $this->country->country_desc,
             'manufacturer_id' => $this->manufacturer_id,
             'manufacturer_desc' => $this->manufacturer->manufacturer_desc,
-            'cost' => $this->cost,
-            'quantity' => $this->quantity,
-            'total_cost' => round(($this->cost * $this->quantity), 4),
+            'cost' => (float)$this->cost,
+            'quantity' => (float)$this->quantity,
+            'total_cost' => round(($this->cost * $this->quantity), 2),
         ];
     }
 }

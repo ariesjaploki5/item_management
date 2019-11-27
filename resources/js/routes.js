@@ -35,6 +35,7 @@ import inspection_and_acceptance_reports from './components/pages/inspection_and
 import inspection_and_acceptance_report_list from './components/pages/inspection_and_acceptance_reports/list'
 import inspection_and_acceptance_report from './components/pages/inspection_and_acceptance_reports/show'
 import inspection_and_acceptance_report_print from './components/pages/inspection_and_acceptance_reports/print'
+import inspection_and_acceptance_report_report from './components/pages/inspection_and_acceptance_reports/report'
 
 import create_iar from './components/pages/inspection_and_acceptance_reports/create'
 
@@ -178,6 +179,11 @@ export const routes = [
                 path: '',
                 component: inspection_and_acceptance_report_list,
                 name: 'inspection_and_acceptance_reports',
+            },
+            {
+                path: 'reports',
+                component: inspection_and_acceptance_report_report,
+                name: 'inspection_and_acceptance_report_report',
             },
             {
                 path:':id',

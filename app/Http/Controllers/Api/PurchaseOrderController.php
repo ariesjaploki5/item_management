@@ -49,10 +49,12 @@ class PurchaseOrderController extends Controller
 
         $item = $request->items;
         $po_no = $this->new_po();
-
+        $mode_id = $request->mode_id;
         $supplier_id = $request->supplier_id;
         $supplier_name = $request->supplier_name;
         $supplier_address = $request->supplier_address;
+        $days = $request->days;
+        $served_date = $request->served_date;
 
         if($supplier_id === null){
             $supplier = Supplier::Create([
@@ -66,14 +68,16 @@ class PurchaseOrderController extends Controller
         PurchaseOrder::create([ 
             'po_no' => $po_no,
             'pr_no' => $request->pr_no,
-            'supplier_id' => $supplier->supplier_id,
-            // 'remarks' => $request->remarks,
+            'supplier_id' => $supplier_id,
             'user_id' => auth('api')->user()->id,
+            'mode_id' => $mode_id,
+            'served_date' => $served_date,
+            'days' => $days,
         ]);
 
         $this->details($po_no, $item);
 
-        return response()->json();
+        
     }
 
     public function details($po_no, $item){
@@ -85,6 +89,7 @@ class PurchaseOrderController extends Controller
             $quantity = $item[$i]['quantity'];
             $offer = $item[$i]['offer'];
             $other_details = $item[$i]['other_details'];
+
 
             $brand = Brand::firstOrCreate([
                 'brand_desc' => $item[$i]['brand_desc'],
@@ -112,7 +117,7 @@ class PurchaseOrderController extends Controller
             // $packaging_id = $item[$i]['packaging_id'];
             // $country_id = $item[$i]['country_id'];
 
-            PurchaseOrderDetail::createOrUpdate([
+            PurchaseOrderDetail::create([
                 'po_no' => $po_no,
                 'item_id' => $item_id,
                 'cost' => $cost,
@@ -126,7 +131,7 @@ class PurchaseOrderController extends Controller
             ]);
         }
 
-        return true;
+        return response()->json($po_no);
     }
 
     public function show($id){

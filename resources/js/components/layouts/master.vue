@@ -135,7 +135,12 @@
                         <p>List</p>
                       </router-link>
                     </li>
-                    
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'inspection_and_acceptance_report_report' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Reports</p>
+                      </router-link>
+                    </li>
                   </ul>
                 </li>
                 <li class="nav-item has-treeview">

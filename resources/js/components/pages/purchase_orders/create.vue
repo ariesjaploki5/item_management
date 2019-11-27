@@ -25,38 +25,36 @@
                   <div class="card">
                     <div class="card-header">
                         <div class="row">
-                          <div class="col-auto">
+                          <div class="col-2">
                             <label for="" class="form-label">PR No.:</label>
                           </div>
-                          <div class="col-3">
-                            <input type="text" class="form-control form-control-sm" v-model="po.pr_no" required>
+                          <div class="col-4">
+                            <input type="text" class="form-control form-control-sm" v-model="po.pr_no" required >
                           </div>
                           <div class="col-auto">
-                            <button class="btn btn-sm btn-primary" type="button" @click="check_pr_if_exists()">
-                              select
-                            </button>
+                            <button @click="check_pr_if_exists()" type="button" class="btn btn-sm btn-primary">change</button>
                           </div>
                         </div>
                       <div class="row">
-                        <div class="col-auto">
-                          <label for="" class="form-label">Supplier Name</label>
+                        <div class="col-2">
+                          <label for="" class="form-label">Supplier Name:</label>
                         </div>
-                        <div class="col-5">
-                          <input @blur="check_supplier_if_exists()" type="text" v-model="supplier.supplier_name" list="suppliers" class="form-control form-control-sm" :disabled="suppliers.length == 0" required>
+                        <div class="col-4">
+                          <input list="suppliers" type="text" @blur="check_supplier_if_exists()" v-model="supplier.supplier_name" class="form-control form-control-sm" required>
                             <datalist id="suppliers">
                                 <option v-for="supplier in suppliers" :key="supplier.supplier_id">{{supplier.supplier_name}}</option>
                             </datalist>
                         </div>
-                        <div class="col-auto" >
-                          <label for="" class="form-label">Supplier Address</label>
+                        <div class="col-2" >
+                          <label for="" class="form-label">Supplier Address:</label>
                         </div>
                         <div class="col-4" >
                           <input type="text" class="form-control form-control-sm" v-model="supplier.supplier_address" required>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-auto">
-                          <label for="" class="form-label">Mode of Procurement</label>
+                        <div class="col-2">
+                          <label for="" class="form-label">Mode of Procurement:</label>
                         </div>
                         <div class="col-3">
                           <select v-model="po.mode_id" class="form-control form-control-sm" required>
@@ -66,25 +64,36 @@
                           </select>
                         </div>
                       </div>
-                      <div class="orw">
-                        <div class="col-auto">
-                          <label for="" class="form-label">Delivery Term</label>
+                      <!-- <div class="row">
+                        <div class="col-2">
+                          <label for="" class="form-label">Delivery Term:</label>
                         </div>
                         <div class="col-3">
-                          <select name="" id="">
+                          <select name="" id="" class="form-control form-control-sm" v-model="po.delivery_term">
                             <option value=""></option>
                           </select>
+                        </div>
+                      </div> -->
+                      <div class="row">
+                        <div class="col-2">
+                          <label for="" class="form-label">Date Served:</label>
+                        </div>
+                        <div class="col-3">
+                          <input type="date" class="form-control form-control-sm" v-model="po.date_served">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">
+                          <label for="" class="form-label">Days</label>
+                        </div>
+                        <div class="col-3">
+                          <input type="number" class="form-control form-control-sm text-right" v-model="po.days"> 
                         </div>
                       </div>
                     </div>
                     <form @submit.prevent="store_po()">
                       <div class="card-body">
-                        
-                        <!-- <div class="row">
-                          <div class="col-2">
-                            <label for="" class="form-label"></label>
-                          </div>
-                        </div> -->
+
                         <table class="table table-sm table-hover table-bordered">
                           <thead>
                             <tr>
@@ -101,14 +110,13 @@
                                 <div class="row">
                                   <div class="col-12">
                                     <div class="po_item">
-                                      {{ item.item_desc }}
+                                      <span>{{ item.item_desc }}</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="" class="form-label">Brand: 
-                                    </label>
+                                    <label for="" class="form-label">Brand: </label>
                                   </div>
                                   <div class="col">
                                     <input type="text" class="form-control form-control-sm" list="brands" v-model="item.brand_desc">
@@ -119,8 +127,7 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="" class="form-label">Packaging: 
-                                    </label>
+                                    <label for="" class="form-label">Packaging:</label>
                                   </div>
                                   <div class="col">
                                     <input type="text" class="form-control form-control-sm" list="packagings" v-model="item.packaging_desc">
@@ -131,8 +138,7 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="" class="form-label">Manufacturer: 
-                                    </label>
+                                    <label for="" class="form-label">Manufacturer:</label>
                                   </div>
                                   <div class="col">
                                     <input type="text" class="form-control form-control-sm" list="manufacturers" v-model="item.manufacturer_desc">
@@ -143,8 +149,7 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="" class="form-label">Country of Origin: 
-                                    </label>
+                                    <label for="" class="form-label">Country of Origin: </label>
                                   </div>
                                   <div class="col">
                                     <input type="text" class="form-control form-control-sm" list="countries" v-model="item.country_desc">
@@ -163,7 +168,7 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="" class="form-label">Additional details:</label>
+                                    <label for="" class="form-label">Additional Details:</label>
                                   </div>
                                   <div class="col">
                                     <textarea rows="1" class="form-control form-control-sm" v-model="item.other_details"></textarea>
@@ -192,7 +197,7 @@
                       <!-- /.card-body -->
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-12 text-rigth">
+                          <div class="col-12 text-right">
                             <button class="btn btn-success" type="submit">Submit</button>
                           </div>
                         </div>
@@ -218,6 +223,9 @@ export default {
             pr_no: '',
             category_id: '',
             items: [],
+            date_served: null,
+            delivery_term: null,
+            days: null,
           },
           supplier: {
             supplier_id: null,
@@ -237,19 +245,25 @@ export default {
             'getModes',
         ]),
         check_pr_if_exists(){
-          axios.get('purchase_request/'+this.po.pr_no).then(({data}) => {
-              if(data.pr_no === null){
+          if(this.po.pr_no !== this.$route.params.id){
+            axios.get('purchase_request/'+this.po.pr_no).then(({data}) => {
+                this.po.items = data.items;
+                if(data.pr_no === null){
+                  
+                }
                 
-              }
-              this.$router.params.id = data.pr_no;
-              this.po = data;
-          }).catch(() => {
+                  this.$router.push({ name: 'purchase_order_create', params: { id: this.po.pr_no } });
+                
+            }).catch(() => {
 
-          });
+            });
+          }
         },
         get_pr(){
           axios.get('purchase_request/'+this.$route.params.id).then(({data}) => {
-            this.po = data;
+            this.po.pr_no = data.pr_no;
+            this.po.items = data.items;
+            this.po.category_id = data.category_id;
           }).catch(() => {
 
           });
@@ -268,10 +282,14 @@ export default {
             items: this.po.items,
             category_id: this.po.category_id,
             pr_no: this.po.pr_no,
+            date_served: this.po.date_served,
+            delivery_term: this.po.delivery_term,
+            days: this.po.days,
+            mode_id: this.po.mode_id,
             supplier_id: this.supplier.supplier_id,
             supplier_name: this.supplier.supplier_name,
             supplier_address: this.supplier.supplier_address,
-          }).then((data) => {
+          }).then(({data}) => {
             this.$router.push({ name: 'purchase_order_show', params: { id: data } });
           });
         },

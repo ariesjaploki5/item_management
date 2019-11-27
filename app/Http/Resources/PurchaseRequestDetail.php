@@ -20,7 +20,13 @@ class PurchaseRequestDetail extends JsonResource
             'cost' => (float)$this->cost,
             'quantity' => (float)$this->quantity,
             'remarks' => $this->remarks,
-            'total_cost' => (float)$this->cost * $this->quantity
+            'total_cost' => (float)$this->cost * $this->quantity,
+            'brand_desc' => $this->brand_desc,
+            'country_desc' => $this->country_desc,
+            'manufacturer_desc' => $this->manufacturer_desc,
+            'packaging_desc' => $this->packaging_desc,
+            'offer' => $this->offer,
+            'other_details' => $this->other_details,
          ];
     }
 }
