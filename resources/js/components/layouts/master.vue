@@ -189,6 +189,52 @@
                     </li>
                   </ul>
                 </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                      Employees
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'employee_create' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>New</p>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'employees' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List</p>
+                      </router-link>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                      Users
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'user_create' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>New</p>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'users' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List</p>
+                      </router-link>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -221,18 +267,32 @@
 <!-- ./wrapper -->
 </template>
 <script>
-  export default{
-    data(){
-      return{
+// import { mapState, mapGetters, mapActions } from 'vuex';
 
-      }
-    },
-    computed: {
-      loggedIn() {
-        return this.$store.getters.loggedIn
-      }
+export default{
+  data(){
+    return{
+
     }
+  },
+  methods: {
+    // ...mapActions([
+    //   'retrieveUser'
+    // ]),
+  },
+  created(){
+    // this.retrieveUser();
+  },
+  computed: {
+    // ...mapGetters([
+    //   'user'
+    // ]),
+    loggedIn() {
+      return this.$store.getters.loggedIn
+    }
+
   }
+}
 </script>
 <style lang="scss">
   .navbar{

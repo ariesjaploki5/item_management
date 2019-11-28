@@ -1,7 +1,5 @@
 
 
-
-
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
@@ -44,7 +42,8 @@ export const store = new Vuex.Store({
         suppliers: [],
         units: [],
         users: [],
-
+        employees: [],
+        departments: [],
     },
     getters: {
         loggedIn(state){
@@ -56,6 +55,7 @@ export const store = new Vuex.Store({
         users(state){
             return state.users
         },
+        
         approving_officers(state){
             return state.approving_officers
         },
@@ -137,7 +137,12 @@ export const store = new Vuex.Store({
         units(state){
             return state.units
         },
-
+        employees(state){
+            return state.employees
+        },
+        departments(state){
+            return state.departments
+        },
     },
     mutations: {
         retrieveToken(state, token){
@@ -149,9 +154,13 @@ export const store = new Vuex.Store({
         retrieveUser(state, user){
             state.user = user
         },
+        detroyUser(state){
+            state.user = null
+        },
         getUsers(state, users){
             state.users = users
         },
+        
         getApprovingOfficers(state, approving_officers){
             state.approving_officers = approving_officers
         },
@@ -233,6 +242,12 @@ export const store = new Vuex.Store({
         getUnits(state, units){
             state.units = units
         },
+        getEmployees(state, employees){
+            state.employees = employees
+        },
+        getDepartments(state, departments){
+            state.departments = departments
+        },
 
     },
     actions: {
@@ -269,7 +284,6 @@ export const store = new Vuex.Store({
                         'Authorization': 'Bearer ' + token,
                     }
                     context.commit('retrieveToken', token);
-                    
                     resolve(response);
                 }).catch();
             })
@@ -279,11 +293,15 @@ export const store = new Vuex.Store({
                 context.commit('retrieveUser', response.data);
             }).catch();
         },
+        async destroyUser(context){
+            
+        },
         async getUsers(context){
             await axios.get('users').then(response => {
                 context.commit('getUsers', response.data);
             }).catch();
         },
+        
         async getApprovingOfficers(context){
             await axios.get('approving_officer').then(response => {
                 context.commit('getApprovingOfficers', response.data);
@@ -473,6 +491,17 @@ export const store = new Vuex.Store({
                 context.commit('getUnits', data);
             }).catch();
         },
+        async getEmployees(context){
+            await axios.get('employee').then(({data}) => {
+                context.commit('getEmployees', data);
+            }).catch();
+        },
+        async getDepartments(context){
+            await axios.get('department').then(({data}) => {
+                context.commit('getDepartments', data);
+            }).catch(() => {
 
+            });
+        },
     },
 });

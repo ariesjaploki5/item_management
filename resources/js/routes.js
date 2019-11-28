@@ -23,6 +23,16 @@ import purchase_request from './components/pages/purchase_requests/show'
 import purchase_request_create from './components/pages/purchase_requests/create'
 import purchase_request_print from './components/pages/purchase_requests/print'
 
+import users from './components/pages/users'
+import user_list from './components/pages/users/list'
+import user from './components/pages/users/show'
+import user_create from './components/pages/users/create'
+
+import employees from './components/pages/employees'
+import employee_list from './components/pages/employees/list'
+import employee from './components/pages/employees/show'
+import employee_create from './components/pages/employees/create'
+
 import items from './components/pages/items'
 import item_list from './components/pages/items/list'
 import item from './components/pages/items/show'
@@ -86,6 +96,54 @@ export const routes = [
         }
     },
     {
+        path: '/employees',
+        component: employees,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: employee_list,
+                name: 'employees',
+            },
+            {
+                path: 'create_employee',
+                component: employee_create,
+                name: 'employee_create',
+            },
+            {
+                path:':id',
+                component: employee,
+                name: 'employee_show',
+            },
+        ],
+    },
+    {
+        path: '/users',
+        component: users,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: user_list,
+                name: 'users',
+            },
+            {
+                path: 'create_user',
+                component: user_create,
+                name: 'user_create',
+            },
+            {
+                path:':id',
+                component: user,
+                name: 'user_show',
+            },
+        ],
+    },
+    {
         path: '/purchase_orders',
         component: purchase_orders,
         meta: {
@@ -133,7 +191,7 @@ export const routes = [
                 name: 'purchase_requests',
             },
             {
-                path: 'create',
+                path: 'create_pr',
                 component: purchase_request_create,
                 name: 'purchase_request_create',
             },
@@ -210,8 +268,8 @@ export const routes = [
                 name: 'requisition_slips',
             },
             {
-                path:'create',
-                component: requisition_slip_create,
+                path:'create_ris',
+                component: requisition_slip_create, 
                 name: 'requisition_slip_create',
             },
             {

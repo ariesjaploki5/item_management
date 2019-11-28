@@ -7,14 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Materials Management</title>
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css?1') }}">
         
     </head>
     <body class="hold-transition sidebar-mini">
         <div id="app">
             <master></master>
         </div>
-        <script src="{{ asset('js/app.js')}}"></script>
+        <script src="{{ asset('js/app.js?1')}}"></script>
     </body>
 </html>
  

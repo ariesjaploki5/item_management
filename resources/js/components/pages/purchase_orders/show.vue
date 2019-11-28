@@ -40,7 +40,7 @@
                                     Supplier: {{ purchase_order_details.supplier_name }}
                                 </label>
                                 <div class="w-100"></div>
-                                <label for="" class="from-label">
+                                <label for="" class="form-label">
                                     OBRS No.: {{ purchase_order_details.obrs }}
                                 </label>
                             </div>

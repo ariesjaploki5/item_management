@@ -20,6 +20,9 @@ Route::group(['middleware' => ['cors', 'api']], function() {
 
         'pmo_po' => 'PMO\PoController',
 
+        'employee' => 'Api\EmployeeController',
+        'department' => 'Api\DepartmentController',
+
         'country' => 'Api\CountryController',
         'brand' => 'Api\BrandController',
         'manufacturer' => 'Api\ManufacturerController',
