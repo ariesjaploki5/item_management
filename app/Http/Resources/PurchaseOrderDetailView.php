@@ -27,6 +27,8 @@ class PurchaseOrderDetailView extends JsonResource
             'country_desc' => $this->country_desc,
             'manufacturer_id' => $this->manufacturer_id,
             'manufacturer_desc' => $this->manufacturer_desc,
+            'offer' => $this->offer,
+            'other_details' => $this->other_details,
             'cost' =>  number_format($this->cost,4),
             'quantity' => $this->total_quantity,
             'total_received' => $this->total_received > 0 ? $this->total_received : 0,

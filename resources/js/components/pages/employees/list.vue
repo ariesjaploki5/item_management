@@ -29,12 +29,12 @@
                                 <form @submit.prevent="search_employees()">
                                     <div class="form-group row">
                                         <input type="text" class="form-control form-control-sm col-4 mr-2" v-model="search_word" required>
-                                        <button class="btn btn-sm btn-primary" type="submit">search</button>
+                                        <!-- <button class="btn btn-sm btn-primary" type="submit">search</button> -->
                                     </div>
                                 </form>
                             </div>
                             <div class="col-6 text-right">
-                                <!-- <button class="btn btn-sm btn-primary" @click="create_po()">Creat PO</button> -->
+                                <button class="btn btn-sm btn-primary" @click="new_employee()">Add New</button>
                             </div>
                         </div>
                     </div>
@@ -50,11 +50,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="emp in employees" :key="emp.employee_id">
+                                <tr v-for="emp in filteredEmployees" :key="emp.employee_id">
                                     <td>{{ emp.employee_id }}</td>
                                     <td>{{ emp.employee_name }}</td>
-                                    <td>{{ emp.department_name }}</td>
-                                    <td>{{ emp.division_name }}</td>
+                                    <td>{{ emp.department_desc }}</td>
+                                    <td>{{ emp.division_desc }}</td>
                                     <td>
                                         <div class="btn-group dropleft">
                                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,11 +97,12 @@ export default {
         ...mapActions([
             'getEmployees'
         ]),
-        get_employees(){
-            axios.get('employee').then(({data}) => {
-                console.table(data);
-            });
-        }
+        view_employee(id){
+            this.$router.push({ name: 'employee_show', params: { id: id } });
+        },
+        new_employee(){
+            this.$router.push({ name: 'employee_create' });
+        },
     },
     created(){
         this.getEmployees();
@@ -110,10 +111,16 @@ export default {
         ...mapGetters([
             'employees'
         ]),
+        filteredEmployees: function(){
+            let matcher = new RegExp(this.search_word, 'i')
+            return this.employees.filter(function(emp)
+                {
+                    return matcher.test(emp.employee_name);
+                }
+            );
+        },
     },
-    created(){
-    
-    },
+
 }
 </script>
 <style lang="css" scoped>

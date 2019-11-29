@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-              <h4>Inspection and Acceptance Reports</h4>
+              <h1>Inspection and Acceptance Reports</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -45,7 +45,8 @@
                                 </label>
                             </div>
                             <div class="col-1">
-                                <button class="btn btn-sm btn-primary" type="button" @click="create_iar(purchase_order_details.po_no)">Create Iar</button>
+                                <!-- <button class="btn btn-sm btn-primary" type="button" @click="add_obrs(purchase_order_details.po_no)" >Add Serial No</button> -->
+                                <button class="btn btn-sm btn-primary" type="button" @click="create_iar(purchase_order_details.po_no)" >Create Iar</button>
                             </div>
                         </div>
                     </div>
@@ -69,12 +70,16 @@
                                         {{ item.item_desc }}
                                         <div v-show="item.brand_desc !== null" class="w-100"></div>
                                         <label v-show="item.brand_desc !== null" class="form-label">Brand: </label>{{ item.brand_desc }}
-                                        <!-- <div class="w-100"></div>
+                                        <div class="w-100"></div>
                                         <label for="" class="form-label">Packaging: </label>{{ item.packaging_desc }}
                                         <div class="w-100"></div>
                                         <label for="" class="form-label">Manufacturer: </label>{{ item.manufacturer_desc }}
                                         <div class="w-100"></div>
-                                        <label for="" class="form-label">Country: </label>{{ item.country_desc }} -->
+                                        <label for="" class="form-label">Country: </label>{{ item.country_desc }}
+                                        <div class="w-100" v-show="item.offer !== null"></div>
+                                        <label for="" class="form-label" v-show="item.offer !== null">Offer: </label>{{ item.offer }}
+                                        <div class="w-100" v-show="item.other_details !== null"></div>
+                                        <label for="" class="form-label" v-show="item.other_details !== null">Other Details: </label>{{ item.other_details }}
                                     </td>
                                     <td class="text-right">{{ item.cost }}</td>
                                     <td class="text-right">{{ item.quantity }}</td>
@@ -115,6 +120,9 @@ export default {
         ]),
         create_iar(id){
             this.$router.push({ name: 'create_iar', params: { id: id } });
+        },
+        add_obrs(id){
+            this.$router.push({ name: 'purchase_order_obrs', params: { id: id } });
         },
     },
     created(){

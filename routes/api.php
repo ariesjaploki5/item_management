@@ -33,6 +33,7 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         'category' => 'Api\CategoryController',
         'holiday' => 'Api\HolidayController',
         'item' => 'Api\ItemController',
+        
         'supplier' => 'Api\SupplierController',
         'batch' => 'Api\BatchController',
 
@@ -43,6 +44,10 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         'iar' => 'Api\IarController',
         'dv' => 'Api\DvController',
         'inspection_officer' => 'Api\InspectionOfficerController',
+
+        'fund_source' => 'Api\FundSourceController',
+
+
     ]);
     Route::post('check_supplier_if_exists', 'Api\SupplierController@check_supplier_if_exists');
     Route::post('check_item_if_exists', 'Api\ItemController@check_item_if_exists');

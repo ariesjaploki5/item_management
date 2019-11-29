@@ -47,4 +47,8 @@ class PurchaseOrder extends Model
     public function iars(){
         return $this->hasMany('App\Models\Iar', 'po_no', 'po_no');
     }
+
+    public function obrs(){
+        return $this->hasOne('App\Models\Obrs', 'po_no', 'po_no');
+    }
 }

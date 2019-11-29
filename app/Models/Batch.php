@@ -33,6 +33,7 @@ class Batch extends Model
         'quantity',
         'expiration_date', 
         'remarks',
+        'fund_cluster_id',
     ];
 
     public function iar(){

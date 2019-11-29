@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Views\Department as DepartmentView;
 
 class DepartmentController extends Controller
 {
     public function index(){
-        $data = Department::orderBy('department_desc', 'asc')->get();
+        $data = DepartmentView::orderBy('department_desc', 'asc')->get();
 
         return response()->json($data);
     }

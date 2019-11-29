@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PurchaseOrderDetail as PurchaseOrderDetailResource;
 use App\Http\Resources\PurchaseOrderDetailView as PurchaseOrderDetailViewResource;
+use App\Http\Resources\Obrs as ObrsResource;
+
 class PurchaseOrder extends JsonResource
 {
     /**
@@ -26,6 +28,7 @@ class PurchaseOrder extends JsonResource
             'mode_id' => $this->mode_id,
             'mode_desc' => $this->mode->mode_desc,
             'items' => PurchaseOrderDetailViewResource::collection(($this->view_details)),
-        ];
+            'obrs' => new ObrsResource($this->obrs),
+         ];
     }
 }

@@ -123,12 +123,7 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                    <!-- <li class="nav-item">
-                      <router-link :to="{ name: 'inspection_and_acceptance_report_create' }" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Create</p>
-                      </router-link>
-                    </li> -->
+
                     <li class="nav-item">
                       <router-link :to="{ name: 'inspection_and_acceptance_reports' }" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -139,6 +134,23 @@
                       <router-link :to="{ name: 'inspection_and_acceptance_report_report' }" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Reports</p>
+                      </router-link>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                      Batches
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'batches' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List</p>
                       </router-link>
                     </li>
                   </ul>

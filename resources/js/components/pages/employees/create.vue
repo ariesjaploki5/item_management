@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employees</h1>
+            <h1>New Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,16 +21,22 @@
     <section class="content">
 
       <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-12">
+          <div class="row justify-content-center">
+              <div class="col-md-8">
                   <div class="card">
                     <div class="card-header">
                         <label for="" class="form-label">
-                            New Employee
+                            Employee Form
                         </label>
                     </div>
                     <form @submit.prevent="store_employee()">
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="" class="form-label">
+                                    Employee ID
+                                </label>
+                                <input type="text" class="form-control form-control-sm" v-model="employee.employee_id">
+                            </div>
                             <div class="form-group">
                                 <label for="" class="form-label">
                                     Firstname
@@ -54,13 +60,16 @@
                                     Department
                                 </label>
                                 <select class="form-control form-control-sm" v-model="employee.department_id">
-                                    <option value=""></option>
+                                    <option v-for="dept in departments" :key="dept.department_id" :value="dept.department_id">
+                                        {{ dept.department_desc }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+                        <div class="card-footer text-right">
+                            <button class="btn btn-warning" type="reset">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </form>
                     <!-- /.card-footer-->
@@ -103,9 +112,7 @@ export default {
             'departments'
         ]),
     },
-    created(){
-    
-    },
+
 }
 </script>
 <style lang="css" scoped>

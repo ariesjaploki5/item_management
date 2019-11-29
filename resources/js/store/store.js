@@ -43,7 +43,10 @@ export const store = new Vuex.Store({
         units: [],
         users: [],
         employees: [],
+        employee: {},
+
         departments: [],
+        batches: [],
     },
     getters: {
         loggedIn(state){
@@ -140,8 +143,14 @@ export const store = new Vuex.Store({
         employees(state){
             return state.employees
         },
+        employee(state){
+            return state.employee
+        },
         departments(state){
             return state.departments
+        },
+        batches(state){
+            return state.batches
         },
     },
     mutations: {
@@ -245,10 +254,15 @@ export const store = new Vuex.Store({
         getEmployees(state, employees){
             state.employees = employees
         },
+        setEmployee(state, employee){
+            state.employee = employee
+        },
         getDepartments(state, departments){
             state.departments = departments
         },
-
+        setBatches(state, batches){
+            state.batches = batches
+        },
     },
     actions: {
         async destroyToken(context) {
@@ -301,7 +315,6 @@ export const store = new Vuex.Store({
                 context.commit('getUsers', response.data);
             }).catch();
         },
-        
         async getApprovingOfficers(context){
             await axios.get('approving_officer').then(response => {
                 context.commit('getApprovingOfficers', response.data);
@@ -496,9 +509,23 @@ export const store = new Vuex.Store({
                 context.commit('getEmployees', data);
             }).catch();
         },
+        async getEmployee(context, id){
+            await axios.get('employee/'+id).then(({data}) => {
+                context.commit('setEmployee', data);
+            }).catch(() => {
+
+            });
+        },
         async getDepartments(context){
             await axios.get('department').then(({data}) => {
                 context.commit('getDepartments', data);
+            }).catch(() => {
+
+            });
+        },
+        async getBatches(context){
+            await axios.get('batch').then(({data}) => {
+                context.commit('setBatches', data);
             }).catch(() => {
 
             });

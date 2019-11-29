@@ -14,8 +14,10 @@ import home from './components/pages/home'
 import purchase_orders from './components/pages/purchase_orders'
 import purchase_order_list from './components/pages/purchase_orders/list'
 import purchase_order from './components/pages/purchase_orders/show'
+import purchase_order_obrs from './components/pages/purchase_orders/obrs'
 import purchase_order_print from './components/pages/purchase_orders/print'
 import purchase_order_create from './components/pages/purchase_orders/create'
+
 
 import purchase_requests from './components/pages/purchase_requests'
 import purchase_request_list from './components/pages/purchase_requests/list'
@@ -32,6 +34,11 @@ import employees from './components/pages/employees'
 import employee_list from './components/pages/employees/list'
 import employee from './components/pages/employees/show'
 import employee_create from './components/pages/employees/create'
+
+import batches from './components/pages/batches'
+import batch_list from './components/pages/batches/list'
+import batch from './components/pages/batches/show'
+import batch_create from './components/pages/batches/create'
 
 import items from './components/pages/items'
 import item_list from './components/pages/items/list'
@@ -94,6 +101,30 @@ export const routes = [
         meta: {
             requiresAuth: true,
         }
+    },
+    {
+        path: '/batches',
+        component: batches,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: batch_list,
+                name: 'batches',
+            },
+            {
+                path: 'create_batch',
+                component: batch_create,
+                name: 'batch_create',
+            },
+            {
+                path:':id',
+                component: batch,
+                name: 'batch_show',
+            },
+        ],
     },
     {
         path: '/employees',
@@ -164,6 +195,11 @@ export const routes = [
                 path:':id',
                 component: purchase_order,
                 name: 'purchase_order_show',
+            },
+            {
+                path: ':id/obrs',
+                component: purchase_order_obrs,
+                name: 'purchase_order_obrs',
             },
             {
                 path: ':id/print',
