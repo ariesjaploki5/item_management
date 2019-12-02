@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Dv;
 use App\Models\AttachmentDv;
 use DB;
-
+use App\Http\Resources\Dv as DvResource;
 
 class DvController extends Controller
 {
     public function index(){
+        $data = Dv::all();
 
+        return response()->json($data);
     }
 
     public function new_dv(){

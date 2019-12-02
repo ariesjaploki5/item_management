@@ -12,7 +12,11 @@ class BatchController extends Controller
 {
 
     public function index(){
-
+        $select_batches = DB::table("mmo.dbo.tfn_batches()")->where('remaining_quantity', '>', 0)->orderBy('expiration_date', 'asc')->get();
+        
+        $batches = BatchResource::collection($select_batches);
+        
+        return response()->json($batches);
     }
 
     public function store(Request $request){
@@ -26,6 +30,14 @@ class BatchController extends Controller
     public function show_using_item_id($id){
 
         $select_batches = DB::table("mmo.dbo.tfn_batches()")->where('item_id', $id)->orderBy('expiration_date', 'asc')->get();
+        
+        $batches = BatchResource::collection($select_batches);
+        
+        return response()->json($batches);
+    }
+
+    public function search_batch($search_word){
+        $select_batches = DB::table("mmo.dbo.tfn_batches()")->where('item_desc', 'like', '%'.$search_word.'%')->orderBy('expiration_date', 'asc')->get();
         
         $batches = BatchResource::collection($select_batches);
         

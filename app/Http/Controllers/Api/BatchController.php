@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Batch;
+use App\Http\Resources\MMO\Batch as BatchResource;
 use DB;
 
 class BatchController extends Controller
@@ -31,5 +32,13 @@ class BatchController extends Controller
         ]);
         
         return response()->json($batch);
+    }
+
+    public function search_batch($search_word){
+        $select_batches = DB::table("mmo.dbo.tfn_batches()")->where('item_desc', 'like', '%'.$search_word.'%')->orderBy('expiration_date', 'asc')->get();
+        
+        $batches = BatchResource::collection($select_batches);
+        
+        return response()->json($batches);
     }
 }

@@ -48,7 +48,12 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         'fund_source' => 'Api\FundSourceController',
 
 
+        
     ]);
+
+    Route::get('search_batch/{search_word}', 'Api\BatchController@search_batch');
+
+
     Route::post('check_supplier_if_exists', 'Api\SupplierController@check_supplier_if_exists');
     Route::post('check_item_if_exists', 'Api\ItemController@check_item_if_exists');
 

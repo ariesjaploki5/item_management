@@ -3,7 +3,9 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+                <h1>Create IAR</h1>
+            </div>
             <div class="col-sm-6">
 
                 <ol class="breadcrumb float-sm-right">
@@ -25,11 +27,27 @@
                   <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-auto">
-                                CREATE IAR
+                            <div class="col-5">
+                                <label for="" class="form-label">
+                                    PO No.: {{ purchase_order_details.po_no }}
+                                </label>
+                                <div class="w-100"></div>
+                                <label for="" class="form-label">
+                                    PR No.: {{ purchase_order_details.pr_no }}
+                                </label>
                             </div>
-                            <div class="col text-center">
-                                PO No.: {{ $route.params.id }}
+                            <div class="col-6">
+                                <label for="" class="form-label">
+                                    Supplier: {{ purchase_order_details.supplier_name }}
+                                </label>
+                                <div class="w-100"></div>
+                                <label for="" class="form-label">
+                                    OBRS No.: {{ purchase_order_details.obrs }}
+                                </label>
+                            </div>
+                            <div class="col-1">
+                                <!-- <button class="btn btn-sm btn-primary" type="button" @click="add_obrs(purchase_order_details.po_no)" >Add Serial No</button> -->
+                                <!-- <button class="btn btn-sm btn-primary" type="button" @click="create_iar(purchase_order_details.po_no)" >Create Iar</button> -->
                             </div>
                         </div>
                     </div>
@@ -40,9 +58,11 @@
                                 <label for="" class="form-label">
                                     Inspection Officer:
                                 </label>
+                                
                                 <select class="form-control form-control-sm" v-model="iar.inspection_officer_id" required>
-                                    <option v-for="officer in inspection_officers" :value="officer.inspection_officer_id" :key="officer.inspection_officer_id">{{ officer.name }}</option>
+                                    <option v-for="officer in inspection_officers" :key="officer.inspection_officer_id" :value="officer.inspection_officer_id">{{ officer.name }}</option>
                                 </select>
+
                                 <div class="w-100"></div>
                                 <label for="" class="form-label">
                                     Receiving Officer:

@@ -18,6 +18,11 @@ import purchase_order_obrs from './components/pages/purchase_orders/obrs'
 import purchase_order_print from './components/pages/purchase_orders/print'
 import purchase_order_create from './components/pages/purchase_orders/create'
 
+import pmo_pos from './components/pages/pmo_pos'
+import pmo_po_list from './components/pages/pmo_pos/list'
+import pmo_po from './components/pages/pmo_pos/show'
+import pmo_po_create_iar from './components/pages/purchase_orders/create_iar'
+
 
 import purchase_requests from './components/pages/purchase_requests'
 import purchase_request_list from './components/pages/purchase_requests/list'

@@ -20,16 +20,17 @@ class Batch extends JsonResource
             'item_id' => $this->item_id, 
             // 'item_desc' => $this->item->item_desc,
             'item_desc' => $this->item_desc,
+            'unit_desc' => $this->unit_desc,
             'brand_id' => $this->brand_id,
             // 'brand_desc' => $this->brand->brand_desc,
             'brand_desc' => $this->brand_desc,
-            'quantity' => (float)$this->quantity,
-            'cost' => (float)$this->cost,
+            'total_quantity' => $this->total_quantity,
+            'cost' => $this->cost,
             'expiration_date' => $this->expiration_date, 
-            'remarks' => $this->remarks,
-            'total_cost' => (float)($this->cost * $this->quantity),
-            'total_issued' => (float)$this->total_issued,
-            'remaining_quantity' => (float)($this->quantity - $this->total_issued)
+            // 'remarks' => $this->remarks,
+            // 'total_cost' => ($this->cost * $this->quantity),
+            'total_issued' => $this->total_issued,
+            'remaining_quantity' => ($this->total_quantity - $this->total_issued)
         ];
     }
 }
