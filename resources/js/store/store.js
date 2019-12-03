@@ -47,6 +47,8 @@ export const store = new Vuex.Store({
 
         departments: [],
         batches: [],
+
+        pmo_pos: [],
     },
     getters: {
         loggedIn(state){
@@ -151,6 +153,10 @@ export const store = new Vuex.Store({
         },
         batches(state){
             return state.batches
+        },
+
+        pmo_pos(state){
+            return state.pmo_pos
         },
     },
     mutations: {
@@ -262,6 +268,10 @@ export const store = new Vuex.Store({
         },
         setBatches(state, batches){
             state.batches = batches
+        },
+        
+        setPmoPos(state, pmo_pos){
+            state.pmo_pos = pmo_pos
         },
     },
     actions: {
@@ -526,6 +536,14 @@ export const store = new Vuex.Store({
         async getBatches(context){
             await axios.get('batch').then(({data}) => {
                 context.commit('setBatches', data);
+            }).catch(() => {
+
+            });
+        },
+
+        async getPmoPos(context){
+            await axios.get('pmo_po').then(({data}) => {
+                context.commit('setPmoPos', data);
             }).catch(() => {
 
             });

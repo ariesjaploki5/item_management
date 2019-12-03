@@ -19,6 +19,8 @@ Route::group(['middleware' => ['cors', 'api']], function() {
     Route::apiResources([
 
         'pmo_po' => 'PMO\PoController',
+        'pmo_iar' => 'PMO\IarController',
+        'pmo_ris' => 'PMO\RisController',
 
         'employee' => 'Api\EmployeeController',
         'department' => 'Api\DepartmentController',
@@ -51,9 +53,10 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         
     ]);
 
+
+
+
     Route::get('search_batch/{search_word}', 'Api\BatchController@search_batch');
-
-
     Route::post('check_supplier_if_exists', 'Api\SupplierController@check_supplier_if_exists');
     Route::post('check_item_if_exists', 'Api\ItemController@check_item_if_exists');
 

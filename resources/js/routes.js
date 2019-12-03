@@ -21,7 +21,12 @@ import purchase_order_create from './components/pages/purchase_orders/create'
 import pmo_pos from './components/pages/pmo_pos'
 import pmo_po_list from './components/pages/pmo_pos/list'
 import pmo_po from './components/pages/pmo_pos/show'
-import pmo_po_create_iar from './components/pages/purchase_orders/create_iar'
+import pmo_po_create_iar from './components/pages/pmo_pos/create_iar'
+
+import pmo_iars from './components/pages/pmo_iars'
+import pmo_iar_list from './components/pages/pmo_iars/list'
+import pmo_iar from './components/pages/pmo_iars/show'
+import pmo_iar_print from './components/pages/pmo_iars/print'
 
 
 import purchase_requests from './components/pages/purchase_requests'
@@ -177,6 +182,56 @@ export const routes = [
                 component: user,
                 name: 'user_show',
             },
+        ],
+    },
+    {
+        path: '/pmo_pos',
+        component: pmo_pos,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: pmo_po_list,
+                name: 'pmo_pos',
+            },
+            {
+                path:':id',
+                component: pmo_po,
+                name: 'pmo_po_show',
+            },
+            {
+                path: ':id/pmo_po_create_iar',
+                component: pmo_po_create_iar,
+                name: 'pmo_po_create_iar',
+            },
+
+        ],
+    },
+    {
+        path: '/pmo_iars',
+        component: pmo_iars,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: pmo_iar_list,
+                name: 'pmo_iars',
+            },
+            {
+                path:':id',
+                component: pmo_iar,
+                name: 'pmo_iar_show',
+            },
+            {
+                path: ':id/pmo_iar_print',
+                component: pmo_iar_print,
+                name: 'pmo_iar_print',
+            },
+
         ],
     },
     {

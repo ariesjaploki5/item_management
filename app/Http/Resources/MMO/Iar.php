@@ -4,7 +4,7 @@ namespace App\Http\Resources\MMO;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\MMO\Batch as BatchResource;
-use App\Http\Resources\MMO\Po as PoResource;
+use App\Http\Resources\PMO\Po as PoResource;
 
 class Iar extends JsonResource
 {
@@ -17,19 +17,21 @@ class Iar extends JsonResource
     public function toArray($request)
     {
         return [
-            'iar_no' => $this->iar_no !== null ? $this->iar_no : "" ,
-            'iar_date' => "(".($this->created_at->format('l')).") ".$this->created_at->format('d-m-Y') . " / " .$this->created_at->format('h:i A'),
-            'resp_center' => $this->po->dept_name !== null ? $this->po : "",
-            'po_no' => $this->po_no !== null ? $this->po_no : "",
-            'pr_no' => $this->po->pr_no !== null ? $this->po->pr_no : "",
-            'received_date' => "(".($this->received_date->format('l')).") ".$this->received_date->format('d-m-Y'),
-            'supplier_name' => $this->po->supplier !== null ? $this->po->supplier : "",
-            'po_date' => $this->po->po_date->format('d-m-Y'),
-            'ref_no' => $this->ref_no  !== null ? $this->ref_no : "",
-            'ref_date' => $this->ref_date !== null ? $this->ref_date : "",
-            'inspection_date' => $this->insection_date !== null ? $this->insection_date : "",
-            'inspector' => $this->inspection_officer_id !== null ? $this->inspection_officer->name : "",
-            'batches' =>  BatchResource::collection($this->batches)
+            'iar_no' => $this->iar_no,
+            'iar_date' => $this->created_at->format('Y-m-d'),
+            'inspection_date' => $this->inspection_date,
+            'inspection_officer_id' => $this->inspection_officer_id,
+            'inspection_officer_name' => $this->inspection_officer->name,
+            'receiving_officer_id' => $this->receiving_officer_id,
+            'receiving_officer_name' => $this->receiving_officer_id !== null ? $this->receiving_officer->name : null,
+            'po_no' => $this->po_no,
+            'po_date' => $this->pmo_po,
+            'supplier_name' => $this->pmo_po,
+            'received_date' => $this->received_date,
+            'ref_no' => $this->ref_no,
+            'ref_date' => $this->ref_date,
+            'batches' => BatchResource::collection($this->batches),
+            'po' => new PoResource($this->po),
         ];
     }
 }
