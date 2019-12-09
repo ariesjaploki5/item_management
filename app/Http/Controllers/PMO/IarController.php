@@ -87,7 +87,7 @@ class IarController extends Controller
             $remarks = $batch[$i]['remarks'];
             
             $brand = $batch[$i]['brand'];
-            
+            $item_unit = $batch[$i]['item_unit'];
 
             Batch::create([
                 'iar_no' => $iar_no,
@@ -99,6 +99,7 @@ class IarController extends Controller
                 'batch_no' => $batch_no,
                 'expiration_date' => $expiration_date,
                 'remarks' => $remarks, 
+                'item_unit' => $item_unit,
             ]);
         }
 

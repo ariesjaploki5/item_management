@@ -16,6 +16,7 @@ class Ris extends JsonResource
     public function toArray($request)
     {
         return [
+            'control_no' => $this->control_no,
             'ris_no' => $this->ris_no,
             'ris_date' => $this->ris_date->format('d-m-Y'),
             'issued_date' => $this->issued_date !== null ? $this->issued_date: " ",
@@ -28,7 +29,7 @@ class Ris extends JsonResource
             // 'received_by' => $this->received_by !== null ? $this->received_by->user_last.', '.$this->received_by->user_first.' '.$this->received_by->user_middle : " ",
             'received_date' => $this->received_date !== null ? $this->received_date : " ",
             'purpose' => $this->purpose,
-            'items' => BatchRisResource::collection($this->items),
+            'items' => BatchRisResource::collection($this->batches),
 
         ];
     }

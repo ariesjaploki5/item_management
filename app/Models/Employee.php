@@ -16,4 +16,7 @@ class Employee extends Model
         return $this->hasOne('App\User', 'employee_id');
     }
 
+    public function department(){
+        return $this->belongsTo('App\Models\Department', 'department_id', 'department_id');
+    }
 }

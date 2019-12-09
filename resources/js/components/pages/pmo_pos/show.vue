@@ -66,10 +66,7 @@
                             <tbody>
                                 <tr v-for="(item, index) in pmo_po.items" :key="index">
                                     <td class="text-right">{{ index + 1 }}</td>
-                                    <td>
-                                        {{ item.item_desc }}
-
-                                    </td>
+                                    <td>{{ item.item_desc }}</td>
                                     <td class="text-right">{{ item.cost }}</td>
                                     <td class="text-right">{{ item.quantity }}</td>
                                     <td class="text-right">{{ item.total_received }}</td>

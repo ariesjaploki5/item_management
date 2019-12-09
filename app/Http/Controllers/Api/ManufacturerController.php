@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Manufacturer;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Support\Facades\Response;
 
 class ManufacturerController extends Controller

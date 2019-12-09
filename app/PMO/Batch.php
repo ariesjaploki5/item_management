@@ -24,10 +24,11 @@ class Batch extends Model
         'iar_no',
         'item_id', 
         'item_desc',
+        'item_unit',
         'brand',
-        'cost', 
+        'cost',
         'quantity',
-        'expiration_date', 
+        'expiration_date',
         'remarks',
         'fund_cluster_id',
     ];

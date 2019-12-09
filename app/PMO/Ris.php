@@ -41,7 +41,7 @@ class Ris extends Model
     ];
 
     public function batches(){
-        return $this->hasMany('App\PMO\BatchRis', 'control_no');
+        return $this->hasMany('App\PMO\BatchRis', 'control_no', 'control_no');
     }
 
     public function requested_by(){

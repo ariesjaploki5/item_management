@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employees</h1>
+            <h1>Users</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
-              <li class="breadcrumb-item active"><router-link :to="{ name: 'purchase_orders'}">Employees</router-link></li>
+              <li class="breadcrumb-item active"><router-link :to="{ name: 'users'}">Employees</router-link></li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6">
-                                <form @submit.prevent="search_employees()">
+                                <form @submit.prevent="search_users()">
                                     <div class="form-group row">
                                         <input type="text" class="form-control form-control-sm col-4 mr-2" v-model="search_word" required>
                                         <button class="btn btn-sm btn-primary" type="submit">search</button>
@@ -50,12 +50,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="emp in employees" :key="emp.employee_id">
-                                    <td>{{ emp.employee_id }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr v-for="user in users" :key="user.id">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.employee_name }}</td>
+                                    <td>{{ user.department }}</td>
+                                    <td>{{ user.division }}</td>
+                                    <td>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -76,7 +78,7 @@
 </template>
 <script>
 
-import{ mapActions, mapGetters } from 'vuex'
+import{ mapActions, mapGetters, mapState } from 'vuex'
 export default {
 
     data(){
@@ -87,26 +89,28 @@ export default {
 
     methods:{
         ...mapActions([
-            'getEmployees'
+            'getUsers', 'searchUsers'
         ]),
-        get_employees(){
-            axios.get('employee').then(({data}) => {
-                console.table(data);
-            });
+        search_users(){
+            this.searchUsers(this.search_word);
+            // axios.get('search_users/'+this.search_word).then(({data}) => {
+            //     this.users = data;
+            // }).catch(() => {
+
+            // });
         }
     },
     created(){
-        this.getEmployees();
-        this.get_employees();
+        this.getUsers();
+
     },
     computed:{
         ...mapGetters([
-            'employees'
+            'users'
         ]),
+
     },
-    created(){
-    
-    },
+
 }
 </script>
 <style lang="css" scoped>

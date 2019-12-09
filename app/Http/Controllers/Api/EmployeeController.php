@@ -11,7 +11,7 @@ use App\Http\Resources\Employee as EmployeeResource;
 class EmployeeController extends Controller
 {
     public function index(){
-        $data = EmployeeResource::collection(EmployeeView::orderBy('department_id', 'asc')->orderBy('employee_id', 'asc')->get());
+        $data = EmployeeResource::collection(EmployeeView::orderBy('employee_name', 'asc')->get());
 
         return response()->json($data);
     }

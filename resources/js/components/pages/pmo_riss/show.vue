@@ -9,8 +9,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
-              <li class="breadcrumb-item"><router-link :to="{ name: 'requisition_slips'}">Requisition Slips</router-link></li>
-              <li class="breadcrumb-item active"><router-link :to="{ name: 'requisition_slip_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
+              <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_riss'}">Requisition Slips</router-link></li>
+              <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_ris_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
             </ol>
           </div>
         </div>
@@ -33,53 +33,30 @@
                         <table class="table table-sm table-hover">
                             <thead>
                                 <tr>
-                                    <th>Stock No.:</th>
-                                    <th>Quantity</th>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Item Description</th>
                                     <th>Unit</th>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>Unit</th>
-                                    <th>Unit Cost</th>
-                                    <th>Lot/Batch</th>
-                                    <th  v-show="ris.received_date !== null">Action</th>
+                                    <th>Batch</th>
+                                    <th>Expiry</th>
+                                    <th>Balance</th>
+                                    <th>Request Bal.</th>
+                                    <th width="20%">Issued Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(batch, index) in ris.batches" :key="index">
+                                <tr v-for="(batch, index) in ris.items" :key="index">
+                                    <td>{{ index + 1}}</td>
+                                    <td>{{ batch.item_desc }}</td>
+                                    <td>{{ batch.item_unit }}</td>
+                                    <td>{{ batch.batch_no }}</td>
+                                    <td>{{ batch.expiration_date }}</td>
+                                    <td>{{ batch.remaining_quantity }}</td>
+                                    <td>{{ batch.requested_quantity }}</td>
                                     <td>
-                                        
-                                    </td>
-                                    <td>
-                                        {{ batch.requested_quantity }}
-                                    </td>
-                                    <td>
-                                        {{ batch.unit_desc }}
-                                    </td>
-                                    <td>
-                                        {{ batch.item_desc }}
-                                        <div class="w-100"></div>
-                                        <label for="" class="form-label">Brand: </label>{{ batch.brand_desc }}
-                                    </td>
-                                    <td>
-                                        <input v-if="ris.received_date == null && ris.issued_date == null" type="float" class="form-control form-control-sm text-right" v-model="batch.issued_quantity" :max="batch.requested_quantity" required>
-                                        <span v-else>{{ batch.issued_quantity }}</span>
-                                    </td>
-                                    <td>
-                                        {{ batch.unit_desc }}
-                                    </td>
-                                    <td>
-                                        {{ batch.cost }}
-                                    </td>
-                                    <td>
-                                        {{ batch.batch_no }}
-                                    </td>
-                                    <td v-show="ris.received_date !== null">
-                                        <button type="button" v-show="batch.accepted == 0" class="btn btn-success btn-sm" @click="accept_batch(batch.batch_ris_id)">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                        <button type="button" v-show="batch.accepted == 1" disabled class="btn btn-warning btn-sm" @click="accept_batch(batch.batch_ris_id)">
-                                            <i class="fas fa-check"></i>
-                                        </button>
+                                        <span v-show="editmode">
+                                            <input type="text" class="form-control form-control-sm" v-model="batch.issued_quantity" required>
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -88,7 +65,9 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-sm btn-success">Save</button>
+                        <button type="button" v-show="!editmode" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
+                        <button type="button" v-show="editmode" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
+                        <button type="submit" v-show="editmode" class="btn btn-sm btn-success">Save or Update</button>
                     </div>
                     </form>
                     <!-- /.card-footer-->
@@ -106,6 +85,7 @@ import{ mapActions, mapGetters, mapState } from 'vuex'
 export default {
     data(){
         return{
+            editmode: false,
             ris: {
                 batches: []
             },
@@ -115,7 +95,7 @@ export default {
     methods: {
 
         get_ris(){
-            axios.get('ris/'+this.$route.params.id).then(({data}) => {
+            axios.get('pmo_ris/'+this.$route.params.id).then(({data}) => {
                 this.ris = data;
             }).catch(() => {
 
@@ -129,7 +109,14 @@ export default {
                 this.message_box = 'error';
             });
         },
+        cancel_edit(){
+            this.editmode = false;
+        },
+        edit_ris(){
+            this.editmode = true;
+        },
         save_ris(){
+            this.editmode = false;
             axios.put('issue/'+this.$route.params.id,{
                 batches: this.ris.batches,
             }).then(() => {
@@ -148,6 +135,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    table tbody tr td{
+        height: 20px !important;
+    }
 </style>

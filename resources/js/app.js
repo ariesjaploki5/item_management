@@ -44,7 +44,7 @@ let router = new VueRouter({
     mode: 'history',
 });
 
-Vue.filter('round_off', function(val){return (val).toFixed(2);});
+Vue.filter('round_off', function(val){return parseFloat((val).toFixed(4));});
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {

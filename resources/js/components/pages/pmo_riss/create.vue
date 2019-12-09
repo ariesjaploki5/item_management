@@ -126,6 +126,16 @@ export default {
             selected_batches: [],
             search_word: null,
             batches: null,
+            batch: {
+                batch_no: '',
+                item_desc: '',
+                brand_desc: '',
+                unit_desc: '',
+                expiration_date: '',
+                requested_quantity: '',
+                remaining_quantity: '',
+            },
+            message: '',
         }
     },
     methods: {
@@ -133,14 +143,14 @@ export default {
             'getItems'
         ]),
         search_batch(){
-            axios.get('search_batch/'+this.search_word).then(({data}) => {
+            axios.get('pmo_search_batch/'+this.search_word).then(({data}) => {
                 this.batches = data;
             }).catch(() => {
 
             });
         },
         store_ris(){
-            axios.post('ris', {
+            axios.post('pmo_ris', {
                 batches: this.selected_batches,
                 
             }).then(() => {
@@ -149,23 +159,34 @@ export default {
 
             });
         },
-        // select_batch(){
-        //     $("#select_batch_modal").modal("show");
-        // },
-        // transfer_batch(){
-        //     this.selected_batches = this.pending_batches;
-        //     $("#select_batch_modal").modal("hide");
-        // },
+
         add_batch(batch){
-            this.selected_batches.push({
-                batch_no: batch.batch_no,
-                item_desc: batch.item_desc,
-                brand_desc: batch.brand_desc,
-                unit_desc: batch.unit_desc,
-                expiration_date: batch.expiration_date,
-                requested_quantity: null,
-                remaining_quantity: batch.remaining_quantity,
-            });
+            this.message = null;
+            var a = this.selected_batches;
+            var index = a.findIndex( x => x.item_desc == batch.item_desc )
+            if(index === -1){
+                this.selected_batches.push({
+                    batch_no: batch.batch_no,
+                    item_desc: batch.item_desc,
+                    brand_desc: batch.brand_desc,
+                    unit_desc: batch.unit_desc,
+                    expiration_date: batch.expiration_date,
+                    requested_quantity: null,
+                    remaining_quantity: batch.remaining_quantity,
+                });
+                this.batch = {
+                    batch_no: '',
+                    item_desc: '',
+                    brand_desc: '',
+                    unit_desc: '',
+                    expiration_date: '',
+                    requested_quantity: '',
+                    remaining_quantity: '',
+                };
+            } else {
+                this.message = "Item already exists";
+            }
+
         },
         remove_batch(index){
             this.selected_batches.splice(index, 1);

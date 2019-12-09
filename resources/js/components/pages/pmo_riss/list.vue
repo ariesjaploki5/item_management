@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
-              <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_ris'}">Requisition Slips</router-link></li>
+              <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_riss'}">Requisition Slips</router-link></li>
             </ol>
           </div>
         </div>
@@ -51,27 +51,14 @@
                                     <th>Requested Date</th>
                                     <th>Issued Date</th>
                                     <th>Received Date</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="ris in pmo_riss" :key="ris.control_no">
+                                <tr v-for="ris in pmo_riss" :key="ris.control_no" @click="view_ris(ris.control_no)">
                                     <td>{{ ris.control_no }}</td>
                                     <td>{{ ris.ris_date }}</td>
                                     <td>{{ ris.issued_date }}</td>
                                     <td>{{ ris.received_date }}</td>
-                                    <td>
-                                        <div class="btn-group dropleft">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                               <button class="dropdown-item" type="button" @click="view_ris(ris.control_no)">View</button>
-                                               <button v-show="ris.issued_date !== null" class="dropdown-item" type="button" @click="receive_ris(ris.control_no)">Receive</button>
-                                               <button class="dropdown-item" type="button" @click="print_ris(ris.control_no)">Print</button>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -105,20 +92,20 @@ export default {
     },
     methods: {
         view_ris(id){
-            this.$router.push({ name: 'requisition_slip_show', params: { id: id } });
+            this.$router.push({ name: 'pmo_ris_show', params: { id: id } });
         },
         print_ris(id){
-            this.$router.push({ name: 'requisition_slip_print', params: { id: id } });
+            this.$router.push({ name: 'pmo_ris_print', params: { id: id } });
         },
         receive_ris(id){
             axios.put('receive/'+id).then(() => {
-                this.$router.push({ name: 'requisition_slip_show', params: { id: id } });
+                this.$router.push({ name: 'pmo_ris_show', params: { id: id } });
             }).catch(() => {
 
             });
         },
         create_ris(){
-            this.$router.push({ name: 'requisition_slip_create' });
+            this.$router.push({ name: 'pmo_ris_create' });
         },
         get_pmo_riss(){
             axios.get('pmo_ris').then(({data}) => {

@@ -142,7 +142,7 @@
                                         <input type="float" class="form-control form-control-sm text-right" v-model="batch.received_quantity" required>
                                     </td>
                                     <td class="text-right">    
-                                        <span v-show="batch.received_quantity">{{ batch.cost * batch.received_quantity }}</span>
+                                        <span v-show="batch.received_quantity">{{ batch.cost * batch.received_quantity | round_off }}</span>
                                     </td>
                                     <td>
                                         <input type="date" class="form-control form-control-sm" v-model="batch.expiration_date" required>
@@ -237,6 +237,7 @@ export default {
             this.batches.push({
                 temp_id: this.batches.length + 1,
                 item_id: this.selected_item.item_id !== null ? this.select_item_.item_id : '',
+                item_unit: this.selected_item.item_unit,
                 item_desc: this.selected_item.item_desc,
                 brand: this.selected_item.brand,
                 cost: this.selected_item.cost,

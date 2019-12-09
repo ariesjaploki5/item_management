@@ -9,7 +9,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    protected $table = 'item_management.dbo.users';
+    protected $table = 'mmo.dbo.users';
 
     use HasApiTokens, Notifiable;
 

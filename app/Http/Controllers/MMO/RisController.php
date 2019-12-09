@@ -4,13 +4,11 @@ namespace App\Http\Controllers\MMO;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\MMO\Ris;
-use App\MMO\ItemRis;
-use App\Models\BatchRis;
-use App\Models\ItemRisIssuance;
+use App\PMO\Ris;
+use App\PMO\BatchRis;
+use App\PMO\ItemRisIssuance;
 use Carbon\Carbon;
 use App\Http\Resources\MMO\Ris as RisResource;
-use App\Http\Resources\MMO\ItemRis as ItemRisResource;
 use DB;
 use Illuminate\Support\Collection;
 use Auth;
@@ -23,7 +21,6 @@ class RisController extends Controller
         $data = RisResource::collection(Ris::all());
 
         return response()->json($data);
-
     }
 
     public function control_no(){

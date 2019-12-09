@@ -196,8 +196,6 @@ class RisController extends Controller
 
     public function show($id){
 
-        $ris =  Ris::findOrFail($id);
-
         $data = new RisResource(Ris::find($id));
 
         return response()->json($data);

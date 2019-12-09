@@ -28,6 +28,11 @@ import pmo_iar_list from './components/pages/pmo_iars/list'
 import pmo_iar from './components/pages/pmo_iars/show'
 import pmo_iar_print from './components/pages/pmo_iars/print'
 
+import pmo_riss from './components/pages/pmo_riss'
+import pmo_ris_list from './components/pages/pmo_riss/list'
+import pmo_ris from './components/pages/pmo_riss/show'
+import pmo_ris_create from './components/pages/pmo_riss/create'
+import pmo_ris_print from './components/pages/pmo_riss/print'
 
 import purchase_requests from './components/pages/purchase_requests'
 import purchase_request_list from './components/pages/purchase_requests/list'
@@ -230,6 +235,36 @@ export const routes = [
                 path: ':id/pmo_iar_print',
                 component: pmo_iar_print,
                 name: 'pmo_iar_print',
+            },
+
+        ],
+    },
+    {
+        path: '/pmo_riss',
+        component: pmo_riss,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: pmo_ris_list,
+                name: 'pmo_riss',
+            },
+            {
+                path: 'pmo_ris_create',
+                component: pmo_ris_create,
+                name: 'pmo_ris_create',
+            },
+            {
+                path:':id',
+                component: pmo_ris,
+                name: 'pmo_ris_show',
+            },
+            {
+                path: ':id/pmo_ris_print',
+                component: pmo_ris_print,
+                name: 'pmo_ris_print',
             },
 
         ],

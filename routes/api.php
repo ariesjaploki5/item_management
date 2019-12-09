@@ -49,11 +49,11 @@ Route::group(['middleware' => ['cors', 'api']], function() {
 
         'fund_source' => 'Api\FundSourceController',
 
-
-        
+        'user' => 'Api\UserController',
     ]);
 
 
+    Route::get('pmo_search_batch/{search_word}', 'PMO\BatchController@search_batch');
 
 
     Route::get('search_batch/{search_word}', 'Api\BatchController@search_batch');
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['cors', 'api']], function() {
     Route::post('search_dv', 'Api\DvController@search_dv');
     Route::post('search_iar', 'Api\IarController@search_iar');
     
-
+    Route::get('search_user/{search_word}', 'Api\UserController@search_user');
 
     Route::get('get_user', 'AuthController@get_user');
     Route::post('logout', 'AuthController@logout');

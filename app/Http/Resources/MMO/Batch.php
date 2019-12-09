@@ -20,10 +20,10 @@ class Batch extends JsonResource
             'item_id' => $this->item_id, 
             // 'item_desc' => $this->item->item_desc,
             'item_desc' => $this->item_desc,
-            'unit_desc' => $this->unit_desc,
-            'brand_id' => $this->brand_id,
+            // 'unit_desc' => $this->unit_desc,
+            // 'brand_id' => $this->brand_id,
             // 'brand_desc' => $this->brand->brand_desc,
-            'brand_desc' => $this->brand_desc,
+            'brand_desc' => $this->brand,
             'quantity' => (float)$this->quantity,
             'cost' => (float)$this->cost,
             'total_cost' => (float)$this->cost * $this->quantity,
@@ -31,7 +31,7 @@ class Batch extends JsonResource
             // 'remarks' => $this->remarks,
             // 'total_cost' => ($this->cost * $this->quantity),
             'total_issued' => $this->total_issued,
-            'remaining_quantity' => ($this->total_quantity - $this->total_issued)
+            'remaining_quantity' => ($this->quantity - $this->total_issued)
         ];
     }
 }

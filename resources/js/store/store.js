@@ -321,9 +321,16 @@ export const store = new Vuex.Store({
             
         },
         async getUsers(context){
-            await axios.get('users').then(response => {
+            await axios.get('user').then(response => {
                 context.commit('getUsers', response.data);
             }).catch();
+        },
+        async searchUsers(context, search_word){
+            await axios.get('search_user/'+search_word).then(({data}) => {
+                context.commit('getUsers', data);
+            }).catch(() => {
+
+            });
         },
         async getApprovingOfficers(context){
             await axios.get('approving_officer').then(response => {
