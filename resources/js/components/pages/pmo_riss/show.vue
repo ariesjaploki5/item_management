@@ -25,7 +25,12 @@
               <div class="col-md-12">
                   <div class="card">
                     <div class="card-header">
-
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-1">
+                                <button type="button" @click="print()" class="btn btn-sm btn-primary">print</button>
+                            </div>
+                        </div>
                     </div>
                     <form @submit.prevent="save_ris()">
                     <div class="card-body">
@@ -54,6 +59,9 @@
                                     <td>{{ batch.remaining_quantity }}</td>
                                     <td>{{ batch.requested_quantity }}</td>
                                     <td>
+                                        <span v-show="!editmode">
+                                            {{ batch.issued_quantity }}
+                                        </span>
                                         <span v-show="editmode">
                                             <input type="text" class="form-control form-control-sm" v-model="batch.issued_quantity" required>
                                         </span>
@@ -61,13 +69,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                            
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer text-right">
-                        <button type="button" v-show="!editmode" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
-                        <button type="button" v-show="editmode" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
-                        <button type="submit" v-show="editmode" class="btn btn-sm btn-success">Save or Update</button>
+                        <button type="button" v-show="!editmode && user.role_id == 2" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
+                        <button type="button" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
+                        <button type="submit" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-success">Save or Update</button>
+                        <button type="button" v-show="user.role_id == 3 && ris.issued_date !== null" class="btn btn-sm btn-success" @click="receive()">Receive</button>
                     </div>
                     </form>
                     <!-- /.card-footer-->
@@ -92,8 +100,10 @@ export default {
             message_box: '',
         }
     },
-    methods: {
-
+    methods: {  
+        ...mapActions([
+            'retrieveUser'
+        ]),
         get_ris(){
             axios.get('pmo_ris/'+this.$route.params.id).then(({data}) => {
                 this.ris = data;
@@ -101,12 +111,14 @@ export default {
 
             });
         },
-        accept_batch(id){
-            axios.put('accept_batch/'+id).then(() => {
+
+        receive(){
+            axios.put('pmo_ris_receive/'+this.$route.params.id, {
+                batches: this.ris.items,
+            }).then(() => {
                 this.get_ris();
-                this.message_box = 'success';
             }).catch(() => {
-                this.message_box = 'error';
+
             });
         },
         cancel_edit(){
@@ -117,20 +129,28 @@ export default {
         },
         save_ris(){
             this.editmode = false;
-            axios.put('issue/'+this.$route.params.id,{
-                batches: this.ris.batches,
+            axios.put('pmo_ris_issue/'+this.$route.params.id,{
+                batches: this.ris.items,
             }).then(() => {
-                this.$router.push({ name: 'requisition_slips' });
+                this.editmode = false;
+                this.get_ris();
+                // this.$router.push({ name: 'pmo_ris_show' });
             }).catch(() => {
 
             });
-        }
+        },
+        print(){
+            this.$router.push({ name: 'pmo_ris_print', params: { id: this.$route.params.id } });
+        },
     },
     created(){
         this.get_ris();
+        this.retrieveUser();
     },
     computed:{
-
+        ...mapGetters([
+            'user'
+        ]),
     },
 }
 </script>

@@ -9,8 +9,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
-              <li class="breadcrumb-item"><router-link :to="{ name: 'purchase_orders'}">Purchase Order</router-link></li>
-              <li class="breadcrumb-item active"><router-link :to="{ name: 'purchase_order_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
+              <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_pos'}">Purchase Order</router-link></li>
+              <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_po_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
             </ol>
           </div>
         </div>

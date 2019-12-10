@@ -20,7 +20,7 @@ class Batch extends JsonResource
             'item_id' => $this->item_id, 
             // 'item_desc' => $this->item->item_desc,
             'item_desc' => $this->item_desc,
-            // 'unit_desc' => $this->unit_desc,
+            'item_unit' => $this->item_unit,
             // 'brand_id' => $this->brand_id,
             // 'brand_desc' => $this->brand->brand_desc,
             'brand_desc' => $this->brand,

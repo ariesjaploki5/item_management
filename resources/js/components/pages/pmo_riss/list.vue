@@ -48,16 +48,22 @@
                             <thead>
                                 <tr>
                                     <th>Control No.:</th>
+                                    <th>Requested By</th>
                                     <th>Requested Date</th>
+                                    <th>Issued By</th>
                                     <th>Issued Date</th>
+                                    <th>Received By</th>
                                     <th>Received Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="ris in pmo_riss" :key="ris.control_no" @click="view_ris(ris.control_no)">
                                     <td>{{ ris.control_no }}</td>
+                                    <td>{{ ris.requested_name }}</td>
                                     <td>{{ ris.ris_date }}</td>
+                                    <td>{{ ris.issued_name }}</td>
                                     <td>{{ ris.issued_date }}</td>
+                                    <td>{{ ris.received_name }}</td>
                                     <td>{{ ris.received_date }}</td>
                                 </tr>
                             </tbody>

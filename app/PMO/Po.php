@@ -31,7 +31,7 @@ class Po extends Model
     }
 
     public function iars(){
-        return $this->hasMany('App\Models\Iar', 'po_no', 'po_no');
+        return $this->hasMany('App\PMO\Iar', 'po_no');
     }
 
     public function scopeMmo(){

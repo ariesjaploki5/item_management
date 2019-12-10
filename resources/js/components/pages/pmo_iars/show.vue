@@ -45,8 +45,9 @@
                                 </label>
                             </div>
                             <div class="col-1">
-                                
-                                
+                                <button class="btn btn-sm btn-primary" type="button" @click="print()">
+                                    print
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,9 @@ export default {
 
             });
         },
-
+        print(){
+            this.$router.push({ name: 'pmo_iar_print', params:{ id: this.$route.params.id } });
+        },
     },
     created(){
         this.get_iar();

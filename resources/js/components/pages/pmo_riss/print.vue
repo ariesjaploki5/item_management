@@ -34,9 +34,9 @@
         <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
             <div class="col-6 border-right border-dark">
                 <div class="row">
-                    <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">{{ ris.supplier_name }}</div>
-                    <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">{{ ris.po_no }}</div>
-                    <div class="col-3">Resp. Center Code </div><div class="col-8 border-bottom border-dark">{{ ris.po_date }}</div>
+                    <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">{{ ris.division }}</div>
+                    <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">{{ ris.department }}</div>
+                    <div class="col-3">Resp. Center Code </div><div class="col-8 border-bottom border-dark">{{ ris.department }}</div>
                     
                 </div>
             </div>
@@ -66,18 +66,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="batch in ris.batches" :key="batch.batch_no">
+                    <tr v-for="batch in ris.items" :key="batch.batch_no">
                         <td class="text-center"></td>
-                        <td class="text-center">{{ batch.requested_quantity }}</td>
-                        <td class="text-center">{{ batch.unit_desc }}</td>
+                        <td class="text-right">{{ batch.requested_quantity }}</td>
+                        <td class="text-center">{{ batch.item_unit }}</td>
                         <td class="text-left">
                             {{ batch.item_desc }}
                             <div class="w-100"></div>
-                            <label for="">Brand: </label>{{ batch.brand_desc }}
+                            <label for="" v-show="batch.brand !== null">Brand: </label>{{ batch.brand }}
                         </td>
                         <td class="text-right">{{ batch.issued_quantity }}</td>
-                        <td class="text-center">{{ batch.unit_desc }}</td>
-                        <td class="text-center">{{ batch.cost }}</td>
+                        <td class="text-center">{{ batch.item_unit }}</td>
+                        <td class="text-right">{{ batch.cost }}</td>
                         <td class="text-left">{{ batch.batch_no }}</td>
                     </tr>
                 </tbody>
@@ -100,10 +100,10 @@
                     </tr>
                     <tr>
                         <td>Printed name</td>
+                        <td>{{ ris.requested_name }}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ ris.issued_name }}</td>
+                        <td>{{ ris.received_name }}</td>
                     </tr>
                     <tr>
                         <td>Designation</td>
@@ -114,10 +114,10 @@
                     </tr>
                     <tr>
                         <td>Date</td>
+                        <td>{{ ris.ris_date }}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ ris.issued_date }}</td>
+                        <td>{{ ris.received_date }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -138,7 +138,7 @@ export default {
     },
     methods: {
         get_ris(){
-            axios.get('ris/'+this.$route.params.id).then(({data}) => {
+            axios.get('pmo_ris/'+this.$route.params.id).then(({data}) => {
                 this.ris = data;
             }).catch(() => {
 

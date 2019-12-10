@@ -21,6 +21,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function role(){
+        return $this->belongsTo('App\Role', 'role_id', 'role_id');
+    }
+
     public function findForPassport($username) { 
         return $this->where('username', $username)->first();
     }

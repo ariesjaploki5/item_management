@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\User as UserResource;
 
 class AuthController extends Controller
 {
@@ -20,8 +21,11 @@ class AuthController extends Controller
 
     public function get_user(Request $request){
         $user = auth('api')->user();
+        $user_id = $user->id;
+        $user = User::find($user_id);
+        $user = new UserResource($user);
+        
         return response()->json($user);
-
     }
 
     public function login(Request $request)

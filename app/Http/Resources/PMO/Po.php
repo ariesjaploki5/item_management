@@ -4,7 +4,7 @@ namespace App\Http\Resources\PMO;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PMO\PoItem as PoItemResource;
-
+use App\Http\Resources\MMO\Iar as IarResource;
 class Po extends JsonResource
 {
     /**
@@ -28,6 +28,7 @@ class Po extends JsonResource
             'obrs' => $this->ors_burst,
             'fund_cluster' => $this->ors_burst_fund !== '' ? "0".$this->ors_burst_fund : '',
             'items' => PoItemResource::collection($this->po_items),
+            // 'iars' => IarResource::collection($this->iars),
         ];
     }
 }

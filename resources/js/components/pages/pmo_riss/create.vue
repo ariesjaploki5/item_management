@@ -154,7 +154,7 @@ export default {
                 batches: this.selected_batches,
                 
             }).then(() => {
-                this.$router.push({ name: 'requisition_slips'});
+                this.$router.push({ name: 'pmo_riss'});
             }).catch(() => {
 
             });
@@ -163,7 +163,7 @@ export default {
         add_batch(batch){
             this.message = null;
             var a = this.selected_batches;
-            var index = a.findIndex( x => x.item_desc == batch.item_desc )
+            var index = a.findIndex( x => x.batch_no == batch.batch_no )
             if(index === -1){
                 this.selected_batches.push({
                     batch_no: batch.batch_no,

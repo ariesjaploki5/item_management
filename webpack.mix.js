@@ -10,7 +10,7 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.disableSuccessNotifications();
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
    mix.webpackConfig({

@@ -1,64 +1,8 @@
 <template>
     <div class="container">
         <button class="btn btn-primary d-print-none button ml-2 mb-2" @click="print()">Print</button> 
-        <!-- <div class="header">
-            <div class="row bg-white" id="image_row">
-                <div class="col-3 border border-dark border-right-0">
-                    <img :src="'/img/bghmc.png'" class="img-thumbnail">
-                </div>
-                <div class="col-9 border border-dark">
-                    <div class="row justify-content-center border-dark border-bottom">
-                        <div class="col-12">
-                            <div class="text-center">Republic of the Philippines</div>
-                            <div class="text-center">Department of Health</div>
-                            <div class="text-center">BAGUIO GENERAL HOSPITAL AND MEDICAL CENTER</div>
-                            <div class="text-center">Baguio City</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8 text-center border-dark border-right">
-                            <div class="row">
-                                <div class="col-12"><div class="text-center">MATERIALS MANAGEMENT OFFICE</div></div>
-                                <div class="col-12"><div class="text-center"><h4>INSPECTION AND ACCEPTANCE REPORT</h4></div></div>
-                            </div>
-                        </div>
-                        <div class="col-4" style="padding-left: 1px !important; padding-right: 0px !important;">
-                            <div class="row">
-                                <div class="col-12"><div class="text-left border-bottom border-dark">Form No.: HS – MMO – 004</div></div>
-                                <div class="col-12"><div class="text-left border-bottom border-dark">Revision No.: 1</div></div>
-                                <div class="col-12"><div class="text-left">Effectivity Date: September 1, 2016</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
-                <div class="col-6 border-right border-dark">
-                    <div class="row">
-                        <div class="col-3">Supplier: </div><div class="col-8 border-bottom border-dark">{{ iar.supplier_name }}</div>
-                        <div class="col-3">PO Number: </div><div class="col-8 border-bottom border-dark">{{ iar.po_no }}</div>
-                        <div class="col-3">PO Date: </div><div class="col-8 border-bottom border-dark">{{ iar.po_date }}</div>
-                        <div class="col-3">Resp. Center: </div><div class="col-8 border-bottom border-dark">{{ iar.resp_center }}</div>
-                        <div class="col-3 mb-2">ObRequest: </div><div class="col-8 border-bottom border-dark mb-2"></div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3" style="padding-right: 0px !important;">IAR Number: </div>
-                        <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ iar.iar_no }}</div>
-                        <div class="col-3" style="padding-right: 0px !important;">IAR Date: </div>
-                        <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ iar.iar_date }}</div>
-                        <div class="col-3"></div><div class="col-8"></div>
-                        <div class="col-4" style="padding-right: 0px !important;">DR/Invoice Number: </div>
-                        <div class="col-7 border-bottom border-dark" style="padding-left: 0px !important;">{{ iar.ref_no }}</div>
-                        <div class="col-4" style="padding-right: 0px !important;">DR/Invoice Date: </div>
-                        <div class="col-7 border-bottom border-dark" style="padding-left: 0px !important;">{{ iar.ref_date }}</div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div>
-            <div class="row bg-white">
+            <div class="row bg-white mt_row">
                 <table class="table table-bordered" cellspacing="0" cellpadding="0">
                     <thead class="mt-5">
                         <tr>
@@ -96,10 +40,10 @@
                                 <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
                                     <div class="col-6 border-right border-dark">
                                         <div class="row">
-                                            <div class="col-3">Supplier: </div><div class="col-8 border-bottom border-dark">{{ iar.supplier_name }}</div>
+                                            <div class="col-3">Supplier: </div><div class="col-8 border-bottom border-dark">{{ iar.po.supplier_name }}</div>
                                             <div class="col-3">PO Number: </div><div class="col-8 border-bottom border-dark">{{ iar.po_no }}</div>
-                                            <div class="col-3">PO Date: </div><div class="col-8 border-bottom border-dark">{{ iar.po_date }}</div>
-                                            <div class="col-3">Resp. Center: </div><div class="col-8 border-bottom border-dark">{{ iar.resp_center }}</div>
+                                            <div class="col-3">PO Date: </div><div class="col-8 border-bottom border-dark">{{ iar.po.po_date }}</div>
+                                            <div class="col-3">Resp. Center: </div><div class="col-8 border-bottom border-dark">{{ iar.po.dept_name }}</div>
                                             <div class="col-3 mb-2">ObRequest: </div><div class="col-8 border-bottom border-dark mb-2"></div>
                                         </div>
                                     </div>
@@ -225,7 +169,7 @@
                         <tr v-for="batch in iar.batches" :key="batch.batch_no">
                             <td class="text-center"></td>
                             <td class="text-left">{{ batch.item_desc }}</td>
-                            <td class="text-center">{{ batch.unit_desc }}</td>
+                            <td class="text-center">{{ batch.item_unit }}</td>
                             <td class="text-right">{{ batch.quantity }}</td>
                             <td class="text-right">{{ batch.cost }}</td>
                             <td class="text-right">{{ batch.total_cost }}</td>
@@ -251,13 +195,18 @@ export default {
     data(){
         return{
             iar: {
+                po: {
+                    supplier_name: '',
+                    po_date: '',
+                    dept_name: '',
+                },
                 batches: [],
             }
         }
     },
     methods: {
         get_iar(){
-            axios.get('iar/'+this.$route.params.id).then(({data}) => {
+            axios.get('pmo_iar/'+this.$route.params.id).then(({data}) => {
                 this.iar = data;
             }).catch(() => {
 
@@ -281,7 +230,9 @@ export default {
 <style lang="scss" scoped>
 
     @media print {
-
+        .mt_row{
+            margin-top: 5rem;
+        }
         .row  {
             margin-right: -4px !important;
             margin-left: -4px !important;
@@ -309,8 +260,6 @@ export default {
             margin-bottom: 50px;
 
         }
-
-
 
         table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
             border:1px solid rgb(0, 0, 0) !important;

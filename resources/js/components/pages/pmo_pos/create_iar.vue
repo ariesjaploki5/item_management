@@ -9,9 +9,9 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
-                    <li class="breadcrumb-item"><router-link :to="{ name: 'purchase_orders'}">Purchase Order</router-link></li>
-                    <li class="breadcrumb-item"><router-link :to="{ name: 'purchase_order_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
-                    <li class="breadcrumb-item active"><router-link :to="{ name: 'create_iar', params: { id: $route.params.id }}">Create IAR</router-link></li>
+                    <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_pos'}">Purchase Order</router-link></li>
+                    <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_po_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
+                    <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_po_create_iar', params: { id: $route.params.id }}">Create IAR</router-link></li>
                 </ol>
             </div>
         </div>
@@ -236,8 +236,8 @@ export default {
         add_item(){
             this.batches.push({
                 temp_id: this.batches.length + 1,
-                item_id: this.selected_item.item_id !== null ? this.select_item_.item_id : '',
                 item_unit: this.selected_item.item_unit,
+                item_id: this.selected_item.item_id,
                 item_desc: this.selected_item.item_desc,
                 brand: this.selected_item.brand,
                 cost: this.selected_item.cost,

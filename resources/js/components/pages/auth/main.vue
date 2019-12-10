@@ -72,7 +72,7 @@ export default {
                 
                 this.$router.push({ name: 'home' });
                 this.$store.dispatch('retrieveUser');
-            
+                location.reload();
             }).catch(error => {
                 
                 this.loading = false;

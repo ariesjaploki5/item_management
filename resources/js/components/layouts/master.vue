@@ -15,9 +15,19 @@
 
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-none d-sm-inline-block">
-              <router-link :to="{ name: 'logout'}" class="nav-link">Logout</router-link>
+            <li class="nav-item dropdown">
+              <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fas fa-user-alt"></i> {{ user.employee_name }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <router-link :to="{ name: 'profile'}" class="nav-link">Profile</router-link>
+                <div class="dropdown-divider"></div>
+                  <router-link :to="{ name: 'logout'}" class="nav-link">Logout</router-link>
+              </div>
             </li>
+            <!-- <li class="nav-item d-none d-sm-inline-block">
+              <router-link :to="{ name: 'logout'}" class="nav-link">Logout</router-link>
+            </li> -->
           </ul>
         </nav>
 
@@ -36,12 +46,14 @@
                 <img src="" class="img-circle elevation-2" alt="">
               </div>
               <div class="info">
-                <a href="#" class="d-block">USER NAME</a>
+                <a href="#" class="d-block">
+                  {{ user.employee_name }}
+                </a>
               </div>
             </div>
 
             <!-- Sidebar Menu -->
-            <nav class="mt-2">
+            <nav class="mt-2" v-show="user !== null">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
@@ -287,7 +299,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview" >
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -310,7 +322,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview"  >
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -344,11 +356,11 @@
         <router-view></router-view>
         </div>
         <footer class="main-footer d-print-none">
-          <div class="float-right d-none d-sm-block">
+          <!-- <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.0.0
           </div>
           <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-          reserved.
+          reserved. -->
         </footer>
 
         <!-- Control Sidebar -->
@@ -365,7 +377,7 @@
 <!-- ./wrapper -->
 </template>
 <script>
-// import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default{
   data(){
@@ -374,21 +386,21 @@ export default{
     }
   },
   methods: {
-    // ...mapActions([
-    //   'retrieveUser'
-    // ]),
+    ...mapActions([
+      'retrieveUser'
+    ]),
   },
   created(){
-    // this.retrieveUser();
+    this.retrieveUser();
   },
   computed: {
-    // ...mapGetters([
-    //   'user'
-    // ]),
+    ...mapGetters([
+      'user'
+    ]),
     loggedIn() {
       return this.$store.getters.loggedIn
-    }
-
+    },
+    
   }
 }
 </script>
@@ -398,5 +410,9 @@ export default{
   }
   a {
     color: #f6a832 !important;
+  }
+  .navbar-expand .navbar-nav .dropdown-menu {
+
+      background-color: #4a6572 !important ;
   }
 </style>

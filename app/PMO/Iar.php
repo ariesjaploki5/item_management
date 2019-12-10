@@ -13,7 +13,8 @@ class Iar extends Model
 
     protected $casts = [
         'iar_no' => 'string', 
-        'iar_no' => 'string',
+        'po_no' => 'string',
+        
     ];
 
     protected $fillable = [
@@ -26,7 +27,8 @@ class Iar extends Model
         'ref_no', 
         'ref_date',
         'completed',
-        'fund_cluster_id'
+        'fund_cluster_id',
+        'created_by',
     ];
 
     public function batches(){
@@ -45,5 +47,7 @@ class Iar extends Model
         return $this->belongsTo('App\Models\InspectionOfficer', 'receiving_officer_id', 'inspection_officer_id');
     }
 
-
+    public function created_by(){
+        return $this->belongsTo('App\User', 'id', 'created_by');
+    }
 }
