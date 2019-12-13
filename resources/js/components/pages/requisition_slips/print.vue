@@ -5,6 +5,9 @@
             <div class="col-3 border border-dark border-right-0">
                 <img :src="'/img/bghmc.png'" class="img-thumbnail">
             </div>
+            <div class="row d-none d-print-block fixed-top text-right mr-5 mt-2">
+                <span id="control_no" class="mr-5">{{ ris.control_no }}</span>
+            </div>
             <div class="col-9 border border-dark">
                 <div class="row justify-content-center border-dark border-bottom">
                     <div class="col-12">
@@ -34,10 +37,15 @@
         <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
             <div class="col-6 border-right border-dark">
                 <div class="row">
-                    <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">{{ ris.supplier_name }}</div>
-                    <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">{{ ris.po_no }}</div>
-                    <div class="col-3">Resp. Center Code </div><div class="col-8 border-bottom border-dark">{{ ris.po_date }}</div>
-                    
+                    <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">
+                        <span id="dept_div">{{ ris.division_desc }}</span>
+                    </div>
+                    <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">
+                        <span id="dept_div">{{ ris.department_desc }}</span>
+                    </div>
+                    <div class="col-4">Resp. Center Code </div><div class="col-7 border-bottom border-dark">
+
+                    </div>
                 </div>
             </div>
             <div class="col-6">
@@ -47,49 +55,49 @@
                     <div class="col-3" style="padding-right: 0px !important;">RIS DATE: </div>
                     <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_date }}</div>
                     <div class="col-3" style="padding-right: 0px !important;">Fund Cluster </div>
-                    <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_date }}</div>
+                    <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;"></div>
                 </div>
             </div>
         </div>
+        <!-- body -->
         <div class="row  bg-white">
-            <table class="table table-bordered" style="margin-bottom: 0px; height: 800px;">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">Stock No.</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Unit</th>
-                        <th class="text-center">Description</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Unit</th>
-                        <th class="text-center">Unit Cost</th>
-                        <th class="text-center">Lot/Batch</th>
+                        <th class="text-center" width="10%">Stock No.</th>
+                        <th class="text-center" width="15%">Quantity</th>
+                        <th class="text-center" width="10%">Unit</th>
+                        <th class="text-center" width="20%">Description</th>
+                        <th class="text-center" width="15%">Quantity</th>
+                        <th class="text-center" width="10%">Unit</th>
+                        <th class="text-center" width="10%">Unit Cost</th>
+                        <th class="text-center" width="10%">Lot/Batch</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="batch in ris.batches" :key="batch.batch_no">
-                        <td class="text-center"></td>
-                        <td class="text-center">{{ batch.requested_quantity }}</td>
-                        <td class="text-center">{{ batch.unit_desc }}</td>
-                        <td class="text-left">
-                            {{ batch.item_desc }}
-                            <div class="w-100"></div>
-                            <label for="">Brand: </label>{{ batch.brand_desc }}
-                        </td>
-                        <td class="text-right">{{ batch.issued_quantity }}</td>
-                        <td class="text-center">{{ batch.unit_desc }}</td>
-                        <td class="text-center">{{ batch.cost }}</td>
-                        <td class="text-left">{{ batch.batch_no }}</td>
+                <tbody >
+                    <tr v-for="item in ris.items" :key="item.item_id">
+                        <td class="text-center" width="10%"></td>
+                        <td class="text-center" width="15%">{{ item.requested_quantity }}</td>
+                        <td class="text-center" width="10%">{{ item.unit_desc }}</td>
+                        <td class="text-left" width="20%">{{ item.item_desc }}</td>
+                        <td class="text-right" width="15%">{{ item.issued_quantity }}</td>
+                        <td class="text-center" width="10%">{{ item.unit_desc }}</td>
+                        <td class="text-center" width="10%">{{ item.cost }}</td>
+                        <td class="text-left" width="10%">{{ item.batch_no }}</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <!-- footer -->
+        <div class="row bg-white">
             <table  class="table table-bordered">
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td>Requested by</td>
-                        <td>Approved by</td>
-                        <td>Issued by</td>
-                        <td>Received By</td>
+                        <td width="20%"></td>
+                        <td width="20%">Requested by</td>
+                        <td width="20%">Approved by</td>
+                        <td width="20%">Issued by</td>
+                        <td width="20%">Received By</td>
                     </tr>
                     <tr>
                         <td>Signature</td>
@@ -100,10 +108,10 @@
                     </tr>
                     <tr>
                         <td>Printed name</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-center">{{ ris.requested_by_user }}</td>
+                        <td class="text-center">RIVERA, TEOFILO JR M. </td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
                     </tr>
                     <tr>
                         <td>Designation</td>
@@ -159,34 +167,35 @@ export default {
 <style lang="scss" scoped>
 
     @media print {
-    body { 
-        overflow: auto;
-        height: auto; 
-        
-    }
-    #image_row{
-        margin-top: 2rem;
-    }
 
-    /* .img-thumbnail {
-                margin-top: 5%;
-        } */
-    .img-thumbnail {
-        border: none;
-        display: block;
-        margin-top: .7rem;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70% !important;
-        height: 80% !important;
-    }
+        body { 
+            overflow: auto;
+            height: auto; 
+            
+        }
+        #image_row{
+            margin-top: 2rem;
+        }
 
-    table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td{
-        border:1px solid rgb(0, 0, 0) !important;
-    }
-    #barcode{
-        margin-top: 0rem !important;
-    }
+        /* .img-thumbnail {
+                    margin-top: 5%;
+            } */
+        .img-thumbnail {
+            border: none;
+            display: block;
+            margin-top: .7rem;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70% !important;
+            height: 80% !important;
+        }
+
+        table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td{
+            border:1px solid rgb(0, 0, 0) !important;
+        }
+        #barcode{
+            margin-top: 0rem !important;
+        }
     }
 
         .img-thumbnail {
@@ -224,5 +233,10 @@ export default {
     table.table-bordered > tbody > tr > td{
         border:1px solid rgb(0, 0, 0);
     }
+    #dept_div{
+        font-size: 10.5px !important;
+    }
+
+
 
 </style>

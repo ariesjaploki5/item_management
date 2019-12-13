@@ -30,8 +30,27 @@
                                 <div class="card-tools">
                                     <form @submit.prevent="search_ris()">
                                         <div class="form-group row">
-                                            <input type="text" class="form-control form-control-sm col-6 mr-2" v-model="search_word" required>
-                                            <button class="btn btn-sm btn-primary" type="submit">search</button>
+                                            <div class="col-auto">
+                                                <label for="" class="form-label">
+                                                    Category:
+                                                </label>
+                                            </div>
+                                            <div class="col-4">
+                                                <select class="form-control form-control-sm" v-model="category_id" @change="get_riss()">
+                                                    <option v-for="c in categories" :value="c.category_id" :key="c.category_id">
+                                                        {{ c.category_desc }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-auto">
+                                                <label for="" class="form-label">
+                                                    Control No:
+                                                </label>
+                                            </div>
+                                            <input :disabled="category_id === null" type="text" class="form-control form-control-sm col-4 ml-1" v-model="search_word" required>
+                                            <!-- <button class="btn btn-sm btn-primary" type="submit">search</button> -->
                                         </div>
                                     </form>
                                 </div>
@@ -48,30 +67,23 @@
                             <thead>
                                 <tr>
                                     <th>Control No.:</th>
+                                    <th>Category</th>
+                                    <th>Department</th>
+                                    <th>Requested By</th>
                                     <th>Requested Date</th>
+                                    <th>Issued By</th>
                                     <th>Issued Date</th>
-                                    <th>Received Date</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="ris in riss" :key="ris.control_no">
+                                <tr v-for="ris in filteredRiss" :key="ris.control_no" @click="view_ris(ris.control_no)">
                                     <td>{{ ris.control_no }}</td>
+                                    <td>{{ ris.category_desc }}</td>
+                                    <td>{{ ris.department_desc }}</td>
+                                    <td>{{ ris.requested_by_user }}</td>
                                     <td>{{ ris.ris_date }}</td>
+                                    <td>{{ ris.issued_by_user }}</td>
                                     <td>{{ ris.issued_date }}</td>
-                                    <td>{{ ris.received_date }}</td>
-                                    <td>
-                                        <div class="btn-group dropleft">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                               <button class="dropdown-item" type="button" @click="view_ris(ris.control_no)">View</button>
-                                               <button v-show="ris.issued_date !== null" class="dropdown-item" type="button" @click="receive_ris(ris.control_no)">Receive</button>
-                                               <button class="dropdown-item" type="button" @click="print_ris(ris.control_no)">Print</button>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -100,39 +112,43 @@ export default {
         return{
             search_word: '',
             headers: [],
+            riss: [],
+            category_id: null,
         }
     },
     methods: {
         ...mapActions([
-            'getRiss'
+            'getCategories'
         ]),
         view_ris(id){
             this.$router.push({ name: 'requisition_slip_show', params: { id: id } });
         },
-        print_ris(id){
-            this.$router.push({ name: 'requisition_slip_print', params: { id: id } });
-        },
-        receive_ris(id){
-            axios.put('receive/'+id).then(() => {
-                this.$router.push({ name: 'requisition_slip_show', params: { id: id } });
-            }).catch(() => {
 
-            });
-        },
         create_ris(){
             this.$router.push({ name: 'requisition_slip_create' });
         },
-        get_all(){
-            this.getRiss();
-        },
+        get_riss(){
+            axios.get('riss_by_category/'+this.category_id).then(({data}) => {
+                this.riss = data;
+            }).catch(() => {
+
+            })
+        }
+
     },
     created(){
-        this.get_all();
+        this.getCategories();
     },
     computed: {
         ...mapGetters([
-            'riss'
+            'categories'
         ]),
+        filteredRiss(){
+            let matcher = new RegExp(this.search_word, 'i')
+            return this.riss.filter(function(ris){
+                return matcher.test(ris.control_no)
+            });
+        },
     },
 }
 </script>

@@ -22,6 +22,8 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         'pmo_iar' => 'PMO\IarController',
         'pmo_ris' => 'PMO\RisController',
 
+        'approving_officer' => 'Api\ApprovingOfficerController',
+
         'employee' => 'Api\EmployeeController',
         'department' => 'Api\DepartmentController',
 
@@ -52,6 +54,13 @@ Route::group(['middleware' => ['cors', 'api']], function() {
         'user' => 'Api\UserController',
     ]);
 
+    Route::get('riss_by_category/{category_id}', 'Api\RisController@riss_by_category');
+
+    Route::post('store_ofs_ris', 'Api\RisController@store_ofs_ris');
+    Route::put('update_ofs_ris/{control_no}', 'Api\RisController@update_ofs_ris');
+
+    Route::get('office_supplies', 'Api\ItemController@office_supplies');
+    Route::get('office_supplies/{search_word}', 'Api\ItemController@office_supplies_search');
 
     Route::get('pmo_search_batch/{search_word}', 'PMO\BatchController@search_batch');
 

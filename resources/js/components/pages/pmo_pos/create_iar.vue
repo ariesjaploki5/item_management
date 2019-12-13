@@ -69,14 +69,14 @@
                                 <select class="form-control form-control-sm" v-model="iar.receiving_officer_id" required>
                                     <option v-for="officer in inspection_officers" :value="officer.inspection_officer_id" :key="officer.inspection_officer_id">{{ officer.name }}</option>
                                 </select>
-                                <div class="w-100"></div>
+                                <!-- <div class="w-100"></div>
                                 <label for="" class="form-label">
                                     Ref No.:
                                 </label>
-                                <input type="text" class="form-control form-control-sm" v-model="iar.ref_no" required>
+                                <input type="text" class="form-control form-control-sm" v-model="iar.ref_no" required> -->
                             </div>
                             <div class="col-5">
-                                <label for="" class="form-label">
+                                <!-- <label for="" class="form-label">
                                     Inspection Date.:
                                 </label>
                                 <input type="date" class="form-control form-control-sm" v-model="iar.inspection_date" required>
@@ -85,6 +85,11 @@
                                     Recieved Date.:
                                 </label>
                                 <input type="date" class="form-control form-control-sm" v-model="iar.received_date" required>
+                                <div class="w-100"></div> -->
+                                <label for="" class="form-label">
+                                    Ref No.:
+                                </label>
+                                <input type="text" class="form-control form-control-sm" v-model="iar.ref_no" required>
                                 <div class="w-100"></div>
                                 <label for="" class="form-label">
                                     Ref Date.:
@@ -114,14 +119,14 @@
                         <table class="table table-sm table-hover table-bordered" v-show="batches.length > 0">
                             <thead>
                                 <tr>
-                                    <th>Item</th>
-                                    <th class="text-center">Batch No.:</th>
-                                    <th class="text-center" width="12%">Unit Cost</th>
-                                    <th class="text-center" width="10%">Quantity</th>
-                                    <th class="text-center" width="10%">Total cost</th>
-                                    <th class="text-center" width="10%">Expiration Date</th>
-                                    <th>Remarks</th>
-                                    <th></th>
+                                    <th width="25%">Item</th>
+                                    <th class="text-center" width="18%">Batch No.:</th>
+                                    <th class="text-center" width="9%">Unit Cost</th>
+                                    <th class="text-center" width="9%">Quantity</th>
+                                    <th class="text-center" width="9%">Total cost</th>
+                                    <th class="text-center" width="18%">Expiration Date</th>
+                                    <th width="8%">Remarks</th>
+                                    <th width="4%"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -130,10 +135,16 @@
                                         {{ batch.item_desc }}
                                         <div class="w-100" v-show="batch.brand_desc !== null"></div>
                                         <label v-show="batch.brand !== null" for="" class="form-label">Brand: </label>{{ batch.brand }}
-
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" v-model="batch.batch_no" required>
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <input type="text" class="form-control form-control-sm" v-model="batch.batch_no" required :disabled="batch.batch_check">
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="checkbox" class="form-check" v-model="batch.batch_check"> N/A
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
                                         <input type="float" class="form-control form-control-sm text-right" v-model="batch.cost" required>
@@ -145,10 +156,18 @@
                                         <span v-show="batch.received_quantity">{{ batch.cost * batch.received_quantity | round_off }}</span>
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control form-control-sm" v-model="batch.expiration_date" required>
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <input type="date" class="form-control form-control-sm" v-model="batch.expiration_date" required :disabled="batch.exp_check">
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="checkbox" class="form-check" v-model="batch.exp_check"> N/A
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" v-model="batch.remarks">
+                                        <textarea rows="1" class="form-control form-control-sm" v-model="batch.remarks"></textarea>
+                                        <!-- <input type="text" class="form-control form-control-sm" v-model="batch.remarks"> -->
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger" type="button" @click="remove_item(index)"  data-toggle="tooltip" data-placement="top" title="Remove Item">
@@ -159,15 +178,11 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    <!-- /.card-body -->
                     <div class="card-footer text-right" v-show="batches.length > 0">
-
                         <button class="btn btn-sm btn-warning" type="reset">Cancel</button>
                         <button class="btn btn-sm btn-success" type="submit">Submit</button>
                     </div>
                     </form>
-                    <!-- /.card-footer-->
                 </div>
               </div>
           </div>
@@ -241,9 +256,12 @@ export default {
                 item_desc: this.selected_item.item_desc,
                 brand: this.selected_item.brand,
                 cost: this.selected_item.cost,
-                received_quantity: '',
-                expiration_date: '',
-                remarks: '',
+                batch_no: null,
+                batch_check: false,
+                exp_check: false,
+                received_quantity: this.selected_item.quantity - this.selected_item.total_received,
+                expiration_date: null,
+                remarks: null,
             });
         },
         remove_item(index){
@@ -255,9 +273,9 @@ export default {
                     batches: this.batches,
                     po_no: this.$route.params.id,
                     receiving_officer_id: this.iar.receiving_officer_id,
-                    received_date: this.iar.received_date,
+                    // received_date: this.iar.received_date,
                     inspection_officer_id: this.iar.inspection_officer_id,
-                    inspection_date: this.iar.inspection_date,
+                    // inspection_date: this.iar.inspection_date,
                     ref_no: this.iar.ref_no,
                     ref_date: this.iar.ref_date,
                 }).then(({data}) => {
@@ -266,9 +284,9 @@ export default {
                     this.selected_item = '',
                     this.batches = [],
                     this.iar = {
-                        received_date: '',
+                        receiving_officer_id: '',
                         inspection_officer_id: '',
-                        inspection_date: '',
+                        // inspection_date: '',
                         ref_no: '',
                         ref_date: '',
                     },

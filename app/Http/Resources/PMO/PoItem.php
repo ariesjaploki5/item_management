@@ -19,13 +19,14 @@ class PoItem extends JsonResource
             "item_id" => $this->item_code !== "" ? $this->item_code : null,
             "item_desc" => $this->description,
             "item_unit" => $this->item_unit,
-            "quantity" => $this->item_qty,
+            "quantity" => (float)$this->item_qty,
             "cost" => (float)$this->item_cost,
             "brand" => $this->brand !== "" ? $this->brand : null,
             "total_cost" => $this->item_cost * $this->item_qty,
-            "total_received" => $this->total_received > 0 ? $this->total_received : "",
+            // "total_received" => $this->total_received > 0 ? $this->total_received : "",
+            "total_received" => (float)$this->total_received_quantity,
         ];
 
-        // return parent::toArray($request);
+        return parent::toArray($request);
     }
 }

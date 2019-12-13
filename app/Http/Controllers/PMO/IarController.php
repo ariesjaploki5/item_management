@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PMO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PMO\Iar;
+use App\Views\PmoIar;
 use App\PMO\Batch;
 use App\Http\Resources\MMO\Iar as IarResource;
 use Carbon\Carbon;
@@ -12,7 +13,7 @@ use Carbon\Carbon;
 class IarController extends Controller
 {
     public function index(){
-        $data = IarResource::collection(Iar::all());
+        $data = IarResource::collection(PmoIar::all());
         
         return response()->json($data);
     }
@@ -85,7 +86,6 @@ class IarController extends Controller
             $batch_no = $batch[$i]['batch_no'];
             $expiration_date = $batch[$i]['expiration_date'];
             $remarks = $batch[$i]['remarks'];
-            
             $brand = $batch[$i]['brand'];
             $item_unit = $batch[$i]['item_unit'];
 

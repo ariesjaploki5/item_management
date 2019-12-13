@@ -76,22 +76,23 @@ class IarController extends Controller
 
         $count_2 = count($batch);
 
-        for($i = 0;$i < $count_2;$i++){
+        for($i = 0; $i < $count_2; $i++){
             
-            $cost = $batch[$i]['cost'];
-            $item_id = $batch[$i]['item_id'];
-            $quantity = $batch[$i]['received_quantity'];
-            $batch_no = $batch[$i]['batch_no'];
-            $expiration_date = $batch[$i]['expiration_date'];
-            $remarks = $batch[$i]['remarks'];
-            
-            $brand_id = $batch[$i]['brand_id'];
             
             // $brand = Brand::firstOrCreate([
             //     'brand_desc' => $batch[$i]['brand_desc'],
             // ]);
 
             // $brand_id = $brand->brand_id;  
+
+            $cost = $batch[$i]['cost'];
+            $item_id = $batch[$i]['item_id'];
+            $quantity = $batch[$i]['received_quantity'];
+            $remarks = $batch[$i]['remarks'];
+            $brand_id = $batch[$i]['brand_id'];
+
+            $batch_no = $batch[$i]['batch_no'];
+            $expiration_date = $batch[$i]['expiration_date'];
 
             Batch::create([
                 'iar_no' => $iar_no,
@@ -103,7 +104,9 @@ class IarController extends Controller
                 'expiration_date' => $expiration_date,
                 'remarks' => $remarks, 
             ]);
+            
         }
+
 
         return true;
     }

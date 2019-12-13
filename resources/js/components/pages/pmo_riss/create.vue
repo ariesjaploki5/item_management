@@ -51,7 +51,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(batch, index) in batches" :key="batch.batch_no">
+                                <tr v-if="batches == null">
+                                    <td colspan="7" class="text-center"><span>No Items Please Search</span></td>
+                                </tr>
+                                <tr v-else v-for="(batch, index) in batches" :key="batch.batch_no">
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ batch.item_desc }}</td>
                                     <td>{{ batch.unit_desc }}</td>
@@ -69,7 +72,7 @@
                     </div>
                     <div class="w-100 border-bottom border-dark"></div>
                     <form @submit.prevent="store_ris()">
-                    <div class="card-body">
+                    <div class="card-body" v-show="selected_batches.length > 0">
                         <table class="table table-sm table-hover">
                             <thead>
                                 <tr>
@@ -79,7 +82,7 @@
                                     <th>Batch</th>
                                     <th>Expiry</th>
                                     <th>Balance</th>
-                                    <th>Request Bal.</th>
+                                    <th width="20%">Request Bal.</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -88,13 +91,13 @@
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ batch.item_desc }}
                                         <div class="w-100"></div>
-                                        <label for="" class="form-label">brand: </label> {{ batch.brand_desc }}
+                                        <label for="" class="form-label" v-show="batch.brand_desc !== null">brand: </label> {{ batch.brand_desc }}
                                     </td>
                                     <td>{{ batch.unit_desc }}</td>
                                     <td>{{ batch.batch_no }}</td>
                                     <td>{{ batch.expiration_date }}</td>
-                                    <td>{{ batch.remaining_quantity }}</td>
-                                    <td><input type="number" class="form-control form-control-sm" v-model="batch.requested_quantity"></td>
+                                    <td class="text-right">{{ batch.remaining_quantity }}</td>
+                                    <td><input type="number" class="form-control form-control-sm text-right" v-model="batch.requested_quantity"></td>
                                     <td>
                                         <button type="button" @click="remove_batch(index)" class="btn btn-sm btn-danger">
                                             <i class="fas fa-times"></i>
@@ -112,7 +115,6 @@
               </div>
           </div>
       </div>
-
     </section>
 </div>
 </template>

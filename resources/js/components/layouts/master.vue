@@ -124,7 +124,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -141,7 +141,7 @@
                     </li>
                     <li></li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -166,7 +166,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -182,14 +182,14 @@
                         <p>List</p>
                       </router-link>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                       <router-link :to="{ name: 'pmo_iar_report' }" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Reports</p>
                       </router-link>
-                    </li> -->
+                    </li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -207,7 +207,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <!-- <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -235,8 +235,8 @@
                       </router-link>
                     </li>
                   </ul>
-                </li> -->
-                <li class="nav-item has-treeview">
+                </li>
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -257,15 +257,15 @@
                         <p>List</p>
                       </router-link>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                       <router-link :to="{ name: 'requisition_slip_reports' }" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Reports</p>
                       </router-link>
-                    </li> -->
+                    </li>
                   </ul>
-                </li>
-                <li class="nav-item has-treeview">
+                </li> -->
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -281,7 +281,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>

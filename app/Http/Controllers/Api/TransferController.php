@@ -41,7 +41,6 @@ class TransferController extends Controller
 
         $dmhdrsub = 'DRUMB';
 
-
         $transfer = Hdmhdrbrand::where('dmdcomb', $br->dmdcomb)
         ->where('dmdctr', $br->dmdctr)
         ->where('dmhdrsub', $dmhdrsub)

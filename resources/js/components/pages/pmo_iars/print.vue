@@ -8,10 +8,10 @@
                         <tr>
                             <th colspan="7">
                                 <div class="row bg-white" id="image_row">
-                                    <div class="col-3 border border-dark border-right-0">
+                                    <div class="col-3 border border-dark border-right-0 border-top-0">
                                         <img :src="'/img/bghmc.png'" class="img-thumbnail">
                                     </div>
-                                    <div class="col-9 border border-dark">
+                                    <div class="col-9 border border-dark border-top-0">
                                         <div class="row justify-content-center border-dark border-bottom">
                                             <div class="col-12">
                                                 <div class="text-center">Republic of the Philippines</div>
@@ -44,7 +44,7 @@
                                             <div class="col-3">PO Number: </div><div class="col-8 border-bottom border-dark">{{ iar.po_no }}</div>
                                             <div class="col-3">PO Date: </div><div class="col-8 border-bottom border-dark">{{ iar.po.po_date }}</div>
                                             <div class="col-3">Resp. Center: </div><div class="col-8 border-bottom border-dark">{{ iar.po.dept_name }}</div>
-                                            <div class="col-3 mb-2">ObRequest: </div><div class="col-8 border-bottom border-dark mb-2"></div>
+                                            <div class="col-3 mb-2">ObRequest: </div><div class="col-8 border-bottom border-dark mb-2">{{ iar.po.obrs }}</div>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -233,11 +233,11 @@ export default {
         .mt_row{
             margin-top: 5rem;
         }
+
         .row  {
             margin-right: -4px !important;
             margin-left: -4px !important;
         }
-
 
         .img-thumbnail {
             border: none;

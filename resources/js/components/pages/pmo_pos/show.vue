@@ -46,7 +46,12 @@
                             </div>
                             <div class="col-1">
                                 
-                                <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
+                                <div class="row">
+                                    <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-sm btn-primary" type="button" @click="create_dv(pmo_po.po_no)" >Create Dv</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,6 +122,9 @@ export default {
         create_iar(id){
             this.$router.push({ name: 'pmo_po_create_iar', params: { id: id } });
         },
+        create_dv(id){
+            this.$router.push({ name: 'pmo_po_create_dv', params: { id: id } });
+        }
     },
     created(){
         this.get_pmo_po();

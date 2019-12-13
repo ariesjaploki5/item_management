@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ris;
 use App\Models\BatchRis;
+use App\Models\ItemRis;
 use App\Http\Resources\Ris as RisResource;
 use Carbon\Carbon;
 
@@ -14,10 +15,20 @@ class RisController extends Controller
 
     public function index(){
 
-        $data = RisResource::collection(Ris::all());
+        $riss = Ris::orderBy('control_no', 'desc')->get();
+
+        $data = RisResource::collection($riss);
 
         return response()->json($data);
 
+    }
+
+    public function riss_by_category($category_id){
+        $riss = Ris::where('category_id', $category_id)->orderBy('control_no', 'desc')->get();
+
+        $data = RisResource::collection($riss);
+
+        return response()->json($data);
     }
 
     public function control_no(){
@@ -42,6 +53,111 @@ class RisController extends Controller
         }
 
         return $control_no;
+    }
+
+    public function update_ofs_ris(Request $request, $control_no){
+
+
+        $item = $request->items;
+
+        $ris = Ris::find($control_no);
+
+        $ris->update([
+            'ris_no' => $request->ris_no,
+        ]);
+
+        $this->update_ofs_items($control_no, $item);
+
+        return response()->json($control_no);
+    }
+    
+    public function update_ofs_items($control_no, $item){
+        $count = count($item);
+
+        for($i = 0; $i < $count; $i++){
+
+            $item_id = $item[$i]['item_id'];
+            $requested_quantity = $item[$i]['requested_quantity'];
+            $issued_quantity = $item[$i]['issued_quantity'];
+
+            $item_ris = ItemRis::where('item_id', $item_id)->where('control_no', $control_no)->where('requested_quantity', $requested_quantity)->first();
+            $item_ris->update([
+                'issued_quantity' => $issued_quantity,
+            ]);
+        }
+
+        return true;
+    }
+
+    public function store_ofs_ris(Request $request){
+        $control_no = $this->control_no();
+        $item = $request->items;
+
+        Ris::create([
+            'control_no' => $control_no,
+            'ris_date' => Carbon::today(),
+            'requested_by' => auth('api')->user()->id,
+            'requested_date' => Carbon::today(),
+            'purpose' => $request->purpose,
+            'category_id' => 5
+        ]);
+
+        $this->store_ofs_items($control_no, $item);
+
+        return response()->json($control_no);
+    }
+
+    public function store_ofs_items($control_no, $item){
+        $count = count($item);
+
+        for($i = 0; $i < $count; $i++){
+
+            $item_id = $item[$i]['item_id'];
+            $requested_quantity = $item[$i]['requested_quantity'];
+ 
+            ItemRis::create([
+                'item_id' => $item_id,
+                'control_no' => $control_no,
+                'requested_quantity' => $requested_quantity,
+            ]);
+        }
+
+        return true;
+    }
+
+    public function issue_ofs_ris(Request $request, $control_no){
+
+        $item = $request->items;
+        $ris = Ris::findOrFail($control_no);
+
+        $ris->update([
+            'issued_by' => auth('api')->user()->id,
+            'issued_date' => Carbon::today(),
+        ]);
+
+        $this->issue_item_ris($control_no, $item); 
+    }
+
+    public function issue_item_ris($control_no, $item){
+
+        $count = count($item);
+
+        for($i = 0; $i < $count; $i++){
+
+            $item_id = $item[$i]['item_id'];
+            $issued_quantity = $item[$i]['issued_quantity'];
+            $requested_quantity = $item[$i]['requested_quantity'];
+            
+            ItemRis::updateOrCreate([
+                'control_no' => $control_no,
+                'item_id' => $item_id,
+            ],[
+                'issued_quantity' => $issued_quantity,
+            ]);
+        }
+
+        return response()->json();
+
     }
 
     public function store(Request $request){

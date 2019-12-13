@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="po in pmo_pos" :key="po.po_no" @click="view_pmo_po(po.po_no)">
+                                <tr v-for="po in filteredPos" :key="po.po_no" @click="view_pmo_po(po.po_no)">
                                     <td>{{ po.po_no }}</td>
                                     <td>{{ po.po_date }}</td>
                                     <td>{{ po.pr_no }}</td>
@@ -112,11 +112,32 @@ export default {
         this.get_pmo_pos();
     },
     computed: {
-
+        filteredPos: function(){
+            let matcher = new RegExp(this.search_word, 'i')
+            return this.pmo_pos.filter(function(po){
+                return matcher.test(po.po_no)
+            });
+        },
     },
 }
 </script>
 
-<style>
+<style scoped>
+tr {
+        width: 100%;
+        display: inline-table;
+        table-layout: fixed;
+    }
 
+    table {
+        height:28rem;             
+        display: -moz-groupbox;    
+    }
+
+    tbody {
+        overflow-y: scroll;      
+        height: 26rem;           
+        width: 98.5%;
+        position: absolute;
+    }
 </style>

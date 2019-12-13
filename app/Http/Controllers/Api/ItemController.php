@@ -36,6 +36,32 @@ class ItemController extends Controller
 
     }
 
+    public function office_supplies(){
+        $items = ItemView::with([
+            'batches' => function($q){
+                $q->orderBy('expiration_date', 'asc');
+            },
+        ])->where('category_id', 5)->get();
+
+        $data = ItemViewResource::collection($items);
+
+        return response()->json($data);
+    }
+
+    public function office_supplies_search($search_word){
+        $items = ItemView::with([
+            'batches' => function($q){
+                $q->orderBy('expiration_date', 'asc');
+            },
+        ])->where('category_id', 5)
+        ->where('item_desc', 'like', "%".$search_word."%")
+        ->get();
+
+        $data = ItemViewResource::collection($items);
+
+        return response()->json($data);
+    }
+
     public function check_item_if_exists(Request $request){
         // $item = Item::where('item_desc', $request->item_desc)->first();
         $item = DB::table('mmo.dbo.items')->where('item_desc', $request->item_desc)->orderBy('item_desc', 'asc')->first();

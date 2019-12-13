@@ -23,10 +23,11 @@ class BatchRis extends Model
         'control_no',
         'requested_quantity',
         'issued_quantity',
+        'batch_control_no',
     ];
 
     public function batch(){
-        return $this->belongsTo('App\PMO\Batch', 'batch_no', 'batch_no');
+        return $this->belongsTo('App\PMO\Batch', 'batch_control_no', 'batch_control_no');
     }
 
     public function ris(){

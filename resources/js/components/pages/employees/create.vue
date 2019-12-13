@@ -103,6 +103,19 @@ export default {
         ...mapActions([
             'getDepartments'
         ]),
+        store_employee(){
+            axios.post('employee', {
+                employee_id: this.employee_id,
+                first_name: this.first_name,
+                middle_initial: this.middle_initial,
+                last_name: this.last_name,
+                department_id: this.department_id,
+            }).then(() => {
+                
+            }).catch(() => {
+
+            });
+        },
     },
     created(){
         this.getDepartments();

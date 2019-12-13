@@ -22,6 +22,7 @@ import pmo_pos from './components/pages/pmo_pos'
 import pmo_po_list from './components/pages/pmo_pos/list'
 import pmo_po from './components/pages/pmo_pos/show'
 import pmo_po_create_iar from './components/pages/pmo_pos/create_iar'
+import pmo_po_create_dv from './components/pages/pmo_pos/create_dv'
 
 import pmo_iars from './components/pages/pmo_iars'
 import pmo_iar_list from './components/pages/pmo_iars/list'
@@ -34,6 +35,11 @@ import pmo_ris from './components/pages/pmo_riss/show'
 import pmo_ris_create from './components/pages/pmo_riss/create'
 import pmo_ris_print from './components/pages/pmo_riss/print'
 
+import pmo_dvs from './components/pages/pmo_dvs'
+import pmo_dv_list from './components/pages/pmo_dvs/list'
+import pmo_dv from './components/pages/pmo_dvs/show'
+import pmo_dv_print from './components/pages/pmo_dvs/print'
+
 import purchase_requests from './components/pages/purchase_requests'
 import purchase_request_list from './components/pages/purchase_requests/list'
 import purchase_request from './components/pages/purchase_requests/show'
@@ -44,6 +50,7 @@ import users from './components/pages/users'
 import user_list from './components/pages/users/list'
 import user from './components/pages/users/show'
 import user_create from './components/pages/users/create'
+import profile from './components/pages/users/profile'
 
 import employees from './components/pages/employees'
 import employee_list from './components/pages/employees/list'
@@ -78,7 +85,15 @@ import requisition_slip_create from './components/pages/requisition_slips/create
 import requisition_slip_print from './components/pages/requisition_slips/print'
 import requisition_slip_reports from './components/pages/requisition_slips/report'
 
+import test_print from './components/pages/test/print'
+
+
 export const routes = [
+    {
+        path: '/test_print',
+        name: 'test_print',
+        component: test_print
+    },
     {
         path: '/register',
         name: 'register',
@@ -187,6 +202,11 @@ export const routes = [
                 component: user,
                 name: 'user_show',
             },
+            {
+                path:':id/profile',
+                component: profile,
+                name: 'profile',
+            },
         ],
     },
     {
@@ -211,7 +231,11 @@ export const routes = [
                 component: pmo_po_create_iar,
                 name: 'pmo_po_create_iar',
             },
-
+            {
+                path: ':id/pmo_po_create_dv',
+                component: pmo_po_create_dv,
+                name: 'pmo_po_create_dv',
+            },
         ],
     },
     {

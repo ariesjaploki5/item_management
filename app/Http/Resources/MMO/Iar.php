@@ -30,6 +30,7 @@ class Iar extends JsonResource
             'received_date' => $this->received_date,
             'ref_no' => $this->ref_no,
             'ref_date' => $this->ref_date,
+            'iar_total_amount' => $this->iar_total_amount,
             'batches' => BatchResource::collection($this->batches),
             'po' => new PoResource($this->po),
         ];

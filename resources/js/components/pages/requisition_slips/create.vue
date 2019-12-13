@@ -24,160 +24,86 @@
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
-                    <div class="card-header">
-
-                    </div>
+                    <!-- <div class="card-header">
+                        
+                    </div> -->
                     <div class="card-body">
-                        <form @submit.prevent="search_batch()">
-                            <div class="row mb-1">
-                                <div class="col-6">
-                                    <input type="text" class="form-control form-control-sm" v-model="search_word" required>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn btn-sm btn-primary" type="submit">Search</button>
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-auto">
+                                <label for="" class="form-label">
+                                    Category:
+                                </label>
                             </div>
-                        </form>
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Item Description</th>
-                                    <th>Unit</th>
-                                    <th>Batch</th>
-                                    <th>Expiry</th>
-                                    <th>Balance</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(batch, index) in batches" :key="batch.batch_no">
-                                    <td>{{ index + 1 }}</td>
-                                    <td>{{ batch.item_desc }}</td>
-                                    <td>{{ batch.unit_desc }}</td>
-                                    <td>{{ batch.batch_no }}</td>
-                                    <td>{{ batch.expiration_date }}</td>
-                                    <td>{{ batch.remaining_quantity }}</td>
-                                    <td>
-                                        <button class="btn btn btn-sm btn-primary" type="button" @click="add_batch(batch)">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" v-model="category_id">
+                                    <option v-for="c in categories" :key="c.category_id" :value="c.category_id">{{ c.category_desc }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div v-show="category_id == 1">
+                            <drugs_and_medicines></drugs_and_medicines>
+                        </div>
+                        <div v-show="category_id == 2">
+                            <medical_supplies></medical_supplies>
+                        </div>
+                        <div v-show="category_id == 3">
+                            <laboratory_supplies></laboratory_supplies>
+                        </div>
+                        <div v-show="category_id == 4">
+                            <office_supplies></office_supplies>
+                        </div>
+                        <div v-show="category_id == 5">
+                            <office_supplies></office_supplies>
+                        </div>
+                        <div v-show="category_id == 6">
+                            <office_supplies></office_supplies>
+                        </div>
                     </div>
-                    <div class="w-100 border-bottom border-dark"></div>
-                    <form @submit.prevent="store_ris()">
-                    <div class="card-body">
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Item Description</th>
-                                    <th>Unit</th>
-                                    <th>Batch</th>
-                                    <th>Expiry</th>
-                                    <th>Balance</th>
-                                    <th>Request Bal.</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(batch, index) in selected_batches" :key="index">
-                                    <td>{{ index + 1 }}</td>
-                                    <td>{{ batch.item_desc }}
-                                        <div class="w-100"></div>
-                                        <label for="" class="form-label">brand: </label> {{ batch.brand_desc }}
-                                    </td>
-                                    <td>{{ batch.unit_desc }}</td>
-                                    <td>{{ batch.batch_no }}</td>
-                                    <td>{{ batch.expiration_date }}</td>
-                                    <td>{{ batch.remaining_quantity }}</td>
-                                    <td><input type="number" class="form-control form-control-sm" v-model="batch.requested_quantity"></td>
-                                    <td>
-                                        <button type="button" @click="remove_batch(index)" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-sm btn-success">Submit</button>
-                    </div>
-                    </form>
                 </div>
               </div>
           </div>
       </div>
-
     </section>
 </div>
 </template>
 
 <script>
-import{ mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+
+import office_supplies from '../ris/office_supplies.vue';
+import dental_supplies from '../ris/dental_supplies.vue';
+import drugs_and_medicines from '../ris/drugs_and_medicines.vue';
+import medical_supplies from '../ris/medical_supplies.vue';
+import other_supplies from '../ris/other_supplies.vue';
+
 export default {
+    components:{
+        office_supplies,
+        dental_supplies,
+        drugs_and_medicines,
+        medical_supplies,
+        other_supplies
+    },
     data(){
         return{
-            pending_batches: [],
-            selected_batches: [],
-            search_word: null,
-            batches: null,
+            category_id: null,
+
         }
     },
     methods: {
         ...mapActions([
-            'getItems'
+            'getCategories',
         ]),
-        search_batch(){
-            axios.get('search_batch/'+this.search_word).then(({data}) => {
-                this.batches = data;
-            }).catch(() => {
 
-            });
-        },
-        store_ris(){
-            axios.post('ris', {
-                batches: this.selected_batches,
-                
-            }).then(() => {
-                this.$router.push({ name: 'requisition_slips'});
-            }).catch(() => {
-
-            });
-        },
-        // select_batch(){
-        //     $("#select_batch_modal").modal("show");
-        // },
-        // transfer_batch(){
-        //     this.selected_batches = this.pending_batches;
-        //     $("#select_batch_modal").modal("hide");
-        // },
-        add_batch(batch){
-            this.selected_batches.push({
-                batch_no: batch.batch_no,
-                item_desc: batch.item_desc,
-                brand_desc: batch.brand_desc,
-                unit_desc: batch.unit_desc,
-                expiration_date: batch.expiration_date,
-                requested_quantity: null,
-                remaining_quantity: batch.remaining_quantity,
-            });
-        },
-        remove_batch(index){
-            this.selected_batches.splice(index, 1);
-            // this.pending_batches.splice(index, 1);
-        },
     },
     created(){
-        this.getItems();
+
+        this.getCategories();
     },
     computed: {
         ...mapGetters([
-            'items'
+
+            'categories',
         ]),
     },
 }

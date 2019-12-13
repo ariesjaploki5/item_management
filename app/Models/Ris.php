@@ -38,25 +38,34 @@ class Ris extends Model
         'issued_date',
         'received_date',
         'purpose',
+        'category_id',
     ];
 
     public function batches(){
         return $this->hasMany('App\Models\BatchRis', 'control_no');
     }
 
-    public function requested_by(){
-        return $this->belongsTo('App\User', 'requested_by');
+    public function item_ris(){
+        return $this->hasMany('App\Models\ItemRis', 'control_no');
     }
 
-    public function approved_by(){
-        return $this->belongsTo('App\User', 'approved_by');
+    public function requested_by_user(){
+        return $this->belongsTo('App\User', 'requested_by', 'id');
     }
 
-    public function issued_by(){
-        return $this->belongsTo('App\User', 'issued_by');
+    public function approved_by_user(){
+        return $this->belongsTo('App\User', 'approved_by', 'id');
     }
 
-    public function received_by(){
-        return $this->belongsTo('App\User', 'received_by');
+    public function issued_by_user(){
+        return $this->belongsTo('App\User', 'issued_by', 'id');
+    }
+
+    public function received_by_user(){
+        return $this->belongsTo('App\User', 'received_by', 'id');
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category', 'category_id', 'category_id');
     }
 }

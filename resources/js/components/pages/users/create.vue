@@ -42,6 +42,24 @@
                                                 <div class="col-1"> - </div>
                                                 <div class="col-3">{{ employee.employee_id }}</div>
                                             </div>
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    <label for="" class="form-label">
+                                        Employee
+                                    </label>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control form-control-sm" v-model="user_form.employee_id" required>
+                                        <option v-for="employee in employees" :key="employee.employee_id"   :value="employee.employee_id">
+                                            <div class="row">
+                                                <div class="col-8">{{ employee.employee_name }}</div>
+                                                <div class="col-1"> - </div>
+                                                <div class="col-3">{{ employee.employee_id }}</div>
+                                            </div>
 
                                         </option>
                                     </select>

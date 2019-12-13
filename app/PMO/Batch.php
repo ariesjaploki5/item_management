@@ -8,15 +8,14 @@ class Batch extends Model
 {
     protected $table = 'mmo.dbo.pmo_batches';
 
-    protected $primaryKey = 'batch_no';
+    protected $primaryKey = 'batch_id';
 
-    public $incrementing = false;
     public $timestamps = false;
 
     protected $casts = [
         'batch_no' => 'string',
         'iar_no' => 'string', 
-
+        'batch_id' => 'int',
     ];
     
     protected $fillable = [

@@ -48,8 +48,8 @@
                             <thead>
                                 <tr>
                                     <th>IAR No.:</th>
+                                    <th>IAR Date</th>
                                     <th>PO No.:</th>
-                                    
                                     <th>Ref No.:</th>
                                     <th>Ref Date</th>
                                     <th>Inspection Officer</th>
@@ -62,8 +62,8 @@
                             <tbody>
                                 <tr v-for="iar in pmo_iars" :key="iar.iar_no" @click="view_iar(iar.iar_no)">
                                     <td>{{ iar.iar_no }}</td>
+                                    <td>{{ iar.iar_date }}</td>
                                     <td>{{ iar.po_no }}</td>
-                                    
                                     <td>{{ iar.ref_no }}</td>
                                     <td>{{ iar.ref_date }}</td>
                                     <td>{{ iar.inspection_officer_name }}</td>

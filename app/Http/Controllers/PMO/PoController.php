@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PMO\Po;
 use App\Http\Resources\PMO\Po as PoResource;
+use App\Views\PmoPo as ViewPmoPo;
 
 class PoController extends Controller
 {
     public function index(){
-        $data = PoResource::collection(Po::where('id', '<>', 113)
+        $data = PoResource::collection(ViewPmoPo::where('id', '<>', 113)
         ->where('id', '<>', 822)
         ->where('ors_burst', '<>', '')
         ->orderBy('po_no', 'desc')
@@ -34,7 +35,7 @@ class PoController extends Controller
     }
 
     public function show($id){
-        $data = new PoResource(Po::find($id));
+        $data = new PoResource(ViewPmoPo::find($id));
 
         return response()->json($data);
     }
