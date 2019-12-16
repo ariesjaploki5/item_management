@@ -299,7 +299,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview" >
+                <li class="nav-item has-treeview" v-show="user.role_id == 1">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -322,7 +322,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item has-treeview"  >
+                <li class="nav-item has-treeview" v-show="user.role_id == 1">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>

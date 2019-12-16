@@ -50,7 +50,14 @@
 
 <script>
 export default {
+    data(){
+        return{
+            items: [],
+        }
+    },
+    methods: {
 
+    },
 }
 </script>
 

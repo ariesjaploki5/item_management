@@ -15,55 +15,63 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-auto">
-                          <label for="" class="form-label">Category</label>
-                        </div>
-                        <div class="col-4">
-                          <select v-model="category_id" @change="select_category()" class="form-control form-control-sm">
-                            <option v-for="c in categories" :key="c.category_id" :value="c.category_id">
-                              <span>{{ c.category_desc }}</span>
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col-4"></div>
-                      </div>
-                    </div>
                     <div class="card-body">
-
+                        <div class="form-group row">
+                            <div class="col-auto">
+                                <label for="" class="form-label">
+                                    Category:
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" v-model="category_id">
+                                    <option v-for="c in categories" :key="c.category_id" :value="c.category_id">{{ c.category_desc }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div v-show="category_id == 1">
+                            <drugs_and_medicines></drugs_and_medicines>
+                        </div>
+                        <div v-show="category_id == 2">
+                            <medical_supplies></medical_supplies>
+                        </div>
+                        <div v-show="category_id == 4">
+                            <office_supplies></office_supplies>
+                        </div>
+                        <div v-show="category_id == 5">
+                            <office_supplies></office_supplies>
+                        </div>
+                        <div v-show="category_id == 6">
+                            <office_supplies></office_supplies>
+                        </div>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                
-                    </div>
-                    <!-- /.card-footer-->
                 </div>
               </div>
           </div>
       </div>
-
     </section>
 </div>
 </template>
 
 <script>
-import drugs_and_medicines from './drugs_and_medicines';
-import medical_supplies from './medical_supplies';
-import office_supplies from './office_supplies';
-import other_supplies from './other_supplies';
+import drugs_and_medicines from './drugs_and_medicines.vue';
+import medical_supplies from './medical_supplies.vue';
+import office_supplies from './office_supplies.vue';
+import other_supplies from './other_supplies.vue';
 
 import{ mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 export default {
-
+    components: {
+      drugs_and_medicines,
+      medical_supplies,
+      office_supplies,
+      other_supplies,
+    },
     data(){
         return{
             category_id: '',
@@ -73,9 +81,7 @@ export default {
         ...mapActions([
             'getCategories'
         ]),
-        select_category(){
-          this.getItemsPerCategory(this.category_id);
-        },
+
     },
     created(){
       this.getCategories();

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="form-group row mt-2 mb-2">
         <div class="col-auto">
             <label for="" class="form-label">
@@ -10,12 +9,10 @@
         <div class="col-6">
             <input type="text" class="form-control form-control-sm" v-model="search_word">
         </div>
-
     </div>
-
     <table class="table table-sm table-hover" id="table_1">
-            <thead>
-                <tr>
+        <thead>
+            <tr>
                 <th width="5%">#</th>
                 <th width="75%">Item Description</th>
                 <th width="20%">Unit</th>

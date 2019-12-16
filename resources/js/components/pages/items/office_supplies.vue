@@ -5,11 +5,8 @@
         <tr>
         <th width="6%">Item ID</th>
         <th width="30%">Description</th>
-        <th class="text-center" width="6%">Homis Stock</th>
         <th class="text-center" width="6%">MMO Stock</th>
-        <th witdh="6%">Batch No</th>
         <th width="12%">Brand</th>
-        <th witdh="8%">Expiration Date</th>
         <th witdh="6%">Cost</th>
         <th class="text-center" width="8%">Action</th>
         </tr>
@@ -50,7 +47,11 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            items: [],
+        }
+    }
 }
 </script>
 
