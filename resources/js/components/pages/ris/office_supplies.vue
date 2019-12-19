@@ -10,7 +10,7 @@
             <input type="text" class="form-control form-control-sm" v-model="search_word">
         </div>
     </div>
-    <table class="table table-sm table-hover" id="table_1">
+    <table class="table table-sm table-hover" id="table_1" style="height: 13rem !important; table-layout:fixed;">
         <thead>
             <tr>
                 <th width="5%">#</th>
@@ -19,7 +19,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="overflow-y: scroll; height: 11rem; width: 96%; position: absolute;">
             <tr v-for="(item, index) in filteredItems" :key="item.item_id">
                 <td width="5%">{{ index + 1 }}</td>
                 <td width="75%">{{ item.item_desc }}</td>
@@ -35,7 +35,7 @@
     <div class="w-100 border-bottom border-dark"  v-show="selected_items.length > 0"></div>
     <form @submit.prevent="store_ofs_ris()"  v-show="selected_items.length > 0">
         <div class="card-body">
-            <table class="table table-sm table-hover" id="table_1">
+            <table class="table table-sm table-hover" id="table_1" style="height: 13rem !important; table-layout:fixed;">
             <thead>
                 <tr>
                 <th width="5%">#</th>
@@ -45,7 +45,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="overflow-y: scroll; height: 11rem; width: 96%; position: absolute;">
             <tr v-for="(item, index) in selected_items" :key="item.item_id">
                 <td width="5%">{{ index + 1 }}</td>
                 <td width="60%">{{ item.item_desc }}</td>
@@ -76,9 +76,7 @@ export default {
     
     data(){
         return{
-
             search_word: '',
-
             items: [],
             selected_items: [],
             message: null,
@@ -87,7 +85,7 @@ export default {
     methods: {
 
         get_office_supplies(){
-            axios.get('office_supplies').then(({data}) => {
+            axios.get('item_office_supplies').then(({data}) => {
                 this.items = data;
             }).catch(() => {
 

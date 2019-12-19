@@ -37,15 +37,26 @@ class ItemController extends Controller
     }
 
     public function office_supplies(){
-        $items = ItemView::with([
-            'batches' => function($q){
-                $q->orderBy('expiration_date', 'asc');
-            },
-        ])->where('category_id', 5)->get();
+        $items = DB::select("select 
+        sc.sl_code, 
+        item_desc = min(item.item_desc),
+        stock = sum(eus.quantity)
+        from mmo.dbo.items_2 as item left outer join
+        mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
+        left outer join
+        mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
+        where item.category_id = 5
+        group by sc.sl_code");
 
-        $data = ItemViewResource::collection($items);
+        // $data = ItemViewResource::collection($items);
 
-        return response()->json($data);
+        return response()->json($items);
+    }
+
+    public function item_office_supplies(){
+        $items = DB::table("mmo.dbo.items_2")->where('category_id', 5)->get();
+
+        return response()->json($items);
     }
 
     public function office_supplies_search($search_word){

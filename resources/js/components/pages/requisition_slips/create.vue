@@ -75,6 +75,7 @@ import dental_supplies from '../ris/dental_supplies.vue';
 import drugs_and_medicines from '../ris/drugs_and_medicines.vue';
 import medical_supplies from '../ris/medical_supplies.vue';
 import other_supplies from '../ris/other_supplies.vue';
+import laboratory_supplies from '../ris/laboratory_supplies.vue';
 
 export default {
     components:{
@@ -82,7 +83,8 @@ export default {
         dental_supplies,
         drugs_and_medicines,
         medical_supplies,
-        other_supplies
+        other_supplies,
+        laboratory_supplies,
     },
     data(){
         return{

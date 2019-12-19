@@ -22,38 +22,39 @@
               <div class="col-md-12">
                   <div class="card">
                     <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-auto">
-                                <label for="" class="form-label">
-                                    Category:
-                                </label>
-                            </div>
-                            <div class="col-4">
-                                <select class="form-control form-control-sm" v-model="category_id">
-                                    <option v-for="c in categories" :key="c.category_id" :value="c.category_id">{{ c.category_desc }}</option>
-                                </select>
-                            </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <router-link class="btn btn-block btn-primary text-white" :to="{ name: 'item_dm'}">
+                            Drugs And Medicines
+                          </router-link>
                         </div>
-                        <div v-show="category_id == 1">
-                            <drugs_and_medicines></drugs_and_medicines>
+                        <div class="col-4">
+                          <router-link class="btn btn-block btn-primary text-white" :to="{ name: 'item_md'}">
+                            Medical Supplies
+                          </router-link>
                         </div>
-                        <div v-show="category_id == 2">
-                            <medical_supplies></medical_supplies>
+                        <div class="col-4">
+                          <router-link class="btn btn-block btn-primary text-white" :to="{ name: 'item_ofs'}">
+                            Office Supplies
+                          </router-link>
                         </div>
-                        <div v-show="category_id == 4">
-                            <office_supplies></office_supplies>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <router-link class="btn btn-block btn-primary text-white" :to="{ name: 'item_os'}">
+                            Other Supplies
+                          </router-link>
                         </div>
-                        <div v-show="category_id == 5">
-                            <office_supplies></office_supplies>
-                        </div>
-                        <div v-show="category_id == 6">
-                            <office_supplies></office_supplies>
-                        </div>
+                      </div>
                     </div>
                 </div>
               </div>
           </div>
       </div>
+
+    </section>
+    <section>
+      
     </section>
 </div>
 </template>

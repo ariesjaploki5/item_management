@@ -59,8 +59,11 @@ Route::group(['middleware' => ['cors', 'api']], function() {
     Route::post('store_ofs_ris', 'Api\RisController@store_ofs_ris');
     Route::put('update_ofs_ris/{control_no}', 'Api\RisController@update_ofs_ris');
 
+    Route::get('item_office_supplies', 'Api\ItemController@item_office_supplies');
     Route::get('office_supplies', 'Api\ItemController@office_supplies');
     Route::get('office_supplies/{search_word}', 'Api\ItemController@office_supplies_search');
+
+    Route::put('stock/{id}', 'Api\StockController@update');
 
     Route::get('pmo_search_batch/{search_word}', 'PMO\BatchController@search_batch');
 

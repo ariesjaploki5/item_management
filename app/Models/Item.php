@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $table = 'mmo.dbo.items';
+    protected $table = 'mmo.dbo.items_2';
     protected $primaryKey = 'mmo.dbo.item_id';
     public $incrementing = false;
 

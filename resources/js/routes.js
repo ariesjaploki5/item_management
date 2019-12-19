@@ -8,7 +8,6 @@ import main from './components/pages/auth/main';
 import logout from './components/pages/auth/logout';
 import register from './components/pages/auth/register';
 
-
 import home from './components/pages/home'
 
 import purchase_orders from './components/pages/purchase_orders'
@@ -65,6 +64,10 @@ import batch_create from './components/pages/batches/create'
 import items from './components/pages/items'
 import item_list from './components/pages/items/list'
 import item from './components/pages/items/show'
+import item_dm from './components/pages/items/drugs_and_medicines'
+import item_md from './components/pages/items/medical_supplies'
+import item_os from './components/pages/items/other_supplies'
+import item_ofs from './components/pages/items/office_supplies'
 
 import disbursement_vouchers from './components/pages/disbursement_vouchers'
 import disbursement_voucher_list from './components/pages/disbursement_vouchers/list'
@@ -86,7 +89,6 @@ import requisition_slip_print from './components/pages/requisition_slips/print'
 import requisition_slip_reports from './components/pages/requisition_slips/report'
 
 import test_print from './components/pages/test/print'
-
 
 export const routes = [
     {
@@ -373,6 +375,26 @@ export const routes = [
                 path: '',
                 component: item_list,
                 name: 'items',
+            },
+            {
+                path: '/item_dm',
+                component: item_dm,
+                name: 'item_dm',
+            },
+            {
+                path: '/item_md',
+                component: item_md,
+                name: 'item_md',
+            },
+            {
+                path: '/item_ofs',
+                component: item_ofs,
+                name: 'item_ofs',
+            },
+            {
+                path: '/item_os',
+                component: item_os,
+                name: 'item_os',
             },
             {
                 path:':id',

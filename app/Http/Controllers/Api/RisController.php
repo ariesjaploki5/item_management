@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Ris;
 use App\Models\BatchRis;
 use App\Models\ItemRis;
+use App\Models\Item;
+use App\Models\SlCode;
+
 use App\Http\Resources\Ris as RisResource;
 use Carbon\Carbon;
+use App\Models\EndUserStock;
 
 class RisController extends Controller
 {
@@ -84,6 +88,11 @@ class RisController extends Controller
             $item_ris->update([
                 'issued_quantity' => $issued_quantity,
             ]);
+
+            $get_sl_code = SlCode::where('item_id', $item_id)->first();
+            $sl_code = $get_sl_code->sl_code;
+
+            $end_user_stock = EndUserStock::where('sl_code', $sl_code)->decrement('quantity', $issued_quantity);
         }
 
         return true;
