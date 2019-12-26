@@ -25,6 +25,7 @@ class PurchaseOrderController extends Controller
 
 
     public function new_po(){
+
         $now = Carbon::now();
         $year_now = $now->year;
         $month_now = $now->month;
@@ -43,6 +44,7 @@ class PurchaseOrderController extends Controller
         }
 
         return $po_no;
+
     }
 
     public function store(Request $request){

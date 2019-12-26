@@ -39638,6 +39638,12 @@ a.text-dark:focus {
   color: #F9AA33 !important;
 }
 
+.content-header h4 {
+  font-size: 1.8rem !important;
+  margin: 0 !important;
+  color: #F9AA33 !important;
+}
+
 .content-wrapper {
   background: #232f34 !important;
 }

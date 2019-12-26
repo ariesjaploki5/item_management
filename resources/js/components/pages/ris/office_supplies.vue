@@ -36,31 +36,41 @@
     <form @submit.prevent="store_ofs_ris()"  v-show="selected_items.length > 0">
         <div class="card-body">
             <table class="table table-sm table-hover" id="table_1" style="height: 13rem !important; table-layout:fixed;">
-            <thead>
-                <tr>
-                <th width="5%">#</th>
-                <th width="60%">Item Description</th>
-                <th width="20%">Unit</th>
-                <th width="15%" class="text-center">Quantity</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody style="overflow-y: scroll; height: 11rem; width: 96%; position: absolute;">
-            <tr v-for="(item, index) in selected_items" :key="item.item_id">
-                <td width="5%">{{ index + 1 }}</td>
-                <td width="60%">{{ item.item_desc }}</td>
-                <td width="20%">{{ item.unit_desc }}</td>
-                <td width="15%">
-                    <input type="float" v-model="item.requested_quantity" class="form-control form-control-sm text-right">
-                </td>
-                <td>
-                    <button type="button" @click="remove_item(index)" class="btn btn-sm btn-danger">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="60%">Item Description</th>
+                        <th width="20%">Unit</th>
+                        <th width="15%" class="text-center">Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="overflow-y: scroll; height: 11rem; width: 96%; position: absolute;">
+                    <tr v-for="(item, index) in selected_items" :key="item.item_id">
+                        <td width="5%">{{ index + 1 }}</td>
+                        <td width="60%">{{ item.item_desc }}</td>
+                        <td width="20%">{{ item.unit_desc }}</td>
+                        <td width="15%">
+                            <input type="number" v-model="item.requested_quantity" class="form-control form-control-sm text-right">
+                        </td>
+                        <td>
+                            <button type="button" @click="remove_item(index)" class="btn btn-sm btn-danger">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-auto">
+                    <label for="" class="form-label">
+                        Purpose:
+                    </label>
+                </div>
+                <div class="col-6">
+                    <textarea  class="form-control form-control-sm" rows="1" v-model="purpose" required></textarea>
+                </div>
+            </div>
         </div>
         <div class="card-footer text-right">
             <button type="submit" class="btn btn-sm btn-success">Submit</button>
@@ -80,6 +90,7 @@ export default {
             items: [],
             selected_items: [],
             message: null,
+            purpose: null,
         }
     },
     methods: {
@@ -105,6 +116,7 @@ export default {
         },
         store_ofs_ris(){
             axios.post('store_ofs_ris', {
+                purpose: this.purpose,
                 items: this.selected_items,
             }).then(({data}) => {
                 this.selected_items = [];

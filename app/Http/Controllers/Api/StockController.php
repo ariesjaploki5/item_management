@@ -12,7 +12,7 @@ use DB;
 class StockController extends Controller
 {
     public function index(){
-
+        
     }
 
     public function store(Request $request){
@@ -32,10 +32,15 @@ class StockController extends Controller
 
     public function update(Request $request, $id){
         
-        $eus = EndUserStock::updateOrCreate([
+        $eus = EndUserStock::firstOrCreate([
             'sl_code' => $id,
-            'quantity' => $request->quantity,
         ]);
+        
+        if($request->type_id = 1){
+            EndUserStock::where('sl_code', $id)->increment('quantity', $request->quantity);
+        } else {
+            EndUserStock::where('sl_code', $id)->decrement('quantity', $request->quantity);
+        }
 
         $sl = StockLogs::create([
             'sl_code' => $id,
@@ -45,6 +50,16 @@ class StockController extends Controller
         ]);
 
         return response()->json($eus);
+    }
+
+    public function update_beginning_balance(Request $request, $id){
+        $eus = EndUserStock::where('sl_code', $id)->where('end_user_id', 1)->first();
+
+        $eus->update([
+            'quantity' => $request->stock,
+        ]);
+
+        return response()->json();
     }
 
     public function destroy($id){

@@ -84,8 +84,8 @@ export default {
     },
     methods: {
 
-        get_office_supplies(){
-            axios.get('item_office_supplies').then(({data}) => {
+        get_other_supplies(){
+            axios.get('item_other_supplies').then(({data}) => {
                 this.items = data;
             }).catch(() => {
 
@@ -116,7 +116,7 @@ export default {
         }
     },
     created(){
-        this.get_office_supplies();
+        this.get_other_supplies();
         
     },
     computed: {

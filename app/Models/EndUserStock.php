@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\EndUserStockCreated;
+use App\Events\EndUserStockUpdated;
 
 class EndUserStock extends Model
 {
@@ -17,5 +19,10 @@ class EndUserStock extends Model
         'batch_no',
         'remarks',
         'iar_no',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => EndUserStockCreated::class,
+        'updated' => EndUserStockUpdated::class,
     ];
 }

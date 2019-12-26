@@ -59,12 +59,28 @@ Route::group(['middleware' => ['cors', 'api']], function() {
     Route::post('store_ofs_ris', 'Api\RisController@store_ofs_ris');
     Route::put('update_ofs_ris/{control_no}', 'Api\RisController@update_ofs_ris');
 
+    Route::post('store_os_ris', 'Api\RisController@store_os_ris');
+    Route::put('update_os_ris/{control_no}', 'Api\RisController@update_os_ris');
+
+    Route::get('item_drugs_and_medicines', 'Api\ItemController@item_drugs_and_medicines');
+    Route::get('drugs_and_medicines', 'Api\ItemController@drugs_and_medicines');
+    Route::get('drugs_and_medicines/{search_word}', 'Api\ItemController@drugs_and_medicines_search');
+
+    Route::get('item_medical_supplies', 'Api\ItemController@item_medical_supplies');
+    Route::get('medical_supplies', 'Api\ItemController@medical_supplies');
+    Route::get('medical_supplies/{search_word}', 'Api\ItemController@medical_supplies_search');
+
     Route::get('item_office_supplies', 'Api\ItemController@item_office_supplies');
     Route::get('office_supplies', 'Api\ItemController@office_supplies');
     Route::get('office_supplies/{search_word}', 'Api\ItemController@office_supplies_search');
 
-    Route::put('stock/{id}', 'Api\StockController@update');
+    Route::get('item_other_supplies', 'Api\ItemController@item_other_supplies');
+    Route::get('other_supplies', 'Api\ItemController@other_supplies');
+    Route::get('other_supplies/{search_word}', 'Api\ItemController@other_supplies_search');
 
+    Route::put('stock/{id}', 'Api\StockController@update');
+    Route::put('update_beginning_balance/{id}', 'Api\StockController@update_beginning_balance');
+    
     Route::get('pmo_search_batch/{search_word}', 'PMO\BatchController@search_batch');
 
     Route::put('pmo_ris_receive/{id}', 'PMO\RisController@received');

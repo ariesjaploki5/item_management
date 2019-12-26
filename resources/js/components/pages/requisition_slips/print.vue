@@ -1,135 +1,145 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <button class="btn btn-primary d-print-none button ml-2 mb-2" @click="print()">Print</button> 
-        <div class="row  bg-white" id="image_row">
-            <div class="col-3 border border-dark border-right-0">
-                <img :src="'/img/bghmc.png'" class="img-thumbnail">
-            </div>
-            <div class="row d-none d-print-block fixed-top text-right mr-5 mt-2">
-                <span id="control_no" class="mr-5">{{ ris.control_no }}</span>
-            </div>
-            <div class="col-9 border border-dark">
-                <div class="row justify-content-center border-dark border-bottom">
-                    <div class="col-12">
-                        <div class="text-center">Republic of the Philippines</div>
-                        <div class="text-center">Department of Health</div>
-                        <div class="text-center">BAGUIO GENERAL HOSPITAL AND MEDICAL CENTER</div>
-                        <div class="text-center">Baguio City</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8 text-center border-dark border-right">
-                        <div class="row">
-                            <div class="col-12"><div class="text-center">MATERIALS MANAGEMENT OFFICE</div></div>
-                            <div class="col-12"><div class="text-center"><h4>REQUISITION AND ISSUE SLIP</h4></div></div>
-                        </div>
-                    </div>
-                    <div class="col-4" style="padding-left: 1px !important; padding-right: 0px !important;">
-                        <div class="row">
-                            <div class="col-12"><div class="text-left border-bottom border-dark">Form No.: HS-MMO-023</div></div>
-                            <div class="col-12"><div class="text-left border-bottom border-dark">Revision No.: 1</div></div>
-                            <div class="col-12"><div class="text-left">Effectivity Date: September 1, 2016</div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
-            <div class="col-6 border-right border-dark">
-                <div class="row">
-                    <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">
-                        <span id="dept_div">{{ ris.division_desc }}</span>
-                    </div>
-                    <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">
-                        <span id="dept_div">{{ ris.department_desc }}</span>
-                    </div>
-                    <div class="col-4">Resp. Center Code </div><div class="col-7 border-bottom border-dark">
 
+        <header>
+            <div class="row  bg-white" id="image_row">
+                <div class="col-3 border border-dark border-right-0">
+                    <img :src="'/img/bghmc.png'" class="img-thumbnail">
+                </div>
+                <div class="row d-none d-print-block fixed-top text-right mr-5 mt-2">
+                    <span id="control_no" class="mr-5">{{ ris.control_no }}</span>
+                </div>
+                <div class="col-9 border border-dark">
+                    <div class="row justify-content-center border-dark border-bottom">
+                        <div class="col-12">
+                            <div class="text-center" id="dept_div">Republic of the Philippines</div>
+                            <div class="text-center" id="dept_div">Department of Health</div>
+                            <div class="text-center" id="dept_div">BAGUIO GENERAL HOSPITAL AND MEDICAL CENTER</div>
+                            <div class="text-center" id="dept_div">Baguio City</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 text-center border-dark border-right">
+                            <div class="row">
+                                <div class="col-12" id="dept_div"><div class="text-center">MATERIALS MANAGEMENT OFFICE</div></div>
+                                <div class="col-12" id="dept_div"><div class="text-center"><span class="ris_class">REQUISITION AND ISSUE SLIP</span></div></div>
+                            </div>
+                        </div>
+                        <div class="col-4" style="padding-left: 1px !important; padding-right: 0px !important;">
+                            <div class="row">
+                                <div class="col-12" id="dept_div"><div class="text-left border-bottom border-dark">Form No.: HS-MMO-023</div></div>
+                                <div class="col-12" id="dept_div"><div class="text-left border-bottom border-dark">Revision No.: 1</div></div>
+                                <div class="col-12" id="dept_div_2"><div class="text-left">Effectivity Date: September 1, 2016</div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-3" style="padding-right: 0px !important;">RIS NO.: </div>
-                    <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_no }}</div>
-                    <div class="col-3" style="padding-right: 0px !important;">RIS DATE: </div>
-                    <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_date }}</div>
-                    <div class="col-3" style="padding-right: 0px !important;">Fund Cluster </div>
-                    <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;"></div>
+            <div class="row border border-dark border-top-0 border-bottom-0  bg-white">
+                <div class="col-8 border-right border-dark">
+                    <div class="row">
+                        <div class="col-3">Division: </div><div class="col-8 border-bottom border-dark">
+                            <span id="dept_div">{{ ris.division_desc }}</span>
+                        </div>
+                        <div class="col-3">Office: </div><div class="col-8 border-bottom border-dark">
+                            <span id="dept_div">{{ ris.department_desc }}</span>
+                        </div>
+                        <div class="col-4">Resp. Center Code </div><div class="col-7 border-bottom border-dark">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3" style="padding-right: 0px !important;">RIS NO.: </div>
+                        <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_no }}</div>
+                        <div class="col-3" style="padding-right: 0px !important;">RIS DATE: </div>
+                        <div class="col-8 border-bottom border-dark" style="padding-left: 0px !important;">{{ ris.ris_date }}</div>
+                        <div class="col-5" style="padding-right: 0px !important;">Fund Cluster </div>
+                        <div class="col-6 border-bottom border-dark" style="padding-left: 0px !important;"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- body -->
-        <div class="row  bg-white">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center" width="10%">Stock No.</th>
-                        <th class="text-center" width="15%">Quantity</th>
-                        <th class="text-center" width="10%">Unit</th>
-                        <th class="text-center" width="20%">Description</th>
-                        <th class="text-center" width="15%">Quantity</th>
-                        <th class="text-center" width="10%">Unit</th>
-                        <th class="text-center" width="10%">Unit Cost</th>
-                        <th class="text-center" width="10%">Lot/Batch</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    <tr v-for="item in ris.items" :key="item.item_id">
-                        <td class="text-center" width="10%"></td>
-                        <td class="text-center" width="15%">{{ item.requested_quantity }}</td>
-                        <td class="text-center" width="10%">{{ item.unit_desc }}</td>
-                        <td class="text-left" width="20%">{{ item.item_desc }}</td>
-                        <td class="text-right" width="15%">{{ item.issued_quantity }}</td>
-                        <td class="text-center" width="10%">{{ item.unit_desc }}</td>
-                        <td class="text-center" width="10%">{{ item.cost }}</td>
-                        <td class="text-left" width="10%">{{ item.batch_no }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- footer -->
-        <div class="row bg-white">
-            <table  class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td width="20%"></td>
-                        <td width="20%">Requested by</td>
-                        <td width="20%">Approved by</td>
-                        <td width="20%">Issued by</td>
-                        <td width="20%">Received By</td>
-                    </tr>
-                    <tr>
-                        <td>Signature</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Printed name</td>
-                        <td class="text-center">{{ ris.requested_by_user }}</td>
-                        <td class="text-center">RIVERA, TEOFILO JR M. </td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                    </tr>
-                    <tr>
-                        <td>Designation</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Date</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        </header>
+        
+        <main>
+            <div class="row  bg-white">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="8%">Stock No.</th>
+                            <th class="text-center" width="8%">Quantity</th>
+                            <th class="text-center" width="8%">Unit</th>
+                            <th class="text-center" width="auto">Description</th>
+                            <th class="text-center" width="8%">Quantity</th>
+                            <th class="text-center" width="8%">Unit</th>
+                            <th class="text-center" width="8%">Unit Cost</th>
+                            <th class="text-center" width="8%">Lot/Batch</th>
+                        </tr>
+                    </thead>
+                    <tbody  class="table_class">
+                        <tr v-for="item in ris.items" :key="item.item_id">
+                            <td class="text-center" width="8%"></td>
+                            <td class="text-center" width="8%">{{ item.requested_quantity }}</td>
+                            <td class="text-center" width="8%">{{ item.unit_desc }}</td>
+                            <td class="text-left" width="auto">{{ item.item_desc }}</td>
+                            <td class="text-center" width="8%">{{ item.issued_quantity }}</td>
+                            <td class="text-center" width="8%">{{ item.unit_desc }}</td>
+                            <td class="text-center" width="8%">{{ item.cost }}</td>
+                            <td class="text-left" width="8%">{{ item.batch_no }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <footer>
+            <div class="row bg-white">
+                <table  class="table table-bordered table_class">
+                    <tbody class="">
+                        <tr>
+                            <td width="20%">Purpose</td>
+                            <td width="80%" colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%"></td>
+                            <td width="20%">Requested by</td>
+                            <td width="20%">Approved by</td>
+                            <td width="20%">Issued by</td>
+                            <td width="20%">Received By</td>
+                        </tr>
+                        <tr>
+                            <td>Signature</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Printed name</td>
+                            <td class="text-center">{{ ris.requested_by_user }}</td>
+                            <td class="text-center">RIVERA, TEOFILO JR M. </td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <td>Designation</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </footer>
     </div>
 </template>
 <script>
@@ -167,15 +177,21 @@ export default {
 <style lang="scss" scoped>
 
     @media print {
-
+        .ris_class {
+            font-size: 33px !important;
+            font-family: Times New Roman !important;
+        }
+        main{
+            height: 57rem;
+        }
         body { 
             overflow: auto;
             height: auto; 
             
         }
-        #image_row{
-            margin-top: 2rem;
-        }
+        // #image_row{
+        //     margin-top: 2rem;
+        // }
 
         /* .img-thumbnail {
                     margin-top: 5%;
@@ -234,9 +250,17 @@ export default {
         border:1px solid rgb(0, 0, 0);
     }
     #dept_div{
-        font-size: 10.5px !important;
+        font-size: 15px !important;
     }
 
+.ris_class {
+    font-size: 33px !important;
+    font-family: Times New Roman !important;
+}
 
+.table_class tr td{
+    font-size: 15px !important;
+
+}
 
 </style>

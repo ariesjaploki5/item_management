@@ -27,7 +27,18 @@
 
                     </div>
                     <div class="card-body">
-
+                      <table class="table table-sm">
+                        <tbody>
+                          <tr>
+                            <td>
+                              Id
+                            </td>
+                            <td>
+                              <span>{{ user.employee_id }}</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                     <div class="card-footer">
                 
@@ -41,9 +52,30 @@
 </div>
     
 </template>
-<script>
 
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  data(){
+    return{
+      
+    }
+  },
+  methods:{
+
+  },
+  created(){
+
+  },
+  computed:{
+    ...mapState([
+      'user',
+    ])
+  }
+}
 </script>
+
 <style lang="css" scoped>
 
 </style>

@@ -36,11 +36,45 @@ class ItemController extends Controller
 
     }
 
-    public function office_supplies(){
+    public function drugs_and_medicines(){
         $items = DB::select("select 
         sc.sl_code, 
         item_desc = min(item.item_desc),
         stock = sum(eus.quantity)
+        from mmo.dbo.items_2 as item left outer join
+        mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
+        left outer join
+        mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
+        where item.category_id = 1
+        group by sc.sl_code");
+
+        // $data = ItemViewResource::collection($items);
+
+        return response()->json($items);
+    }
+
+    public function medical_supplies(){
+        $items = DB::select("select 
+        sc.sl_code, 
+        item_desc = min(item.item_desc),
+        stock = sum(eus.quantity)
+        from mmo.dbo.items_2 as item left outer join
+        mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
+        left outer join
+        mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
+        where item.category_id = 2
+        group by sc.sl_code");
+
+        // $data = ItemViewResource::collection($items);
+
+        return response()->json($items);
+    }
+
+    public function office_supplies(){
+        $items = DB::select("select 
+        sc.sl_code, 
+        item_desc = min(item.item_desc),
+        stock = cast(sum(eus.quantity) as int)
         from mmo.dbo.items_2 as item left outer join
         mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
         left outer join
@@ -52,9 +86,52 @@ class ItemController extends Controller
 
         return response()->json($items);
     }
+    
+    public function other_supplies(){
+        $items = DB::select("select 
+        sc.sl_code, 
+        item_desc = min(item.item_desc),
+        stock = sum(eus.quantity)
+        from mmo.dbo.items_2 as item left outer join
+        mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
+        left outer join
+        mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
+        where item.category_id = 6
+        group by sc.sl_code");
+
+        // $data = ItemViewResource::collection($items);
+
+        return response()->json($items);
+    }
+
+    public function item_drugs_and_medicines(){
+        // $items = ItemView::with([
+        //     'batches' => function($q){
+        //         $q->orderBy('expiration_date', 'asc');
+        //     },
+        // ])->where('category_id', 1)->get();
+
+        // $data = ItemViewResource::collection($items);
+
+        $items = DB::table("mmo.dbo.items_2")->where('category_id', 1)->get();
+
+        return response()->json($items);
+    }
+
+    public function item_medical_supplies(){
+        $items = DB::table("mmo.dbo.items_2")->where('category_id', 2)->get();
+
+        return response()->json($items);
+    }
 
     public function item_office_supplies(){
         $items = DB::table("mmo.dbo.items_2")->where('category_id', 5)->get();
+
+        return response()->json($items);
+    }
+
+    public function item_other_supplies(){
+        $items = DB::table("mmo.dbo.items_2")->where('category_id', 6)->get();
 
         return response()->json($items);
     }

@@ -50,13 +50,13 @@
                             <laboratory_supplies></laboratory_supplies>
                         </div>
                         <div v-show="category_id == 4">
-                            <office_supplies></office_supplies>
+                            <dental_supplies></dental_supplies>
                         </div>
                         <div v-show="category_id == 5">
                             <office_supplies></office_supplies>
                         </div>
                         <div v-show="category_id == 6">
-                            <office_supplies></office_supplies>
+                            <other_supplies></other_supplies>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,6 @@
     </section>
 </div>
 </template>
-
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
@@ -89,7 +88,6 @@ export default {
     data(){
         return{
             category_id: null,
-
         }
     },
     methods: {
@@ -99,12 +97,10 @@ export default {
 
     },
     created(){
-
         this.getCategories();
     },
     computed: {
         ...mapGetters([
-
             'categories',
         ]),
     },
