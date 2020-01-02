@@ -79,10 +79,10 @@ class ItemController extends Controller
         mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
         left outer join
         mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
-        where item.category_id = 5
+        
         group by sc.sl_code");
 
-        // $data = ItemViewResource::collection($items);
+        // $data = ItemViewResource::collection($items); where item.category_id = 5
 
         return response()->json($items);
     }
@@ -126,7 +126,7 @@ class ItemController extends Controller
 
     public function item_office_supplies(){
         $items = DB::table("mmo.dbo.items_2")->where('category_id', 5)->get();
-
+        $items = DB::table("mmo.dbo.items_2")->get();
         return response()->json($items);
     }
 
