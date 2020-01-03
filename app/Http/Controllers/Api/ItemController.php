@@ -79,7 +79,6 @@ class ItemController extends Controller
         mmo.dbo.sl_codes as sc on item.item_id = sc.item_id
         left outer join
         mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
-        
         group by sc.sl_code");
 
         // $data = ItemViewResource::collection($items); where item.category_id = 5
