@@ -4,13 +4,13 @@
       <div class="container-fluid">
         <div class="row ">
           <div class="col-sm-6">
-            <h4>Medical Supplies</h4>
+            <h4>Office Supplies</h4>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
               <li class="breadcrumb-item"><router-link :to="{ name: 'items'}">Items</router-link></li>
-              <li class="breadcrumb-item active"><router-link :to="{ name: 'item_md' }">Medical Supplies</router-link></li>
+              <li class="breadcrumb-item active"><router-link :to="{ name: 'item_ofs' }">Offices Supplies</router-link></li>
             </ol>
           </div>
         </div>
@@ -33,18 +33,30 @@
                         <table class="table table-sm table-hover">
                             <thead>
                                 <tr>
-                                    <th width="18%">Stock No</th>
-                                    <th width="52%">Description</th>
+                                    <th width="20%">Stock No</th>
+                                    <th width="40%">Description</th>
                                     <th width="15%">Brand</th>
                                     <th width="15%">Stock</th>
+                                    <th width="10%"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in filteredItems" :key="item.item_id" @click="view_item(item)">
-                                    <td width="18%">{{ item.sl_code }}</td>
-                                    <td width="52%">{{ item.item_desc }}</td>
+                                <tr v-for="item in filteredItems" :key="item.item_id">
+                                    <td width="20%">{{ item.sl_code }}</td>
+                                    <td width="40%">{{ item.item_desc }}</td>
                                     <td width="15%">{{ item.brand_desc }}</td>
                                     <td width="15%" class="text-right">{{ item.stock }}</td>
+                                    <td width="10%" class="text-center">
+                                        <div class="btn-group dropleft">
+                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                               <button class="dropdown-item" type="button" @click="view_item(item)">Adjust Balance</button>
+                                               <button class="dropdown-item" type="button" @click="edit_beginning_balance(item)">Update Beginning Balance</button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -59,7 +71,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="itemModalLabel">Form</h5>
+                    <h5 class="modal-title" id="itemModalLabel">Adjust Balance</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -96,6 +108,7 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
                 </div>
             </div>
@@ -104,7 +117,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Update Stock</h5>
+                    <h5 class="modal-title" id="editModalLabel">Adjust Balance</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -145,6 +158,34 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="editBeginningBalanceModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Update Beginning Balance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="update_beginning_balance()">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label for="" class="form-label">Quantity</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control form-control-sm text-right" v-model="item.stock">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-sm btn-success" type="submit">update</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 </template>
@@ -167,8 +208,8 @@ export default {
         }
     },
     methods: {
-        get_medical_supplies(){
-            axios.get('medical_supplies').then(({data}) => {
+        get_office_supplies(){
+            axios.get('office_supplies').then(({data}) => {
                 this.items = data;
             }).catch(() => {
 
@@ -200,10 +241,23 @@ export default {
             }).catch(() => {
 
             });
-        }
+        },
+        edit_beginning_balance(item){
+            this.item = item;
+            $('#editBeginningBalanceModal').modal('show');
+        },
+        update_beginning_balance(){
+            axios.put('update_beginning_balance/'+this.item.sl_code, {
+                stock: this.item.stock,
+            }).then(() => {
+                $('#editBeginningBalanceModal').modal('hide');
+            }).catch(() => {
+
+            });
+        },
     },
     created(){
-        this.get_medical_supplies();
+        this.get_office_supplies();
     },
     computed: {
         filteredItems(){
