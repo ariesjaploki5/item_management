@@ -83,7 +83,7 @@ class ItemController extends Controller
         group by sc.sl_code");
 
 
-        return response()->json($items);
+        return response()->json($items);        
     }
     
     public function other_supplies(){

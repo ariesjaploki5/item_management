@@ -13,7 +13,7 @@ class PoController extends Controller
     public function index(){
         $data = PoResource::collection(ViewPmoPo::where('id', '<>', 113)
         ->where('id', '<>', 822)
-        ->where('ors_burst', '<>', '')
+        // ->where('ors_burst', '<>', '')
         ->orderBy('po_no', 'desc')
         ->take(100)->get());
 

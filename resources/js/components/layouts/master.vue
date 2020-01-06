@@ -211,6 +211,23 @@
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
+                      PMO Batches
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'pmo_batches' }" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List</p>
+                      </router-link>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
                       RIS
                       <i class="fas fa-angle-left right"></i>
                     </p>

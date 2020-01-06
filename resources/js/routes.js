@@ -34,6 +34,12 @@ import pmo_ris from './components/pages/pmo_riss/show'
 import pmo_ris_create from './components/pages/pmo_riss/create'
 import pmo_ris_print from './components/pages/pmo_riss/print'
 
+import pmo_batches from './components/pages/pmo_batches'
+import pmo_batch_list from './components/pages/pmo_batches/list'
+import pmo_batch from './components/pages/pmo_batches/show'
+import pmo_batch_create from './components/pages/pmo_batches/create'
+// import pmo_batch_print from './components/pages/pmo_batches/print'
+
 import pmo_dvs from './components/pages/pmo_dvs'
 import pmo_dv_list from './components/pages/pmo_dvs/list'
 import pmo_dv from './components/pages/pmo_dvs/show'
@@ -208,6 +214,20 @@ export const routes = [
                 path:':id/profile',
                 component: profile,
                 name: 'profile',
+            },
+        ],
+    },
+    {
+        path: '/pmo_batches',
+        component: batches,
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: '',
+                component: batch_list,
+                name: 'pmo_batches',
             },
         ],
     },
