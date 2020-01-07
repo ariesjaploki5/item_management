@@ -27,7 +27,7 @@ class BatchRis extends Model
     ];
 
     public function batch(){
-        return $this->belongsTo('App\PMO\Batch', 'batch_control_no', 'batch_control_no');
+        return $this->belongsTo('App\PMO\Batch', 'batch_no', 'batch_no');
     }
 
     public function ris(){

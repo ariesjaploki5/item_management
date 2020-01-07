@@ -56,11 +56,9 @@
                                     <td class="text-right">{{ item.cost }}</td>
                                     <td class="text-right">{{ item.quantity }}</td>
                                     <td class="text-right">{{ item.total_cost }}</td>
-
                                 </tr>
                             </tbody>
                         </table>
-                            
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
@@ -71,7 +69,6 @@
               </div>
           </div>
       </div>
-
     </section>
 </div>
     
