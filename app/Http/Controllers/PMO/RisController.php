@@ -213,7 +213,7 @@ class RisController extends Controller
             
             $batch_ris_id = $batch[$i]['batch_ris_id'];
 
-            $br = DB::table("mmo.dbo.tfn_batches_to_transfer()")->where('batch_ris_id', $batch_ris_id)->first();
+            $br = DB::table("mmo.dbo.tfn_pmo_batches_to_transfer()")->where('batch_ris_id', $batch_ris_id)->first();
 
             $dmhdrsub = 'DRUMB';
 
@@ -227,8 +227,7 @@ class RisController extends Controller
             ->first();
 
             if($transfer === null){
-
-                DB::table("mmo.dbo.hdmhdrbrands")->insert([
+                DB::table("mmo.dbo.pmo_hdmhdrbrands")->insert([
                     'dmdcomb' => $br->dmdcomb, 
                     'dmdctr' => $br->dmdctr, 
                     'dmhdrsub' => 'DRUMB', 
@@ -240,9 +239,7 @@ class RisController extends Controller
                     'created_at' => Carbon::now(),
                     'statusMed' => 'I',
                 ]);
-    
             } else {
-    
                 Hdmhdrbrand::where('dmdcomb', $br->dmdcomb)
                 ->where('dmdctr', $br->dmdctr)
                 ->where('dmhdrsub', $dmhdrsub)

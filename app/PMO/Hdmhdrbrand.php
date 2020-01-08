@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hdmhdrbrand extends Model
 {
-    protected $table = "mmo.dbo.hdmhdrbrands";
+    protected $table = "mmo.dbo.pmo_hdmhdrbrands";
     // protected $primaryKey = 'dmdcomb';
     public $incrementing = false;
 

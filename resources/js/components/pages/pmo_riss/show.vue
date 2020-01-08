@@ -115,7 +115,8 @@ export default {
         receive(){
             axios.put('pmo_ris_receive/'+this.$route.params.id, {
                 batches: this.ris.items,
-            }).then(() => {
+            }).then(({data}) => {
+                console.log(data);
                 this.get_ris();
             }).catch(() => {
 

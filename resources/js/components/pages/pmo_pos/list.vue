@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="po in filteredPos" :key="po.po_no" @click="view_pmo_po(po.po_no)">
+                                <tr v-for="(po, index) in filteredPos" :key="index" @click="view_pmo_po(po.po_no)">
                                     <td>{{ po.po_no }}</td>
                                     <td>{{ po.po_date }}</td>
                                     <td>{{ po.pr_no }}</td>

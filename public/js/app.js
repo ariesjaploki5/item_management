@@ -2980,7 +2980,6 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
-//
 
 
 
@@ -10048,7 +10047,10 @@ function _defineProperty(obj, key, value) {
 
       axios.put('pmo_ris_receive/' + this.$route.params.id, {
         batches: this.ris.items
-      }).then(function () {
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        console.log(data);
+
         _this2.get_ris();
       })["catch"](function () {});
     },
@@ -11881,9 +11883,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 } //
-//
-//
-//
 //
 //
 //
@@ -67110,86 +67109,6 @@ var render = function() {
                                   "router-link",
                                   {
                                     staticClass: "nav-link",
-                                    attrs: {
-                                      to: { name: "purchase_request_create" }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("Create")])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "purchase_requests" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "purchase_orders" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
                                     attrs: { to: { name: "pmo_pos" } }
                                   },
                                   [
@@ -67209,67 +67128,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(6),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: {
-                                      to: {
-                                        name:
-                                          "inspection_and_acceptance_reports"
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: {
-                                      to: {
-                                        name:
-                                          "inspection_and_acceptance_report_report"
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("Reports")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(7),
+                          _vm._m(4),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
                             _c(
@@ -67319,139 +67178,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(8),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "batches" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(9),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "pmo_batches" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(10),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: {
-                                      to: { name: "requisition_slip_create" }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("Create")])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "requisition_slips" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: {
-                                      to: { name: "requisition_slip_reports" }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("Reports")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(11),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
                             _c(
@@ -67525,7 +67252,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(12),
+                          _vm._m(6),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
                             _c(
@@ -67537,36 +67264,6 @@ var render = function() {
                                   {
                                     staticClass: "nav-link",
                                     attrs: { to: { name: "pmo_dvs" } }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("List")])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item has-treeview" }, [
-                          _vm._m(13),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: {
-                                      to: { name: "disbursement_vouchers" }
-                                    }
                                   },
                                   [
                                     _c("i", {
@@ -67596,7 +67293,7 @@ var render = function() {
                             staticClass: "nav-item has-treeview"
                           },
                           [
-                            _vm._m(14),
+                            _vm._m(7),
                             _vm._v(" "),
                             _c("ul", { staticClass: "nav nav-treeview" }, [
                               _c(
@@ -67660,7 +67357,7 @@ var render = function() {
                             staticClass: "nav-item has-treeview"
                           },
                           [
-                            _vm._m(15),
+                            _vm._m(8),
                             _vm._v(" "),
                             _c("ul", { staticClass: "nav nav-treeview" }, [
                               _c(
@@ -67774,9 +67471,9 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fas fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v(
-          "\n                      Purchase Requests\n                      "
-        ),
+        _vm._v("\n                      PO "),
+        _c("sub", [_vm._v("PMO")]),
+        _vm._v(" "),
         _c("i", { staticClass: "fas fa-angle-left right" })
       ])
     ])
@@ -67789,9 +67486,9 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fas fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v(
-          "\n                      Purchase Orders\n                      "
-        ),
+        _vm._v("\n                      IAR "),
+        _c("sub", [_vm._v("PMO")]),
+        _vm._v(" "),
         _c("i", { staticClass: "fas fa-angle-left right" })
       ])
     ])
@@ -67804,7 +67501,9 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fas fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                      PMO PO\n                      "),
+        _vm._v("\n                      RIS "),
+        _c("sub", [_vm._v("PMO")]),
+        _vm._v(" "),
         _c("i", { staticClass: "fas fa-angle-left right" })
       ])
     ])
@@ -67817,98 +67516,8 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fas fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                      IARS\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      PMO IARS\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      Batches\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      PMO Batches\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      RIS\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      PMO RIS\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      PMO DVS\n                      "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                      DVS\n                      "),
+        _c("span", [_vm._v("DVS "), _c("sub", [_vm._v("PMO")])]),
+        _vm._v(" "),
         _c("i", { staticClass: "fas fa-angle-left right" })
       ])
     ])
@@ -79281,11 +78890,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.filteredPos, function(po) {
+                    _vm._l(_vm.filteredPos, function(po, index) {
                       return _c(
                         "tr",
                         {
-                          key: po.po_no,
+                          key: index,
                           on: {
                             click: function($event) {
                               return _vm.view_pmo_po(po.po_no)

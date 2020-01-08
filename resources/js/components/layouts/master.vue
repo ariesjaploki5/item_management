@@ -80,10 +80,9 @@
                         <p>List</p>
                       </router-link>
                     </li>
-
                   </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -106,8 +105,8 @@
                     </li>
                     
                   </ul>
-                </li>
-                <li class="nav-item has-treeview">
+                </li> -->
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -123,12 +122,12 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                      PMO PO
+                      PO <sub>PMO</sub>
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>
@@ -142,7 +141,7 @@
                     <li></li>
                   </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -165,12 +164,12 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                      PMO IARS
+                      IAR <sub>PMO</sub>
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>
@@ -190,7 +189,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -206,8 +205,8 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
-                <li class="nav-item has-treeview">
+                </li> -->
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -223,8 +222,8 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
-                <li class="nav-item has-treeview">
+                </li> -->
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -252,12 +251,12 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                      PMO RIS
+                      RIS <sub>PMO</sub>
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>
@@ -286,7 +285,7 @@
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                      PMO DVS
+                      <span>DVS <sub>PMO</sub></span>  
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>
@@ -299,7 +298,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -315,7 +314,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="nav-item has-treeview" v-show="user.role_id == 1">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
