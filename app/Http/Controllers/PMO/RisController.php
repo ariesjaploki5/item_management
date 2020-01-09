@@ -56,7 +56,8 @@ class RisController extends Controller
         Ris::create([
             'control_no' => $control_no,
             'ris_date' => Carbon::today(),
-            'requested_by' => auth('api')->user()->id,
+            'requested_by' => $request->user_id,
+            // 'requested_by' => auth('api')->user(),
             'requested_date' => Carbon::today(),
             'purpose' => $request->purpose,
         ]);

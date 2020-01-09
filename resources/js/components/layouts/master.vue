@@ -51,7 +51,6 @@
                 </a>
               </div>
             </div>
-
             <!-- Sidebar Menu -->
             <nav class="mt-2" v-show="user !== null">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -174,7 +173,6 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-
                     <li class="nav-item">
                       <router-link :to="{ name: 'pmo_iars' }" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -363,27 +361,15 @@
                 </li>
               </ul>
             </nav>
-            <!-- /.sidebar-menu -->
           </div>
-          <!-- /.sidebar -->
         </aside>
-
         <div class="content-wrapper">
         <router-view></router-view>
         </div>
         <footer class="main-footer d-print-none">
-          <!-- <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.0
-          </div>
-          <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-          reserved. -->
         </footer>
-
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-          <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
     <div v-else>
       <router-view></router-view>

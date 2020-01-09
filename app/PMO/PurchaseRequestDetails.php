@@ -10,7 +10,11 @@ class PurchaseRequestDetails extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'pr_no', 'item_id', 'cost', 'quantity', 'remarks',
+        'pr_no', 
+        'item_id', 
+        'cost', 
+        'quantity', 
+        'remarks',
     ];
 
     protected $casts = [

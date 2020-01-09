@@ -154,14 +154,13 @@ export default {
         store_ris(){
             axios.post('pmo_ris', {
                 batches: this.selected_batches,
-                
+                user_id: this.user.id,
             }).then(() => {
                 this.$router.push({ name: 'pmo_riss'});
             }).catch(() => {
 
             });
         },
-
         add_batch(batch){
             this.message = null;
             var a = this.selected_batches;
@@ -200,7 +199,8 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'items'
+            'items',
+            'user',
         ]),
     },
 }

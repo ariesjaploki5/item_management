@@ -2966,20 +2966,6 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -9485,7 +9471,8 @@ function _defineProperty(obj, key, value) {
       var _this2 = this;
 
       axios.post('pmo_ris', {
-        batches: this.selected_batches
+        batches: this.selected_batches,
+        user_id: this.user.id
       }).then(function () {
         _this2.$router.push({
           name: 'pmo_riss'
@@ -9529,7 +9516,7 @@ function _defineProperty(obj, key, value) {
   created: function created() {
     this.getItems();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['items']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['items', 'user']))
 });
 
 /***/ }),

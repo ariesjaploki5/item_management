@@ -64,6 +64,7 @@ class IarController extends Controller
             'ref_date' => $ref_date,
         ],[
             'iar_no' => $iar_no,
+            
         ]);
 
         $this->batches($iar_no, $batch);

@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::group(['middleware' => ['cors', 'api']], function() {
+Route::group(['middleware' => ['api', 'cors']], function() {
     Route::apiResources([
 
         'pmo_po' => 'PMO\PoController',
