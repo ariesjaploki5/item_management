@@ -15,6 +15,6 @@ class Hdmhdrbrand extends Model
         'dmdhdrsub', 'stockbal',
         'unit_price', 'selling_price',
         'statusMed', 'brand',
-        'exp_date'
+        'exp_date', 'batch_no'
     ];
 }

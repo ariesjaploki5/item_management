@@ -44,9 +44,9 @@
                                     <th>Unit</th>
                                     <th>Batch</th>
                                     <th>Expiry</th>
-                                    <th>Balance</th>
-                                    <th>Request Bal.</th>
-                                    <th width="20%">Issued Quantity</th>
+                                    <th width="10%">Balance</th>
+                                    <th width="10%">Request Bal.</th>
+                                    <th width="10%">Issued Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,9 +56,9 @@
                                     <td>{{ batch.item_unit }}</td>
                                     <td>{{ batch.batch_no }}</td>
                                     <td>{{ batch.expiration_date }}</td>
-                                    <td>{{ batch.remaining_quantity }}</td>
-                                    <td>{{ batch.requested_quantity }}</td>
-                                    <td>
+                                    <td class="text-right">{{ batch.balance }}</td>
+                                    <td class="text-right">{{ batch.requested_quantity }}</td>
+                                    <td class="text-right">
                                         <span v-show="!editmode">
                                             {{ batch.issued_quantity }}
                                         </span>
@@ -75,7 +75,7 @@
                         <button type="button" v-show="!editmode && user.role_id == 2" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
                         <button type="button" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
                         <button type="submit" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-success">Save or Update</button>
-                        <button type="button" v-show="user.role_id == 3 && ris.issued_date !== null" class="btn btn-sm btn-success" @click="receive()">Receive</button>
+                        <button type="button" v-show="user.role_id == 3 && ris.issued_date !== null && ris.received_date == null" class="btn btn-sm btn-success" @click="receive()">Receive</button>
                     </div>
                     </form>
                     <!-- /.card-footer-->

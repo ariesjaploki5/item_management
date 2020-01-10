@@ -20,7 +20,7 @@
                 <i class="fas fa-user-alt"></i> {{ user.employee_name }}
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <router-link :to="{ name: 'profile'}" class="nav-link">Profile</router-link>
+                  <!-- <router-link :to="{ name: 'profile'}" class="nav-link">Profile</router-link> -->
                 <div class="dropdown-divider"></div>
                   <router-link :to="{ name: 'logout'}" class="nav-link">Logout</router-link>
               </div>
@@ -64,7 +64,40 @@
                     </p>
                   </router-link>
                 </li>
-                <li class="nav-item has-treeview">
+
+                <li class="nav-item">
+                  <router-link :to="{ name: 'pmo_pos' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Purchase Orders
+                    </p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{ name: 'pmo_iars' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      IAR
+                    </p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{ name: 'pmo_riss' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      RIS
+                    </p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{ name: 'pmo_reports' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Reports
+                    </p>
+                  </router-link>
+                </li>
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -80,7 +113,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -122,7 +155,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -139,7 +172,7 @@
                     </li>
                     <li></li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -164,7 +197,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -186,7 +219,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -250,7 +283,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview">
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -278,8 +311,8 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
-                <li class="nav-item has-treeview">
+                </li> -->
+                <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -295,7 +328,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -313,7 +346,7 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="nav-item has-treeview" v-show="user.role_id == 1">
+                <!-- <li class="nav-item has-treeview" v-show="user.role_id == 1">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -358,7 +391,7 @@
                       </router-link>
                     </li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
             </nav>
           </div>
@@ -407,14 +440,14 @@ export default{
 }
 </script>
 <style lang="scss">
-  .navbar{
-    background-color: #232f34;
-  }
-  a {
-    color: #f6a832 !important;
-  }
-  .navbar-expand .navbar-nav .dropdown-menu {
+  // .navbar{
+  //   background-color: #232f34;
+  // }
+  // a {
+  //   color: #f6a832 !important;
+  // }
+  // .navbar-expand .navbar-nav .dropdown-menu {
 
-      background-color: #4a6572 !important ;
-  }
+  //     background-color: #4a6572 !important ;
+  // }
 </style>

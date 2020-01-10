@@ -15,7 +15,7 @@ class PoController extends Controller
         ->where('id', '<>', 822)
         // ->where('ors_burst', '<>', '')
         ->orderBy('po_no', 'desc')
-        ->take(100)->get());
+        ->get());
 
         return response()->json($data);
     }

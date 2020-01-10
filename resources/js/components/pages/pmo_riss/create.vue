@@ -106,8 +106,20 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-auto">
+                                Purpose
+                            </div>
+                            <div class="col-6">
+                                <select class="form-control" v-model="purpose">
+                                    <option v-for="p in purposes" :key="p.chrgcode" :value="p.chrgcode">
+                                        {{ p.chrgdesc }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer text-right">
+                    <div class="card-footer text-right" v-show="selected_batches.length > 0">
                         <button type="submit" class="btn btn-sm btn-success">Submit</button>
                     </div>
                     </form>
@@ -128,6 +140,7 @@ export default {
             selected_batches: [],
             search_word: null,
             batches: null,
+            purposes: [],
             batch: {
                 batch_no: '',
                 item_desc: '',
@@ -138,12 +151,20 @@ export default {
                 remaining_quantity: '',
             },
             message: '',
+            purpose: '',
         }
     },
     methods: {
         ...mapActions([
             'getItems'
         ]),
+        get_purpose(){
+            axios.get('hcharge').then(({data}) => {
+                this.purposes = data;
+            }).catch(() => {
+
+            });
+        },
         search_batch(){
             axios.get('pmo_search_batch/'+this.search_word).then(({data}) => {
                 this.batches = data;
@@ -155,6 +176,7 @@ export default {
             axios.post('pmo_ris', {
                 batches: this.selected_batches,
                 user_id: this.user.id,
+                purpose: this.purpose,
             }).then(() => {
                 this.$router.push({ name: 'pmo_riss'});
             }).catch(() => {
@@ -196,6 +218,7 @@ export default {
     },
     created(){
         this.getItems();
+        this.get_purpose();
     },
     computed: {
         ...mapGetters([

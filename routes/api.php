@@ -54,6 +54,8 @@ Route::group(['middleware' => ['api', 'cors']], function() {
         'user' => 'Api\UserController',
     ]);
 
+    Route::get('hcharge', 'Homis\HchargeController@index');
+
     Route::get('riss_by_category/{category_id}', 'Api\RisController@riss_by_category');
 
     Route::post('store_ofs_ris', 'Api\RisController@store_ofs_ris');

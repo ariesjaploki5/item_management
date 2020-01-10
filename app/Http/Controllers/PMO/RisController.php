@@ -225,6 +225,7 @@ class RisController extends Controller
             ->where('unit_price', $br->cost)
             ->where('selling_price', $br->cost/0.75)
             ->where('exp_date', $br->expiration_date)
+            ->where('batch_no', $br->batch_no)
             ->first();
 
             if($transfer === null){
@@ -237,6 +238,7 @@ class RisController extends Controller
                     'selling_price' => $br->cost/0.75,
                     'stockbal' => $br->issued_quantity,
                     'exp_date' => $br->expiration_date,
+                    'batch_no' => $br->batch_no,
                     'created_at' => Carbon::now(),
                     'statusMed' => 'I',
                 ]);

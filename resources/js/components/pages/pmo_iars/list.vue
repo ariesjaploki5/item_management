@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-              <h1>PMO IARS</h1>
+              <h1>IARS</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

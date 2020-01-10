@@ -34,6 +34,8 @@ import pmo_ris from './components/pages/pmo_riss/show'
 import pmo_ris_create from './components/pages/pmo_riss/create'
 import pmo_ris_print from './components/pages/pmo_riss/print'
 
+import pmo_reports from './components/pages/pmo_reports'
+
 import pmo_batches from './components/pages/pmo_batches'
 import pmo_batch_list from './components/pages/pmo_batches/list'
 import pmo_batch from './components/pages/pmo_batches/show'
@@ -216,6 +218,14 @@ export const routes = [
                 name: 'profile',
             },
         ],
+    },
+    {
+        path: '/pmo_reports',
+        component: pmo_reports,
+        meta: {
+            requiresAuth: true,
+        },
+        name: 'pmo_reports',
     },
     {
         path: '/pmo_batches',

@@ -49,9 +49,9 @@
                                 <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_dv(pmo_po.po_no)" >Create Dv</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
