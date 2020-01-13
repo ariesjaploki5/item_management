@@ -40,6 +40,24 @@ class PoController extends Controller
         return response()->json($data);
     }
 
+    public function update_obrs(Request $request, $id){
+        $po = Po::where('po_no', $id)->first();
+        $po->update([
+            'ors_burst' => $request->obrs
+        ]);
+
+        return response()->json($request->obrs);
+    }
+
+    public function update_fund_cluster(Request $request, $id){
+        $po = Po::where('po_no', $id)->first();
+        $po->update([
+            'ors_burst_fund' => $request->fund_cluster
+        ]);
+
+        return response()->json($request->fund_cluster);
+    }
+
     public function update(Request $request, $id){
 
     }

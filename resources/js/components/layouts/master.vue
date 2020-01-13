@@ -64,7 +64,14 @@
                     </p>
                   </router-link>
                 </li>
-
+                <li class="nav-item">
+                  <router-link :to="{ name: 'items' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Items
+                    </p>
+                  </router-link>
+                </li>
                 <li class="nav-item">
                   <router-link :to="{ name: 'pmo_pos' }" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -90,6 +97,14 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
+                  <router-link :to="{ name: 'requisition_slips' }" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      RIS 2
+                    </p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
                   <router-link :to="{ name: 'pmo_reports' }" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
@@ -97,6 +112,7 @@
                     </p>
                   </router-link>
                 </li>
+                
                 <!-- <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>

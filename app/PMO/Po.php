@@ -9,6 +9,11 @@ class Po extends Model
     protected $table = 'bms_pmo.dbo.bms_po';
     protected $primaryKey = 'po_no';
 
+    public $incrementing = false;
+
+    protected $fillable = [
+        'ors_burst', 'ors_burst_fund',
+    ];
 
     protected $casts = [
         "id" => 'string'
@@ -23,7 +28,6 @@ class Po extends Model
         ,"total" => 'float'
         ,"ors_burst" => 'string'
         ,"ors_burst_fund" => 'string'
-
     ];
 
     public function po_items(){
@@ -35,6 +39,6 @@ class Po extends Model
     }
 
     public function scopeMmo(){
-        
+    
     }
 }

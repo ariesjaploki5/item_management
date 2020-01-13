@@ -24,12 +24,14 @@
                     <div class="card-header">
 
                     </div>
-
                     <div class="card-body">
-
+                        <ul class="list-group">
+                            <li class="list-group-item">Stock Card</li>
+                            <li class="list-group-item"></li>
+                        </ul>
                     </div>
                     <div class="card-footer text-right">
-
+                        
                     </div>
                 </div>
               </div>

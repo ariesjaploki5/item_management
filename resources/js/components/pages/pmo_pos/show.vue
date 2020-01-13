@@ -41,7 +41,67 @@
                                 </label>
                                 <div class="w-100"></div>
                                 <label for="" class="form-label">
-                                    OBRS No.: {{ pmo_po.obrs }}
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            OBRS No.: 
+                                        </div>
+                                        <div class="col">
+                                            <span v-show="!edit_obrs_mode">
+                                                {{ pmo_po.obrs }}
+                                            </span>
+                                            <span v-show="!edit_obrs_mode && !edit_fund_cluster_mode">
+                                                <button class="btn btn-sm btn-success" @click="edit_obrs()">
+                                                    <i class="fa fa-pen"></i>
+                                                </button>
+                                            </span>
+                                            <span v-show="edit_obrs_mode">
+                                                <form @submit.prevent="update_obrs()">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" class="form-control form-control-sm" v-model="pmo_po.obrs">
+                                                            
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </span>
+                                        </div>
+                                    </div>
+                                
+                                </label>
+                                <div class="w-100"></div>
+                                <label for="" class="form-label">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            Fund Cluster.: 
+                                        </div>
+                                        <div class="col">
+                                            <span v-show="!edit_fund_cluster_mode">
+                                                {{ pmo_po.fund_cluster }}
+                                            </span>
+                                            <span v-show="!edit_fund_cluster_mode && !edit_obrs_mode">
+                                                <button class="btn btn-sm btn-success" @click="edit_fund_cluster()">
+                                                    <i class="fa fa-pen"></i>
+                                                </button>
+                                            </span>
+                                            <span v-show="edit_fund_cluster_mode">
+                                                <form @submit.prevent="update_fund_cluster()">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" class="form-control form-control-sm" v-model="pmo_po.fund_cluster">
+                                                            
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </span>
+                                        </div>
+                                    </div>
+                                
                                 </label>
                             </div>
                             <div class="col-1">
@@ -49,9 +109,9 @@
                                 <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
                                 </div>
-                                <!-- <div class="row">
+                                <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_dv(pmo_po.po_no)" >Create Dv</button>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -106,6 +166,8 @@ export default {
                 po_no: '',
                 pr_no: '',
             },
+            edit_obrs_mode: false,
+            edit_fund_cluster_mode: false,
         }
     },
     methods: {
@@ -124,7 +186,29 @@ export default {
         },
         create_dv(id){
             this.$router.push({ name: 'pmo_po_create_dv', params: { id: id } });
-        }
+        },
+        edit_obrs(){
+            this.edit_obrs_mode = true;
+            
+        },
+        edit_fund_cluster(){
+            this.edit_fund_cluster_mode = true;
+            
+        },
+        update_obrs(){
+            axios.put('pmo_po/'+this.$route.params.id+'/obrs',{
+                obrs: this.pmo_po.obrs,
+            }).then(() => {
+                this.edit_obrs_mode = false;
+            });
+        },
+        update_fund_cluster(){
+            axios.put('pmo_po/'+this.$route.params.id+'/fund_cluster',{
+                fund_cluster: this.pmo_po.fund_cluster,
+            }).then(() => {
+                this.edit_fund_cluster_mode = false;
+            });
+        },
     },
     created(){
         this.get_pmo_po();

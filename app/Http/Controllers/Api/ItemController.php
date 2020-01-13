@@ -18,7 +18,23 @@ use App\Views\Item as ItemView;
 use App\Views\Batch as BatchView;
 
 class ItemController extends Controller
-{
+{   
+
+    public function items(){
+
+        $items = DB::select("select 
+        sc.sl_code, 
+        item_desc = min(sc.sl_description),
+        stock = cast(sum(eus.quantity) as int)
+        from mmo.dbo.sl_codes as sc
+        left outer join
+        mmo.dbo.end_user_stock as eus on eus.sl_code = sc.sl_code
+        group by sc.sl_code");
+
+
+        return response()->json($items);    
+    }
+    
     public function index(){
         
         // $items = ItemResource::collection(Item::with('category', 'batches')->orderBy('item_id', 'asc')->get());

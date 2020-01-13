@@ -207,8 +207,8 @@ export default {
         }
     },
     methods: {
-        get_office_supplies(){
-            axios.get('office_supplies').then(({data}) => {
+        get_items(){
+            axios.get('items').then(({data}) => {
                 this.items = data;
             }).catch(() => {
 
@@ -256,7 +256,7 @@ export default {
         },
     },
     created(){
-        this.get_office_supplies();
+        this.get_items();
     },
     computed: {
         filteredItems(){

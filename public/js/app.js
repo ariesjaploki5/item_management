@@ -2999,6 +2999,22 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6044,10 +6060,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    get_office_supplies: function get_office_supplies() {
+    get_items: function get_items() {
       var _this = this;
 
-      axios.get('office_supplies').then(function (_ref) {
+      axios.get('items').then(function (_ref) {
         var data = _ref.data;
         _this.items = data;
       })["catch"](function () {});
@@ -6085,7 +6101,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.get_office_supplies();
+    this.get_items();
   },
   computed: {
     filteredItems: function filteredItems() {
@@ -9038,6 +9054,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9245,6 +9269,66 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9254,7 +9338,9 @@ function _defineProperty(obj, key, value) {
       pmo_po: {
         po_no: '',
         pr_no: ''
-      }
+      },
+      edit_obrs_mode: false,
+      edit_fund_cluster_mode: false
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])([]), {
@@ -9281,6 +9367,30 @@ function _defineProperty(obj, key, value) {
           id: id
         }
       });
+    },
+    edit_obrs: function edit_obrs() {
+      this.edit_obrs_mode = true;
+    },
+    edit_fund_cluster: function edit_fund_cluster() {
+      this.edit_fund_cluster_mode = true;
+    },
+    update_obrs: function update_obrs() {
+      var _this2 = this;
+
+      axios.put('pmo_po/' + this.$route.params.id + '/obrs', {
+        obrs: this.pmo_po.obrs
+      }).then(function () {
+        _this2.edit_obrs_mode = false;
+      });
+    },
+    update_fund_cluster: function update_fund_cluster() {
+      var _this3 = this;
+
+      axios.put('pmo_po/' + this.$route.params.id + '/fund_cluster', {
+        fund_cluster: this.pmo_po.fund_cluster
+      }).then(function () {
+        _this3.edit_fund_cluster_mode = false;
+      });
     }
   }),
   created: function created() {
@@ -9300,6 +9410,8 @@ function _defineProperty(obj, key, value) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -14260,23 +14372,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 } //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -67191,6 +67286,32 @@ var render = function() {
                               "router-link",
                               {
                                 staticClass: "nav-link",
+                                attrs: { to: { name: "items" } }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "nav-icon fas fa-tachometer-alt"
+                                }),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                      Items\n                    "
+                                  )
+                                ])
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
                                 attrs: { to: { name: "pmo_pos" } }
                               },
                               [
@@ -67253,6 +67374,32 @@ var render = function() {
                                 _c("p", [
                                   _vm._v(
                                     "\n                      RIS\n                    "
+                                  )
+                                ])
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: { name: "requisition_slips" } }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "nav-icon fas fa-tachometer-alt"
+                                }),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                      RIS 2\n                    "
                                   )
                                 ])
                               ]
@@ -78670,33 +78817,58 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.filteredPos, function(po, index) {
-                      return _c(
+                    [
+                      _c(
                         "tr",
                         {
-                          key: index,
-                          on: {
-                            click: function($event) {
-                              return _vm.view_pmo_po(po.po_no)
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.pmo_pos.length == 0,
+                              expression: "pmo_pos.length == 0"
                             }
-                          }
+                          ]
                         },
-                        [
-                          _c("td", [_vm._v(_vm._s(po.po_no))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(po.po_date))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(po.pr_no))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(po.supplier_name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(po.dept_name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(po.procurement_mode))])
-                        ]
-                      )
-                    }),
-                    0
+                        [_vm._m(2)]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.filteredPos, function(po, index) {
+                        return _c(
+                          "tr",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.pmo_pos.length > 0,
+                                expression: "pmo_pos.length > 0"
+                              }
+                            ],
+                            key: index,
+                            on: {
+                              click: function($event) {
+                                return _vm.view_pmo_po(po.po_no)
+                              }
+                            }
+                          },
+                          [
+                            _c("td", [_vm._v(_vm._s(po.po_no))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(po.po_date))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(po.pr_no))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(po.supplier_name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(po.dept_name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(po.procurement_mode))])
+                          ]
+                        )
+                      })
+                    ],
+                    2
                   )
                 ])
               ]),
@@ -78736,6 +78908,21 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Mode")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-center" }, [
+      _c(
+        "div",
+        {
+          staticClass: "spinner-border",
+          attrs: { role: "status", width: "20rem", height: "20rem" }
+        },
+        [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+      )
     ])
   }
 ]
@@ -78871,11 +79058,261 @@ var render = function() {
                       "label",
                       { staticClass: "form-label", attrs: { for: "" } },
                       [
-                        _vm._v(
-                          "\r\n                                    OBRS No.: " +
-                            _vm._s(_vm.pmo_po.obrs) +
-                            "\r\n                                "
-                        )
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-auto" }, [
+                            _vm._v(
+                              "\r\n                                            OBRS No.: \r\n                                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.edit_obrs_mode,
+                                    expression: "!edit_obrs_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                                                " +
+                                    _vm._s(_vm.pmo_po.obrs) +
+                                    "\r\n                                            "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value:
+                                      !_vm.edit_obrs_mode &&
+                                      !_vm.edit_fund_cluster_mode,
+                                    expression:
+                                      "!edit_obrs_mode && !edit_fund_cluster_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-success",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.edit_obrs()
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fa fa-pen" })]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.edit_obrs_mode,
+                                    expression: "edit_obrs_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _c(
+                                  "form",
+                                  {
+                                    on: {
+                                      submit: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.update_obrs()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c("div", { staticClass: "col" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.pmo_po.obrs,
+                                              expression: "pmo_po.obrs"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "text" },
+                                          domProps: { value: _vm.pmo_po.obrs },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.pmo_po,
+                                                "obrs",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._m(0)
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-100" }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "" } },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-auto" }, [
+                            _vm._v(
+                              "\r\n                                            Fund Cluster.: \r\n                                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.edit_fund_cluster_mode,
+                                    expression: "!edit_fund_cluster_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                                                " +
+                                    _vm._s(_vm.pmo_po.fund_cluster) +
+                                    "\r\n                                            "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value:
+                                      !_vm.edit_fund_cluster_mode &&
+                                      !_vm.edit_obrs_mode,
+                                    expression:
+                                      "!edit_fund_cluster_mode && !edit_obrs_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-success",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.edit_fund_cluster()
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fa fa-pen" })]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.edit_fund_cluster_mode,
+                                    expression: "edit_fund_cluster_mode"
+                                  }
+                                ]
+                              },
+                              [
+                                _c(
+                                  "form",
+                                  {
+                                    on: {
+                                      submit: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.update_fund_cluster()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c("div", { staticClass: "col" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.pmo_po.fund_cluster,
+                                              expression: "pmo_po.fund_cluster"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "text" },
+                                          domProps: {
+                                            value: _vm.pmo_po.fund_cluster
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.pmo_po,
+                                                "fund_cluster",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._m(1)
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
                       ]
                     )
                   ]),
@@ -78895,6 +79332,22 @@ var render = function() {
                         },
                         [_vm._v("Create Iar")]
                       )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-primary",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.create_dv(_vm.pmo_po.po_no)
+                            }
+                          }
+                        },
+                        [_vm._v("Create Dv")]
+                      )
                     ])
                   ])
                 ])
@@ -78902,7 +79355,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("table", { staticClass: "table table-sm table-hover" }, [
-                  _vm._m(0),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -78945,6 +79398,30 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-sm btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Save")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-sm btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Save")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -79055,7 +79532,15 @@ var staticRenderFns = [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }),
+              _c("div", { staticClass: "card-body" }, [
+                _c("ul", { staticClass: "list-group" }, [
+                  _c("li", { staticClass: "list-group-item" }, [
+                    _vm._v("Stock Card")
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "list-group-item" })
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-footer text-right" })
             ])
@@ -87683,72 +88168,6 @@ var render = function() {
                       _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-9" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.user_form.employee_id,
-                                expression: "user_form.employee_id"
-                              }
-                            ],
-                            staticClass: "form-control form-control-sm",
-                            attrs: { required: "" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.user_form,
-                                  "employee_id",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          _vm._l(_vm.employees, function(employee) {
-                            return _c(
-                              "option",
-                              {
-                                key: employee.employee_id,
-                                domProps: { value: employee.employee_id }
-                              },
-                              [
-                                _c("div", { staticClass: "row" }, [
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _vm._v(_vm._s(employee.employee_name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-1" }, [
-                                    _vm._v(" - ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-3" }, [
-                                    _vm._v(_vm._s(employee.employee_id))
-                                  ])
-                                ])
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-9" }, [
                         _c("input", {
                           directives: [
                             {
@@ -87782,7 +88201,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(4),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-9" }, [
                         _c("input", {
@@ -87818,7 +88237,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _vm._m(4)
                 ]
               )
             ])
@@ -87835,18 +88254,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-6" }, [
       _c("h1", [_vm._v("New User")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
-      _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
-        _vm._v(
-          "\r\n                                        Employee\r\n                                    "
-        )
-      ])
     ])
   },
   function() {

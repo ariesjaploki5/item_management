@@ -51,7 +51,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(po, index) in filteredPos" :key="index" @click="view_pmo_po(po.po_no)">
+                                
+                                <tr v-show="pmo_pos.length == 0">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-border" role="status" width="20rem" height="20rem">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </tr>
+                                <tr v-for="(po, index) in filteredPos" :key="index" @click="view_pmo_po(po.po_no)" v-show="pmo_pos.length > 0">
                                     <td>{{ po.po_no }}</td>
                                     <td>{{ po.po_date }}</td>
                                     <td>{{ po.pr_no }}</td>

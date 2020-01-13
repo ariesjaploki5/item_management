@@ -54,6 +54,9 @@ Route::group(['middleware' => ['api', 'cors']], function() {
         'user' => 'Api\UserController',
     ]);
 
+    Route::put('pmo_po/{id}/obrs', 'PMO\PoController@update_obrs');
+    Route::put('pmo_po/{id}/fund_cluster', 'PMO\PoController@update_fund_cluster');
+
     Route::get('hcharge', 'Homis\HchargeController@index');
 
     Route::get('riss_by_category/{category_id}', 'Api\RisController@riss_by_category');
@@ -75,6 +78,8 @@ Route::group(['middleware' => ['api', 'cors']], function() {
     Route::get('item_office_supplies', 'Api\ItemController@item_office_supplies');
     Route::get('office_supplies', 'Api\ItemController@office_supplies');
     Route::get('office_supplies/{search_word}', 'Api\ItemController@office_supplies_search');
+
+    Route::get('items', 'Api\ItemController@items');
 
     Route::get('item_other_supplies', 'Api\ItemController@item_other_supplies');
     Route::get('other_supplies', 'Api\ItemController@other_supplies');
