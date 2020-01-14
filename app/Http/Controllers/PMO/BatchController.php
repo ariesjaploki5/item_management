@@ -35,7 +35,7 @@ class BatchController extends Controller
     }
 
     public function search_batch($search_word){
-        $select_batches = DB::table("mmo.dbo.tfn_pmo_batches()")->where('item_desc', 'like', '%'.$search_word.'%')->orderBy('expiration_date', 'asc')->get();
+        $select_batches = DB::table("mmo.dbo.tfn_pmo_batches()")->where('item_desc', 'like', '%'.$search_word.'%')->orderBy('item_desc', 'asc')->orderBy('expiration_date', 'asc')->get();
         
         $batches = BatchResource::collection($select_batches);
         

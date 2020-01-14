@@ -4,7 +4,7 @@ namespace App\Http\Controllers\PMO;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\PMO\Ris;
+use App\Models\Ris;
 use App\PMO\BatchRis;
 use App\PMO\Batch;
 use App\Http\Resources\MMO\Ris as RisResource;

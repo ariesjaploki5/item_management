@@ -23,7 +23,7 @@ class Batch extends JsonResource
             // 'item_unit' => $this->item_unit,
             // 'brand_id' => $this->brand_id,
             // 'brand_desc' => $this->brand->brand_desc,
-            'brand_desc' => $this->brand,
+            'brand_desc' => $this->brand_desc,
             'quantity' => (float)$this->quantity,
             'cost' => (float)$this->cost,
             'total_cost' => (float)$this->cost * $this->quantity,

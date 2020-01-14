@@ -87,13 +87,13 @@ class IarController extends Controller
             $batch_no = $batch[$i]['batch_no'];
             $expiration_date = $batch[$i]['expiration_date'];
             $remarks = $batch[$i]['remarks'];
-            $brand = $batch[$i]['brand'];
+            $brand_desc = $batch[$i]['brand'];
             $item_unit = $batch[$i]['item_unit'];
 
             Batch::create([
                 'iar_no' => $iar_no,
                 'cost' => $cost,
-                'brand' => $brand,
+                'brand_desc' => $brand_desc,
                 'item_id'=>  $item_id,
                 'item_desc' => $item_desc,
                 'quantity' => $quantity,

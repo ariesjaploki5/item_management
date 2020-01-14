@@ -9,7 +9,7 @@ use DB;
 class HchargeController extends Controller
 {
     public function index(){
-        $data = DB::table('hospital.dbo.hcharge')->get();
+        $data = DB::table('hospital.dbo.hcharge')->orderBy('chrgdesc')->get();
 
         return response()->json($data);
     }

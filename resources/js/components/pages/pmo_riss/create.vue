@@ -97,7 +97,7 @@
                                     <td>{{ batch.batch_no }}</td>
                                     <td>{{ batch.expiration_date }}</td>
                                     <td class="text-right">{{ batch.remaining_quantity }}</td>
-                                    <td><input type="number" class="form-control form-control-sm text-right" v-model="batch.requested_quantity"></td>
+                                    <td><input type="number" class="form-control form-control-sm text-right" v-model="batch.requested_quantity" required></td>
                                     <td>
                                         <button type="button" @click="remove_batch(index)" class="btn btn-sm btn-danger">
                                             <i class="fas fa-times"></i>

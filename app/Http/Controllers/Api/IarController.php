@@ -102,7 +102,8 @@ class IarController extends Controller
                 'quantity' => $quantity,
                 'batch_no' => $batch_no,
                 'expiration_date' => $expiration_date,
-                'remarks' => $remarks, 
+                'remarks' => $remarks,
+                
             ]);
             
         }
