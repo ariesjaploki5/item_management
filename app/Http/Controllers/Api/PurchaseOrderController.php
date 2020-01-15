@@ -21,8 +21,6 @@ class PurchaseOrderController extends Controller
 
         return response()->json($data);
     }
-    
-
 
     public function new_po(){
 
@@ -44,7 +42,6 @@ class PurchaseOrderController extends Controller
         }
 
         return $po_no;
-
     }
 
     public function store(Request $request){
@@ -78,8 +75,6 @@ class PurchaseOrderController extends Controller
         ]);
 
         $this->details($po_no, $item);
-
-        
     }
 
     public function details($po_no, $item){
