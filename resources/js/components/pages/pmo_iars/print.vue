@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <button class="btn btn-primary d-print-none button ml-2 mb-2" @click="print()">Print</button> 
+        <button class="btn btn-primary d-print-none button" @click="print()">Print</button> 
         <div>
             <div class="row bg-white mt_row">
                 <table class="table table-bordered" cellspacing="0" cellpadding="0">
-                    <thead class="mt-5">
+                    <thead class="">
                         <tr>
                             <th colspan="7">
                                 <div class="row bg-white" id="image_row">
@@ -231,14 +231,12 @@ export default {
 
     @media print {
         .mt_row{
-            margin-top: 5rem;
+            margin-top: 2rem;
         }
-
         .row  {
             margin-right: -4px !important;
             margin-left: -4px !important;
         }
-
         .img-thumbnail {
             border: none;
             display: block;
@@ -248,26 +246,17 @@ export default {
             width: 70% !important;
             height: 80% !important;
         }
-
         td {
             padding: 0 !important; 
             margin: 0 !important;
         }
-        
-
-
         @page { 
             margin-bottom: 50px;
-
         }
-
         table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
             border:1px solid rgb(0, 0, 0) !important;
         }
-
     }
-
-    
     .img-thumbnail {
         border: none;
         display: block;
@@ -301,7 +290,7 @@ export default {
                 margin-right: -4px !important;
                 margin-left: -4px !important;
         }
-table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
+    table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
             border:1px solid rgb(0, 0, 0) !important;
         }
 

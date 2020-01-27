@@ -15,16 +15,13 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
                     <div class="card-header">
-
                         <div class="row">
                             <div class="col-8">
                                 <div class="card-tools">
@@ -78,17 +75,12 @@
               </div>
           </div>
       </div>
-
     </section>
 </div>
 </template>
-
 <script>
-
-
 import{ mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
-
     data(){
         return{
             search_word: '',
@@ -127,7 +119,6 @@ export default {
     },
 }
 </script>
-
 <style>
 
 </style>

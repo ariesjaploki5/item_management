@@ -7841,31 +7841,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -7875,6 +7850,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    search_iar: function search_iar() {
+      var _this = this;
+
+      axios.get('pmo_iar?word=' + this.search_word).then(function (_ref) {
+        var data = _ref.data;
+        _this.pmo_iars = data;
+      })["catch"](function () {});
+    },
     view_iar: function view_iar(id) {
       this.$router.push({
         name: 'pmo_iar_show',
@@ -7892,10 +7875,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     receive_iar: function receive_iar(id) {
-      var _this = this;
+      var _this2 = this;
 
       axios.put('receive/' + id).then(function () {
-        _this.$router.push({
+        _this2.$router.push({
           name: 'pmo_iar_show',
           params: {
             id: id
@@ -7904,11 +7887,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     get_pmo_iars: function get_pmo_iars() {
-      var _this2 = this;
+      var _this3 = this;
 
-      axios.get('pmo_iar').then(function (_ref) {
-        var data = _ref.data;
-        _this2.pmo_iars = data;
+      axios.get('pmo_iar').then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.pmo_iars = data;
       });
     }
   },
@@ -8491,21 +8474,14 @@ function _defineProperty(obj, key, value) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      selected_item: '',
-      batches: [],
-      iar: {
-        inspection_officer_id: '',
-        inspection_date: '',
-        receiving_officer_id: '',
-        received_date: '',
-        ref_no: '',
-        ref_date: ''
+      liquidated_damages: [],
+      dv: {
+        approving_officer_id: ''
       },
-      iar_no: '',
       pmo_po: {
-        po_no: '',
-        pr_no: ''
-      }
+        po_no: ''
+      },
+      iar_no: ''
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getApprovingOfficers']), {
@@ -8563,6 +8539,14 @@ function _defineProperty(obj, key, value) {
       axios.get('pmo_po/' + this.$route.params.id).then(function (_ref2) {
         var data = _ref2.data;
         _this2.pmo_po = data;
+      })["catch"](function () {});
+    },
+    get_liquidated_damages: function get_liquidated_damages() {
+      var _this3 = this;
+
+      axios.get('liquidated_damage/' + this.$route.params.id).then(function (_ref3) {
+        var data = _ref3.data;
+        _this3.liquidated_damages = data;
       })["catch"](function () {});
     }
   }),
@@ -8856,6 +8840,12 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8870,7 +8860,8 @@ function _defineProperty(obj, key, value) {
         receiving_officer_id: '',
         received_date: '',
         ref_no: '',
-        ref_date: ''
+        ref_date: '',
+        days_delayed: ''
       },
       iar_no: '',
       pmo_po: {
@@ -8911,7 +8902,8 @@ function _defineProperty(obj, key, value) {
           inspection_officer_id: this.iar.inspection_officer_id,
           // inspection_date: this.iar.inspection_date,
           ref_no: this.iar.ref_no,
-          ref_date: this.iar.ref_date
+          ref_date: this.iar.ref_date,
+          days_delayed: this.iar.days_delayed
         }).then(function (_ref) {
           var data = _ref.data;
           _this.iar_no = data; // this.$router.push({ name: 'purchase_orders'});
@@ -9171,8 +9163,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 } //
-//
-//
 //
 //
 //
@@ -9651,9 +9641,6 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
-//
-//
-//
 
 
 
@@ -9858,11 +9845,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9934,6 +9916,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -12564,8 +12548,6 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
-//
-//
 
 
 
@@ -14372,9 +14354,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 } //
-//
-//
-//
 //
 //
 //
@@ -33798,7 +33777,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "@media print {\n.mt_row[data-v-7f1f99ba] {\n    margin-top: 5rem;\n}\n.row[data-v-7f1f99ba] {\n    margin-right: -4px !important;\n    margin-left: -4px !important;\n}\n.img-thumbnail[data-v-7f1f99ba] {\n    border: none;\n    display: block;\n    margin-top: 0.7rem;\n    margin-left: auto;\n    margin-right: auto;\n    width: 70% !important;\n    height: 80% !important;\n}\ntd[data-v-7f1f99ba] {\n    padding: 0 !important;\n    margin: 0 !important;\n}\n@page {\n    margin-bottom: 50px;\n}\ntable.table-bordered > thead > tr > th[data-v-7f1f99ba], table.table-bordered > tbody > tr > td[data-v-7f1f99ba], table.table-bordered > tfoot > tr > th[data-v-7f1f99ba] {\n    border: 1px solid black !important;\n}\n}\n.img-thumbnail[data-v-7f1f99ba] {\n  border: none;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 45%;\n}\n.scroll-y[data-v-7f1f99ba] {\n  height: auto;\n  overflow: visible;\n}\n.col-xl[data-v-7f1f99ba], .col-xl-auto[data-v-7f1f99ba],\n.col-xl-12[data-v-7f1f99ba], .col-xl-11[data-v-7f1f99ba],\n.col-xl-10[data-v-7f1f99ba], .col-xl-9[data-v-7f1f99ba], .col-xl-8[data-v-7f1f99ba], .col-xl-7[data-v-7f1f99ba], .col-xl-6[data-v-7f1f99ba],\n.col-xl-5[data-v-7f1f99ba], .col-xl-4[data-v-7f1f99ba], .col-xl-3[data-v-7f1f99ba], .col-xl-2[data-v-7f1f99ba], .col-xl-1[data-v-7f1f99ba], .col-lg[data-v-7f1f99ba], .col-lg-auto[data-v-7f1f99ba],\n.col-lg-12[data-v-7f1f99ba], .col-lg-11[data-v-7f1f99ba], .col-lg-10[data-v-7f1f99ba],\n.col-lg-9[data-v-7f1f99ba], .col-lg-8[data-v-7f1f99ba], .col-lg-7[data-v-7f1f99ba], .col-lg-6[data-v-7f1f99ba], .col-lg-5[data-v-7f1f99ba], .col-lg-4[data-v-7f1f99ba],\n.col-lg-3[data-v-7f1f99ba], .col-lg-2[data-v-7f1f99ba], .col-lg-1[data-v-7f1f99ba], .col-md[data-v-7f1f99ba], .col-md-auto[data-v-7f1f99ba], .col-md-12[data-v-7f1f99ba], .col-md-11[data-v-7f1f99ba],\n.col-md-10[data-v-7f1f99ba], .col-md-9[data-v-7f1f99ba], .col-md-8[data-v-7f1f99ba], .col-md-7[data-v-7f1f99ba], .col-md-6[data-v-7f1f99ba], .col-md-5[data-v-7f1f99ba], .col-md-4[data-v-7f1f99ba],\n.col-md-3[data-v-7f1f99ba], .col-md-2[data-v-7f1f99ba], .col-md-1[data-v-7f1f99ba], .col-sm[data-v-7f1f99ba], .col-sm-auto[data-v-7f1f99ba], .col-sm-12[data-v-7f1f99ba], .col-sm-11[data-v-7f1f99ba],\n.col-sm-10[data-v-7f1f99ba], .col-sm-9[data-v-7f1f99ba], .col-sm-8[data-v-7f1f99ba], .col-sm-7[data-v-7f1f99ba], .col-sm-6[data-v-7f1f99ba], .col-sm-5[data-v-7f1f99ba], .col-sm-4[data-v-7f1f99ba],\n.col-sm-3[data-v-7f1f99ba], .col-sm-2[data-v-7f1f99ba], .col-sm-1[data-v-7f1f99ba], .col[data-v-7f1f99ba], .col-auto[data-v-7f1f99ba], .col-12[data-v-7f1f99ba], .col-11[data-v-7f1f99ba], .col-10[data-v-7f1f99ba], .col-9[data-v-7f1f99ba],\n.col-8[data-v-7f1f99ba], .col-7[data-v-7f1f99ba], .col-6[data-v-7f1f99ba], .col-5[data-v-7f1f99ba], .col-4[data-v-7f1f99ba], .col-3[data-v-7f1f99ba], .col-2[data-v-7f1f99ba], .col-1[data-v-7f1f99ba] {\n  width: 100%;\n  padding-top: 0px;\n  padding-bottom: 0px;\n}\n.row[data-v-7f1f99ba] {\n  margin-right: -4px !important;\n  margin-left: -4px !important;\n}\ntable.table-bordered > thead > tr > th[data-v-7f1f99ba], table.table-bordered > tbody > tr > td[data-v-7f1f99ba], table.table-bordered > tfoot > tr > th[data-v-7f1f99ba] {\n  border: 1px solid black !important;\n}\n.content-wrapper[data-v-7f1f99ba] {\n  background: rgba(205, 205, 207, 0.87) !important;\n}", ""]);
+exports.push([module.i, "@media print {\n.mt_row[data-v-7f1f99ba] {\n    margin-top: 2rem;\n}\n.row[data-v-7f1f99ba] {\n    margin-right: -4px !important;\n    margin-left: -4px !important;\n}\n.img-thumbnail[data-v-7f1f99ba] {\n    border: none;\n    display: block;\n    margin-top: 0.7rem;\n    margin-left: auto;\n    margin-right: auto;\n    width: 70% !important;\n    height: 80% !important;\n}\ntd[data-v-7f1f99ba] {\n    padding: 0 !important;\n    margin: 0 !important;\n}\n@page {\n    margin-bottom: 50px;\n}\ntable.table-bordered > thead > tr > th[data-v-7f1f99ba], table.table-bordered > tbody > tr > td[data-v-7f1f99ba], table.table-bordered > tfoot > tr > th[data-v-7f1f99ba] {\n    border: 1px solid black !important;\n}\n}\n.img-thumbnail[data-v-7f1f99ba] {\n  border: none;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 45%;\n}\n.scroll-y[data-v-7f1f99ba] {\n  height: auto;\n  overflow: visible;\n}\n.col-xl[data-v-7f1f99ba], .col-xl-auto[data-v-7f1f99ba],\n.col-xl-12[data-v-7f1f99ba], .col-xl-11[data-v-7f1f99ba],\n.col-xl-10[data-v-7f1f99ba], .col-xl-9[data-v-7f1f99ba], .col-xl-8[data-v-7f1f99ba], .col-xl-7[data-v-7f1f99ba], .col-xl-6[data-v-7f1f99ba],\n.col-xl-5[data-v-7f1f99ba], .col-xl-4[data-v-7f1f99ba], .col-xl-3[data-v-7f1f99ba], .col-xl-2[data-v-7f1f99ba], .col-xl-1[data-v-7f1f99ba], .col-lg[data-v-7f1f99ba], .col-lg-auto[data-v-7f1f99ba],\n.col-lg-12[data-v-7f1f99ba], .col-lg-11[data-v-7f1f99ba], .col-lg-10[data-v-7f1f99ba],\n.col-lg-9[data-v-7f1f99ba], .col-lg-8[data-v-7f1f99ba], .col-lg-7[data-v-7f1f99ba], .col-lg-6[data-v-7f1f99ba], .col-lg-5[data-v-7f1f99ba], .col-lg-4[data-v-7f1f99ba],\n.col-lg-3[data-v-7f1f99ba], .col-lg-2[data-v-7f1f99ba], .col-lg-1[data-v-7f1f99ba], .col-md[data-v-7f1f99ba], .col-md-auto[data-v-7f1f99ba], .col-md-12[data-v-7f1f99ba], .col-md-11[data-v-7f1f99ba],\n.col-md-10[data-v-7f1f99ba], .col-md-9[data-v-7f1f99ba], .col-md-8[data-v-7f1f99ba], .col-md-7[data-v-7f1f99ba], .col-md-6[data-v-7f1f99ba], .col-md-5[data-v-7f1f99ba], .col-md-4[data-v-7f1f99ba],\n.col-md-3[data-v-7f1f99ba], .col-md-2[data-v-7f1f99ba], .col-md-1[data-v-7f1f99ba], .col-sm[data-v-7f1f99ba], .col-sm-auto[data-v-7f1f99ba], .col-sm-12[data-v-7f1f99ba], .col-sm-11[data-v-7f1f99ba],\n.col-sm-10[data-v-7f1f99ba], .col-sm-9[data-v-7f1f99ba], .col-sm-8[data-v-7f1f99ba], .col-sm-7[data-v-7f1f99ba], .col-sm-6[data-v-7f1f99ba], .col-sm-5[data-v-7f1f99ba], .col-sm-4[data-v-7f1f99ba],\n.col-sm-3[data-v-7f1f99ba], .col-sm-2[data-v-7f1f99ba], .col-sm-1[data-v-7f1f99ba], .col[data-v-7f1f99ba], .col-auto[data-v-7f1f99ba], .col-12[data-v-7f1f99ba], .col-11[data-v-7f1f99ba], .col-10[data-v-7f1f99ba], .col-9[data-v-7f1f99ba],\n.col-8[data-v-7f1f99ba], .col-7[data-v-7f1f99ba], .col-6[data-v-7f1f99ba], .col-5[data-v-7f1f99ba], .col-4[data-v-7f1f99ba], .col-3[data-v-7f1f99ba], .col-2[data-v-7f1f99ba], .col-1[data-v-7f1f99ba] {\n  width: 100%;\n  padding-top: 0px;\n  padding-bottom: 0px;\n}\n.row[data-v-7f1f99ba] {\n  margin-right: -4px !important;\n  margin-left: -4px !important;\n}\ntable.table-bordered > thead > tr > th[data-v-7f1f99ba], table.table-bordered > tbody > tr > td[data-v-7f1f99ba], table.table-bordered > tfoot > tr > th[data-v-7f1f99ba] {\n  border: 1px solid black !important;\n}\n.content-wrapper[data-v-7f1f99ba] {\n  background: rgba(205, 205, 207, 0.87) !important;\n}", ""]);
 
 // exports
 
@@ -67390,32 +67369,6 @@ var render = function() {
                               "router-link",
                               {
                                 staticClass: "nav-link",
-                                attrs: { to: { name: "requisition_slips" } }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "nav-icon fas fa-tachometer-alt"
-                                }),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                      RIS 2\n                    "
-                                  )
-                                ])
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
                                 attrs: { to: { name: "pmo_reports" } }
                               },
                               [
@@ -76494,7 +76447,7 @@ var render = function() {
     _c(
       "button",
       {
-        staticClass: "btn btn-primary d-print-none button ml-2 mb-2",
+        staticClass: "btn btn-primary d-print-none button",
         on: {
           click: function($event) {
             return _vm.print()
@@ -76513,7 +76466,7 @@ var render = function() {
             attrs: { cellspacing: "0", cellpadding: "0" }
           },
           [
-            _c("thead", { staticClass: "mt-5" }, [
+            _c("thead", {}, [
               _c("tr", [
                 _c("th", { attrs: { colspan: "7" } }, [
                   _c(
@@ -77358,7 +77311,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Create IAR")]
+                    [_vm._v("Create DV")]
                   )
                 ],
                 1
@@ -77467,8 +77420,35 @@ var render = function() {
                         _c(
                           "select",
                           {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dv.approving_officer_id,
+                                expression: "dv.approving_officer_id"
+                              }
+                            ],
                             staticClass: "form-control form-control-sm",
-                            attrs: { name: "", id: "" }
+                            attrs: { name: "", id: "" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.dv,
+                                  "approving_officer_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
                           },
                           _vm._l(_vm.approving_officers, function(ao) {
                             return _c(
@@ -77825,7 +77805,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "card-body" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-7" }, [
+                      _c("div", { staticClass: "col-5" }, [
                         _c(
                           "label",
                           { staticClass: "form-label", attrs: { for: "" } },
@@ -77945,7 +77925,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-5" }, [
+                      _c("div", { staticClass: "col-4" }, [
                         _c(
                           "label",
                           { staticClass: "form-label", attrs: { for: "" } },
@@ -78008,6 +77988,44 @@ var render = function() {
                                 return
                               }
                               _vm.$set(_vm.iar, "ref_date", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-3" }, [
+                        _c(
+                          "label",
+                          { staticClass: "form-label", attrs: { for: "" } },
+                          [
+                            _vm._v(
+                              "\n                                    Days Delayed:\n                                "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.iar.days_delayed,
+                              expression: "iar.days_delayed"
+                            }
+                          ],
+                          staticClass: "from-control form-control",
+                          attrs: { type: "number", required: "" },
+                          domProps: { value: _vm.iar.days_delayed },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.iar,
+                                "days_delayed",
+                                $event.target.value
+                              )
                             }
                           }
                         })
@@ -79698,6 +79716,15 @@ var render = function() {
                                 _c(
                                   "button",
                                   {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: batch.remaining_quantity > 0,
+                                        expression:
+                                          "batch.remaining_quantity > 0"
+                                      }
+                                    ],
                                     staticClass: "btn btn btn-sm btn-primary",
                                     attrs: { type: "button" },
                                     on: {
@@ -79814,7 +79841,7 @@ var render = function() {
                                     ],
                                     staticClass:
                                       "form-control form-control-sm text-right",
-                                    attrs: { type: "number" },
+                                    attrs: { type: "number", required: "" },
                                     domProps: {
                                       value: batch.requested_quantity
                                     },
@@ -80844,89 +80871,99 @@ var render = function() {
                       _c(
                         "tbody",
                         _vm._l(_vm.ris.items, function(batch, index) {
-                          return _c("tr", { key: index }, [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(batch.item_desc))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(batch.item_unit))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(batch.batch_no))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(batch.expiration_date))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(_vm._s(batch.balance))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(_vm._s(batch.requested_quantity))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _c(
-                                "span",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.editmode,
-                                      expression: "!editmode"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _vm._v(
-                                    "\r\n                                            " +
-                                      _vm._s(batch.issued_quantity) +
-                                      "\r\n                                        "
-                                  )
-                                ]
-                              ),
+                          return _c(
+                            "tr",
+                            {
+                              key: index,
+                              class: { "table-danger": batch.item_id == null }
+                            },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
                               _vm._v(" "),
-                              _c(
-                                "span",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.editmode,
-                                      expression: "editmode"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("input", {
+                              _c("td", [_vm._v(_vm._s(batch.item_desc))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(batch.item_unit))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(batch.batch_no))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(batch.expiration_date))]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-right" }, [
+                                _vm._v(_vm._s(batch.balance))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-right" }, [
+                                _vm._v(_vm._s(batch.requested_quantity))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-right" }, [
+                                _c(
+                                  "span",
+                                  {
                                     directives: [
                                       {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: batch.issued_quantity,
-                                        expression: "batch.issued_quantity"
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: !_vm.editmode,
+                                        expression: "!editmode"
                                       }
-                                    ],
-                                    staticClass: "form-control form-control-sm",
-                                    attrs: { type: "text", required: "" },
-                                    domProps: { value: batch.issued_quantity },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                    ]
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                                            " +
+                                        _vm._s(batch.issued_quantity) +
+                                        "\r\n                                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.editmode,
+                                        expression: "editmode"
+                                      }
+                                    ]
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: batch.issued_quantity,
+                                          expression: "batch.issued_quantity"
                                         }
-                                        _vm.$set(
-                                          batch,
-                                          "issued_quantity",
-                                          $event.target.value
-                                        )
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "text", required: "" },
+                                      domProps: {
+                                        value: batch.issued_quantity
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            batch,
+                                            "issued_quantity",
+                                            $event.target.value
+                                          )
+                                        }
                                       }
-                                    }
-                                  })
-                                ]
-                              )
-                            ])
-                          ])
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
                         }),
                         0
                       )

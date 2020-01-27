@@ -25,7 +25,8 @@ class BatchRis extends JsonResource
             'issued_quantity' => (float)$this->issued_quantity,
             'expiration_date' => $this->batch->expiration_date,
             'cost' => (float)$this->batch->cost,
-            'balance' => (float)($this->batch->quantity - $this->issued_quantity)
+            'balance' => (float)($this->batch->quantity - $this->issued_quantity),
+            'item_id' => $this->batch->item_id !== null ? $this->batch->item_id : null,
         ];
     }
 }

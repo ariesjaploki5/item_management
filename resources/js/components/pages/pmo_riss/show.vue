@@ -50,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(batch, index) in ris.items" :key="index">
+                                <tr v-for="(batch, index) in ris.items" :key="index" :class="{ 'table-danger' : batch.item_id == null}">
                                     <td>{{ index + 1}}</td>
                                     <td>{{ batch.item_desc }}</td>
                                     <td>{{ batch.item_unit }}</td>

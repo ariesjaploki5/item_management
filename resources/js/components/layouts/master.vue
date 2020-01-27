@@ -96,14 +96,14 @@
                     </p>
                   </router-link>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <router-link :to="{ name: 'requisition_slips' }" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                       RIS 2
                     </p>
                   </router-link>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <router-link :to="{ name: 'pmo_reports' }" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>

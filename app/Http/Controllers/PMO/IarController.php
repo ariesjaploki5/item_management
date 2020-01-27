@@ -13,7 +13,13 @@ use Carbon\Carbon;
 class IarController extends Controller
 {
     public function index(){
-        $data = IarResource::collection(PmoIar::all());
+        $word = request()->word;
+        $iars = PmoIar::where('iar_no', 'like', '%'.$word.'%')
+                ->orWhere('po_no', 'like', '%'.$word.'%')
+                ->orWhere('ref_no', 'like', '%'.$word.'%')
+                ->orWhere('ref_date', 'like', '%'.$word.'%')
+                ->get();
+        $data = IarResource::collection($iars);
         
         return response()->json($data);
     }
@@ -52,6 +58,7 @@ class IarController extends Controller
         $ref_no = $request->ref_no;
         $ref_date = $request->ref_date;
         $batch = $request->batches;
+        $days_delayed = $request->days_delayed;
         $iar_no = $this->new_iar();
 
         Iar::firstOrCreate([
@@ -62,9 +69,9 @@ class IarController extends Controller
             'received_date' => $received_date,
             'ref_no' => $ref_no,
             'ref_date' => $ref_date,
-        ],[
+            'days_delayed' => $days_delayed,
+        ], [
             'iar_no' => $iar_no,
-            
         ]);
 
         $this->batches($iar_no, $batch);

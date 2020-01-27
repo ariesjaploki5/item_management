@@ -53,7 +53,7 @@
                     <form @submit.prevent="store_iar()">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-7">
+                            <div class="col-5">
                                 <label for="" class="form-label">
                                     Inspection Officer:
                                 </label>
@@ -75,7 +75,7 @@
                                 </label>
                                 <input type="text" class="form-control form-control-sm" v-model="iar.ref_no" required> -->
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <!-- <label for="" class="form-label">
                                     Inspection Date.:
                                 </label>
@@ -95,6 +95,12 @@
                                     Ref Date.:
                                 </label>
                                 <input type="date" class="form-control form-control-sm" v-model="iar.ref_date" required>
+                            </div>
+                            <div class="col-3">
+                                <label for="" class="form-label">
+                                    Days Delayed:
+                                </label>
+                                <input type="number" class="from-control form-control" v-model="iar.days_delayed" required>
                             </div>
                         </div>
                             <form @submit.prevent="add_item()">
@@ -236,6 +242,7 @@ export default {
                 received_date: '',
                 ref_no: '',
                 ref_date: '',
+                days_delayed: '',
             },
             iar_no: '',
             pmo_po: {
@@ -278,6 +285,7 @@ export default {
                     // inspection_date: this.iar.inspection_date,
                     ref_no: this.iar.ref_no,
                     ref_date: this.iar.ref_date,
+                    days_delayed: this.iar.days_delayed,
                 }).then(({data}) => {
                     this.iar_no = data;
                     // this.$router.push({ name: 'purchase_orders'});

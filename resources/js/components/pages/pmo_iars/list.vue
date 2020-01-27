@@ -13,12 +13,9 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
@@ -36,11 +33,6 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- <div class="col-4 text-right">
-                                <div class="card-tools">
-                                    <button class="btn btn-sm btn-primary" type="button" @click="create_iar()">Create</button>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -56,7 +48,6 @@
                                     <th>Inspection Date</th>
                                     <th>Receiving Officer</th>
                                     <th>Received Date</th>
-                                    <!-- <th>Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,40 +61,23 @@
                                     <td>{{ iar.inspection_date }}</td>
                                     <td>{{ iar.receiving_officer_name }}</td>
                                     <td>{{ iar.received_date }}</td>
-                                    
-                                    <!-- <td>
-                                        <div class="btn-group dropleft">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                               <button class="dropdown-item" type="button" @click="view_iar(iar.iar_no)">View</button>
-                                               <button class="dropdown-item" type="button" @click="print_iar(iar.iar_no)">Print</button>
-                                            </div>
-                                        </div>
-                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                 
                     </div>
-                    <!-- /.card-footer-->
                 </div>
               </div>
           </div>
       </div>
-
     </section>
 </div>
 </template>
-
 <script>
 import{ mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
-
     data(){
         return{
             search_word: '',
@@ -111,7 +85,13 @@ export default {
         }
     },
     methods: {
+        search_iar(){
+            axios.get('pmo_iar?word='+this.search_word).then(({data}) => {
+                this.pmo_iars = data;
+            }).catch(() => {
 
+            });
+        },
         view_iar(id){
             this.$router.push({ name: 'pmo_iar_show', params: { id: id } });
         },

@@ -101,11 +101,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                
                                 </label>
                             </div>
                             <div class="col-1">
-                                
                                 <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
                                 </div>

@@ -14,12 +14,9 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
@@ -62,7 +59,7 @@
                                     <td>{{ batch.expiration_date }}</td>
                                     <td>{{ batch.remaining_quantity }}</td>
                                     <td>
-                                        <button class="btn btn btn-sm btn-primary" type="button" @click="add_batch(batch)">
+                                        <button v-show="batch.remaining_quantity > 0" class="btn btn btn-sm btn-primary" type="button" @click="add_batch(batch)">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </td>

@@ -11,7 +11,7 @@
                     <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Home</router-link></li>
                     <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_pos'}">Purchase Order</router-link></li>
                     <li class="breadcrumb-item"><router-link :to="{ name: 'pmo_po_show', params: { id: $route.params.id }}">{{ $route.params.id }}</router-link></li>
-                    <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_po_create_dv', params: { id: $route.params.id }}">Create IAR</router-link></li>
+                    <li class="breadcrumb-item active"><router-link :to="{ name: 'pmo_po_create_dv', params: { id: $route.params.id }}">Create DV</router-link></li>
                 </ol>
             </div>
         </div>
@@ -69,7 +69,7 @@
                                 </label>
                             </div>
                             <div class="col">
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="" id="" class="form-control form-control-sm" v-model="dv.approving_officer_id">
                                     <option v-for="ao in approving_officers" :key="ao.approving_officer_id" :value="ao.approving_officer_id">
                                         {{ ao.name }}
                                     </option>
@@ -130,21 +130,14 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
     data(){
         return{
-            selected_item: '',
-            batches: [],
-            iar: {
-                inspection_officer_id: '',
-                inspection_date: '',
-                receiving_officer_id: '',
-                received_date: '',
-                ref_no: '',
-                ref_date: '',
+            liquidated_damages: [],
+            dv: {
+                approving_officer_id: '',
             },
-            iar_no: '',
             pmo_po: {
                 po_no: '',
-                pr_no: '',
             },
+            iar_no: '',
         }
     },
     methods:{
@@ -206,6 +199,13 @@ export default {
 
             });
         },
+        get_liquidated_damages(){
+            axios.get('liquidated_damage/'+this.$route.params.id).then(({data}) => {
+                this.liquidated_damages = data;
+            }).catch(() => {
+
+            });
+        }
     },
     created(){
         this.get_pmo_po();

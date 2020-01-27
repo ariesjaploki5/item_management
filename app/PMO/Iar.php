@@ -28,6 +28,7 @@ class Iar extends Model
         'ref_date',
         'completed',
         'fund_cluster_id',
+        'days_delayed',
         'created_by',
     ];
 

@@ -30,6 +30,7 @@ class Ris extends JsonResource
             'department' => $this->department,
             'division' => $this->division,
             'items' => BatchRisResource::collection($this->batches),
+            
         ];
     }
 }

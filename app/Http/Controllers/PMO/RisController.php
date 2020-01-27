@@ -4,7 +4,7 @@ namespace App\Http\Controllers\PMO;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Ris;
+use App\PMO\Ris;
 use App\PMO\BatchRis;
 use App\PMO\Batch;
 use App\Http\Resources\MMO\Ris as RisResource;
@@ -196,7 +196,7 @@ class RisController extends Controller
         ]);
         $batch = $request->batches;
         
-        $this->receive_batches($batch);
+        // $this->receive_batches($batch);
 
         return response()->json();
     }
