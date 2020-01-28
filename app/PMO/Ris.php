@@ -23,7 +23,6 @@ class Ris extends Model
         'approved_date' => 'date',
         'issued_date' => 'date',
         'received_date' => 'date',
-        
     ];
 
     protected $fillable = [

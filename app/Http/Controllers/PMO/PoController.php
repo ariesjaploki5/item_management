@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PMO\Po;
 use App\Http\Resources\PMO\Po as PoResource;
+use App\Http\Resources\PMO\PoWithIar as PoWithIarResource;
 use App\Views\PmoPo as ViewPmoPo;
 
 class PoController extends Controller
@@ -35,7 +36,7 @@ class PoController extends Controller
     }
 
     public function show($id){
-        $data = new PoResource(ViewPmoPo::find($id));
+        $data = new PoWithIarResource(ViewPmoPo::find($id));
 
         return response()->json($data);
     }

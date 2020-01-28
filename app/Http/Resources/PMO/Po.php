@@ -26,7 +26,7 @@ class Po extends JsonResource
             'days' => $this->days,
             'total' => $this->total,
             'obrs' => $this->ors_burst,
-            'fund_cluster' => $this->ors_burst_fund !== '' ? "0".$this->ors_burst_fund : '',
+            'fund_cluster' => $this->ors_burst_fund,
             'first_item' => strtok($this->first_item, "\n"),
             'items' => PoItemResource::collection($this->po_items),
             // 'iars' => IarResource::collection($this->iars),

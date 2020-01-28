@@ -1,7 +1,6 @@
 <template>
     <div class="container-fluid">
         <button class="btn btn-primary d-print-none button ml-2 mb-2" @click="print()">Print</button> 
-
         <header>
             <div class="row  bg-white" id="image_row">
                 <div class="col-3 border border-dark border-right-0">
@@ -62,7 +61,6 @@
                 </div>
             </div>
         </header>
-        
         <main>
             <div class="row  bg-white">
                 <table class="table table-bordered">
@@ -143,10 +141,8 @@
     </div>
 </template>
 <script>
-
 import axios from 'axios'
 export default {
-
     data(){
         return{
             ris: {

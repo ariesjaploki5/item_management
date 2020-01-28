@@ -13,6 +13,8 @@ use DB;
 use App\Models\Item;
 use App\PMO\Hdmhdrbrand;
 use App\Views\PmoRis as ViewPmoRis;
+use App\Models\EndUserStock;
+use App\Models\SlCode;
 
 class RisController extends Controller
 {
@@ -155,7 +157,8 @@ class RisController extends Controller
             $batch_no = $batch[$i]['batch_no'];
             $issued_quantity = $batch[$i]['issued_quantity'];
             $requested_quantity = $batch[$i]['requested_quantity'];
-            
+            $item_id = $batch[$i]['item_id'];
+
             if($issued_quantity <= $requested_quantity){
                 BatchRis::updateOrCreate([
                     'control_no' => $control_no,
@@ -163,6 +166,9 @@ class RisController extends Controller
                 ],[
                     'issued_quantity' => $issued_quantity,
                 ]);
+                
+                $quantity = $issued_quantity;
+
             } else {
                 BatchRis::updateOrCreate([
                     'control_no' => $control_no,
@@ -170,12 +176,29 @@ class RisController extends Controller
                 ],[
                     'issued_quantity' => $requested_quantity,
                 ]);
-            }
-            
+ 
+               $quantity = $requested_quantity;
 
+            }
+
+            if($item_id){
+                $this->issue_end_user_stock($item_id, $quantity);
+            }
         }
 
         return response()->json();
+    }
+
+    public function issue_end_user_stock($item_id, $quantity){
+        $sl_code = SlCode::where('item_id', $item_id)->first();
+        
+        if($sl_code){
+            $end_user_stock = EndUserStock::where('sl_code', $sl_code->sl_code)->where('end_user_id', 1)->first();
+            $end_user_stock->current_quantity = $end_user_stock->current_quantity - $quantity;
+            $end_user_stock->save();
+        }
+        
+        return true;
     }
 
     public function approved(Request $request, $id){

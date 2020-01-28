@@ -14,12 +14,9 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
@@ -75,22 +72,16 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer text-right">
                         
                     </div>
-                    
-                    <!-- /.card-footer-->
                 </div>
               </div>
           </div>
       </div>
-
     </section>
 </div>
-    
 </template>
-
 <script>
 import{ mapActions, mapGetters, mapState } from 'vuex'
 export default {
@@ -107,7 +98,6 @@ export default {
         }
     },
     methods: {
-
         get_iar(){
             axios.get('pmo_iar/'+this.$route.params.id).then(({data}) => {
                 this.iar = data;
@@ -127,7 +117,6 @@ export default {
     },
 }
 </script>
-
 <style>
 
 </style>

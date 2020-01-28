@@ -26,7 +26,7 @@
                   <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <label for="" class="form-label">
                                     PO No.: {{ pmo_po.po_no }}
                                 </label>
@@ -35,80 +35,77 @@
                                     PR No.: {{ pmo_po.pr_no }}
                                 </label>
                             </div>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <label for="" class="form-label">
                                     Supplier: {{ pmo_po.supplier_name }}
                                 </label>
                                 <div class="w-100"></div>
-                                <label for="" class="form-label">
-                                    <div class="row">
-                                        <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <label for="" class="form-label">
                                             OBRS No.: 
-                                        </div>
-                                        <div class="col">
-                                            <span v-show="!edit_obrs_mode">
-                                                {{ pmo_po.obrs }}
-                                            </span>
-                                            <span v-show="!edit_obrs_mode && !edit_fund_cluster_mode">
-                                                <button class="btn btn-sm btn-success" @click="edit_obrs()">
-                                                    <i class="fa fa-pen"></i>
-                                                </button>
-                                            </span>
-                                            <span v-show="edit_obrs_mode">
-                                                <form @submit.prevent="update_obrs()">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <input type="text" class="form-control form-control-sm" v-model="pmo_po.obrs">
-                                                            
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </span>
-                                        </div>
+                                        </label>
                                     </div>
-                                
-                                </label>
+                                    <div class="col-5">
+                                        <span v-show="!edit_obrs_mode">
+                                            {{ pmo_po.obrs }}
+                                        </span>
+                                        <span v-show="!edit_obrs_mode && !edit_fund_cluster_mode">
+                                            <button v-show="pmo_po.obrs == null" class="btn btn-sm btn-success" @click="edit_obrs()">
+                                                <i class="fa fa-pen"></i>
+                                            </button>
+                                        </span>
+                                        <span v-show="edit_obrs_mode">
+                                            <form @submit.prevent="update_obrs()">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control form-control-sm" v-model="pmo_po.obrs">
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="w-100"></div>
-                                <label for="" class="form-label">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            Fund Cluster.: 
-                                        </div>
-                                        <div class="col">
-                                            <span v-show="!edit_fund_cluster_mode">
-                                                {{ pmo_po.fund_cluster }}
-                                            </span>
-                                            <span v-show="!edit_fund_cluster_mode && !edit_obrs_mode">
-                                                <button class="btn btn-sm btn-success" @click="edit_fund_cluster()">
-                                                    <i class="fa fa-pen"></i>
-                                                </button>
-                                            </span>
-                                            <span v-show="edit_fund_cluster_mode">
-                                                <form @submit.prevent="update_fund_cluster()">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <input type="text" class="form-control form-control-sm" v-model="pmo_po.fund_cluster">
-                                                            
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </span>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <label for="" class="form-label">
+                                        Fund Cluster.: 
+                                        </label>
                                     </div>
-                                </label>
+                                    <div class="col-3">
+                                        <span v-show="!edit_fund_cluster_mode">
+                                            {{ pmo_po.fund_cluster }}
+                                        </span>
+                                        <span v-show="!edit_fund_cluster_mode && !edit_obrs_mode">
+                                            <button v-show="pmo_po.fund_cluster == null" class="btn btn-sm btn-success" @click="edit_fund_cluster()">
+                                                <i class="fa fa-pen"></i>
+                                            </button>
+                                        </span>
+                                        <span v-show="edit_fund_cluster_mode">
+                                            <form @submit.prevent="update_fund_cluster()">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control form-control-sm" v-model="pmo_po.fund_cluster">
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-1">
                                 <div class="row">
                                     <button class="btn btn-sm btn-primary" type="button" @click="create_iar(pmo_po.po_no)" >Create Iar</button>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-sm btn-primary" type="button" @click="create_dv(pmo_po.po_no)" >Create Dv</button>
+                                    <button class="btn btn-sm btn-primary" type="button" v-show="pmo_po.iars.length > 0" @click="create_dv(pmo_po.po_no)" >Create Dv</button>
                                 </div>
                             </div>
                         </div>
@@ -163,6 +160,7 @@ export default {
             pmo_po: {
                 po_no: '',
                 pr_no: '',
+                iars: [],
             },
             edit_obrs_mode: false,
             edit_fund_cluster_mode: false,
@@ -198,6 +196,7 @@ export default {
                 obrs: this.pmo_po.obrs,
             }).then(() => {
                 this.edit_obrs_mode = false;
+                this.get_pmo_po();
             });
         },
         update_fund_cluster(){
@@ -205,6 +204,7 @@ export default {
                 fund_cluster: this.pmo_po.fund_cluster,
             }).then(() => {
                 this.edit_fund_cluster_mode = false;
+                this.get_pmo_po();
             });
         },
     },

@@ -279,15 +279,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
     @media print {
-
         .row  {
             margin-right: -4px !important;
             margin-left: -4px !important;
         }
-
-
         .img-thumbnail {
             border: none;
             display: block;
@@ -297,27 +293,18 @@ export default {
             width: 70% !important;
             height: 80% !important;
         }
-
         td {
             padding: 0 !important; 
             margin: 0 !important;
         }
-        
-
-
         @page { 
             margin-bottom: 50px;
 
         }
-
-
-
         table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
             border:1px solid rgb(0, 0, 0) !important;
         }
-
     }
-
     
     .img-thumbnail {
         border: none;
@@ -326,6 +313,7 @@ export default {
         margin-right: auto;
         width: 45%;
     }
+
     .scroll-y {
         height: auto;
         overflow: visible;
@@ -346,15 +334,15 @@ export default {
         width: 100%;
         padding-top: 0px;
         padding-bottom: 0px;
-
     }
-    .row  {
-                margin-right: -4px !important;
-                margin-left: -4px !important;
-        }
-table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th{
-            border:1px solid rgb(0, 0, 0) !important;
-        }
+
+    .row {
+            margin-right: -4px !important;
+            margin-left: -4px !important;
+    }
+    table.table-bordered > thead > tr > th, table.table-bordered > tbody > tr > td, table.table-bordered > tfoot > tr > th {
+        border:1px solid rgb(0, 0, 0) !important;
+    }
 
     .content-wrapper {
         background: rgba(205, 205, 207, 0.87) !important;

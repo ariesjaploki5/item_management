@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api', 'cors']], function() {
     Route::apiResources([
-
+        'attachment' => 'Api\AttachmentController',
         'pmo_po' => 'PMO\PoController',
         'pmo_iar' => 'PMO\IarController',
         'pmo_ris' => 'PMO\RisController',
@@ -103,7 +103,7 @@ Route::group(['middleware' => ['api', 'cors']], function() {
     Route::put('issue/{id}', 'Api\RisController@issued');
     Route::put('receive/{id}', 'Api\RisController@received');
 
-    Route::get('liquidated_damage/{id}', 'PMO\DvController@liquidated_damage');
+    Route::get('liquidated_damage/{id}', 'PMO\DvController@liquidated_damages');
 
     Route::post('search_po', 'Api\PurchaseOrderController@search_po');
     Route::post('search_pr', 'Api\PurchaseRequestController@search_pr');
@@ -114,7 +114,12 @@ Route::group(['middleware' => ['api', 'cors']], function() {
 
     Route::get('get_user', 'AuthController@get_user');
     Route::post('logout', 'AuthController@logout');
+
+
+    Route::post('store_dv', 'PMO\DvController@store');
+    Route::post('store_po_attachment', 'PMO\DvController@store_po_attachment');
     
+    Route::get('po_attachments/{id}', 'PMO\DvController@po_attachments');
 });
 
 Route::group(['middleware' => 'cors'], function () {

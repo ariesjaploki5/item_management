@@ -9,6 +9,8 @@ use App\Views\PmoIar;
 use App\PMO\Batch;
 use App\Http\Resources\MMO\Iar as IarResource;
 use Carbon\Carbon;
+use App\Models\EndUserStock;
+use App\Models\SlCode;
 
 class IarController extends Controller
 {
@@ -59,6 +61,7 @@ class IarController extends Controller
         $ref_date = $request->ref_date;
         $batch = $request->batches;
         $days_delayed = $request->days_delayed;
+        
         $iar_no = $this->new_iar();
 
         Iar::firstOrCreate([
@@ -109,8 +112,22 @@ class IarController extends Controller
                 'remarks' => $remarks, 
                 'item_unit' => $item_unit,
             ]);
+            
+            if($item_id){
+                $this->end_user_stock($item_id, $quantity);
+            }
         }
+        return true;
+    }
 
+    public function end_user_stock($item_id, $quantity){
+        $sl_code = SlCode::where('item_id', $item_id)->first();
+        if($sl_code){
+            $end_user_stock = EndUserStock::where('sl_code', $sl_code->sl_code)->where('end_user_id', 1)->first();
+            $end_user_stock->current_quantity = + $quantity;
+            $end_user_stock->save();
+        } 
+    
         return true;
     }
 

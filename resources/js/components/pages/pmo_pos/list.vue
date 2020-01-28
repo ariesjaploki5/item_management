@@ -26,12 +26,12 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6">
-                                <form @submit.prevent="search_pmo_pos()">
+                                
                                     <div class="form-group row">
                                         <input type="text" class="form-control form-control-sm col-4 mr-2" v-model="search_word" required>
-                                        <button class="btn btn-sm btn-primary" type="submit">search</button>
+                                        
                                     </div>
-                                </form>
+                                
                             </div>
                             <div class="col-6 text-right">
                                 <!-- <button class="btn btn-sm btn-primary" @click="create_po()">Creat PO</button> -->
