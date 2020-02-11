@@ -268,7 +268,9 @@ export default {
         },
         get_liquidated_damages(){
             axios.get('liquidated_damage/'+this.$route.params.id).then(({data}) => {
+                
                 this.liquidated_damages = data;
+
             }).catch(() => {
 
             });
@@ -289,7 +291,8 @@ export default {
                 attachment_id: this.po_attachment.attachment_id,
                 number_date_particulars: this.po_attachment.number_date_particulars,
             }).then(() => {
-
+                $('#attachment_modal').modal('hide');
+                this.get_po_attachments();
             });
         }
     },
@@ -300,10 +303,12 @@ export default {
         this.get_attachments();
         this.get_po_attachments();
     },
+    
     computed:{
         ...mapGetters([
             'approving_officers',
         ]),
+        
     }
 }
 </script>

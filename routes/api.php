@@ -53,7 +53,6 @@ Route::group(['middleware' => ['api', 'cors']], function() {
 
         'user' => 'Api\UserController',
     ]);
-
     Route::put('pmo_po/{id}/obrs', 'PMO\PoController@update_obrs');
     Route::put('pmo_po/{id}/fund_cluster', 'PMO\PoController@update_fund_cluster');
 

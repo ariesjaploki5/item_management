@@ -14,6 +14,7 @@ use App\Models\SlCode;
 
 class IarController extends Controller
 {
+
     public function index(){
         $word = request()->word;
         $iars = PmoIar::where('iar_no', 'like', '%'.$word.'%')
@@ -109,7 +110,7 @@ class IarController extends Controller
                 'quantity' => $quantity,
                 'batch_no' => $batch_no,
                 'expiration_date' => $expiration_date,
-                'remarks' => $remarks, 
+                'remarks' => $remarks,
                 'item_unit' => $item_unit,
             ]);
             
@@ -121,13 +122,15 @@ class IarController extends Controller
     }
 
     public function end_user_stock($item_id, $quantity){
+
         $sl_code = SlCode::where('item_id', $item_id)->first();
+
         if($sl_code){
             $end_user_stock = EndUserStock::where('sl_code', $sl_code->sl_code)->where('end_user_id', 1)->first();
-            $end_user_stock->current_quantity = + $quantity;
+            $end_user_stock->current_quantity = $end_user_stock->current_quantity + $quantity;
             $end_user_stock->save();
-        } 
-    
+        }
+
         return true;
     }
 
@@ -137,7 +140,6 @@ class IarController extends Controller
 
         return response()->json($iar);
     }
-
 
     public function update(Request $request, $id){
         $iar = Iar::findOrFail($id);

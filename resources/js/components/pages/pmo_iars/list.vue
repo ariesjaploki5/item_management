@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-              <h1>IARS</h1>
+              <h1>Lists of Generated Inspection and Acceptance Report</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
                                 <div class="card-tools">
                                     <form @submit.prevent="search_iar()">
                                         <div class="form-group row">
-                                            <input type="text" class="form-control form-control-sm col-6 mr-2" v-model="search_word" required>
+                                            <input type="text" class="form-control form-control-sm col-6 mr-2" placeholder="IAR Number" v-model="search_word" required>
                                             <button class="btn btn-sm btn-primary" type="submit">search</button>
                                         </div>
                                     </form>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-sm table-hover">
+                        <table class="table table-hover table-condensed table-striped">
                             <thead>
                                 <tr>
                                     <th>IAR No.:</th>
@@ -64,9 +64,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer">
-                
                     </div>
                 </div>
               </div>

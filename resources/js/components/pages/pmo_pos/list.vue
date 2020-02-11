@@ -23,23 +23,23 @@
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-info ">
                         <div class="row">
                             <div class="col-6">
                                 
                                     <div class="form-group row">
-                                        <input type="text" class="form-control form-control-sm col-4 mr-2" v-model="search_word" required>
-                                        
+                                        <label class="mt-2">Purchase Order Number</label>
+                                        <input type="text" class="form-control form-control col-6 ml-3 mr-2" placeholder="Search PO" v-model="search_word" required>
                                     </div>
-                                
                             </div>
-                            <div class="col-6 text-right">
+                            <div class="col-6 mt-2 text-right">
+                                <!-- <span><h3>Total Purchase Order:</h3></span> -->
                                 <!-- <button class="btn btn-sm btn-primary" @click="create_po()">Creat PO</button> -->
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-sm table-hover">
+                        <table class="table table-condensed table-hover">
                             <thead>
                                 <tr>
                                     <th>PO No.:</th>
@@ -53,8 +53,8 @@
                             <tbody>
                                 
                                 <tr v-show="pmo_pos.length == 0">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="spinner-border" role="status" width="20rem" height="20rem">
+                                    <div class="d-flex justify-content-center m-5">
+                                        <div class="spinner-grow text-info" role="status">
                                             <span class="sr-only">Loading...</span>
                                         </div>
                                     </div>
@@ -93,6 +93,7 @@ export default {
     data(){
         return{
             search_word: '',
+            // count: '',
             pmo_pos: [],
         }
     },
@@ -138,13 +139,13 @@ tr {
     }
 
     table {
-        height:28rem;             
+        height:41rem;             
         display: -moz-groupbox;    
     }
 
     tbody {
         overflow-y: scroll;      
-        height: 26rem;           
+        height: 41rem;           
         width: 98.5%;
         position: absolute;
     }

@@ -12,6 +12,7 @@ use App\Views\PmoPo as ViewPmoPo;
 class PoController extends Controller
 {
     public function index(){
+
         $data = PoResource::collection(ViewPmoPo::where('id', '<>', 113)
         ->where('id', '<>', 822)
         // ->where('ors_burst', '<>', '')
@@ -22,7 +23,7 @@ class PoController extends Controller
     }
 
     public function store(Request $request){
-
+        
         
 
     }

@@ -28,6 +28,8 @@ require('./bootstrap');
 import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import numeral from 'numeral';
+import numFormat from 'vue-filter-number-format';
 import axios from 'axios'
 import master from './components/layouts/master.vue'
 import {routes} from './routes.js'
@@ -43,7 +45,7 @@ let router = new VueRouter({
     routes,
     mode: 'history',
 });
-
+Vue.filter('numFormat', numFormat(numeral));
 Vue.filter('round_off', function(val){return parseFloat((val).toFixed(4));});
 
 router.beforeEach((to, from, next) => {

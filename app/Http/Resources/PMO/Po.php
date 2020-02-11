@@ -29,7 +29,7 @@ class Po extends JsonResource
             'fund_cluster' => $this->ors_burst_fund,
             'first_item' => strtok($this->first_item, "\n"),
             'items' => PoItemResource::collection($this->po_items),
-            // 'iars' => IarResource::collection($this->iars),
+            'iars' => IarResource::collection($this->iars),
         ];
     }
 }

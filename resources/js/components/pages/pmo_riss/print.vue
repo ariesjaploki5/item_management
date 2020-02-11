@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+   <div class="container">
+        <div class="container-fluid">
         <button class="btn btn-primary d-print-none button ml-2 mb-2" @click="print()">Print</button> 
 
         <header>
@@ -81,12 +82,12 @@
                     <tbody  class="table_class">
                         <tr v-for="item in ris.items" :key="item.item_id">
                             <td class="text-center" width="8%"></td>
-                            <td class="text-center" width="8%">{{ item.requested_quantity }}</td>
+                            <td class="text-center" width="8%">{{ item.requested_quantity | numFormat }}</td>
                             <td class="text-center" width="8%">{{ item.unit_desc }}</td>
                             <td class="text-left" width="auto">{{ item.item_desc }}</td>
                             <td class="text-center" width="8%">{{ item.requested_quantity }}</td>
                             <td class="text-center" width="8%">{{ item.unit_desc }}</td>
-                            <td class="text-center" width="8%">{{ item.cost }}</td>
+                            <td class="text-center" width="8%">₱{{ item.cost }}</td>
                             <td class="text-left" width="8%">{{ item.batch_no }}</td>
                         </tr>
                     </tbody>
@@ -100,7 +101,7 @@
                         <tr>
                             <td width="20%">Purpose</td>
                             <td width="80%" colspan="4">
-                                
+                                <!-- DO SOMETHING  -->
                             </td>
                         </tr>
                         <tr>
@@ -143,6 +144,7 @@
             </div>
         </footer>
     </div>
+   </div>
 </template>
 <script>
 import axios from 'axios'

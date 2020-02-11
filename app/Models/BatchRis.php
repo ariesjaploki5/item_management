@@ -16,6 +16,7 @@ class BatchRis extends Model
         'control_no' => "string",
         'requested_quantity' => 'decimal:2',
         'issued_quantity' => 'decimal:2',
+        'item_desc' => 'string'
     ];
 
     protected $fillable = [
@@ -23,6 +24,7 @@ class BatchRis extends Model
         'control_no',
         'requested_quantity',
         'issued_quantity',
+        'item_desc'
     ];
 
     public function batch(){

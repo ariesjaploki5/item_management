@@ -76,7 +76,7 @@ class DvController extends Controller
 
     public function store_po_attachment(Request $request){
 
-        $po_attachment = PoAttachment::createOrUpdate([
+        $po_attachment = PoAttachment::firstOrCreate([
             'po_no' => $request->po_no,
             'attachment_id' => $request->attachment_id,
         ],[

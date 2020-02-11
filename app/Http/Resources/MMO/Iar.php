@@ -18,7 +18,7 @@ class Iar extends JsonResource
     {
         return [
             'iar_no' => $this->iar_no,
-            'iar_date' => $this->created_at->format('Y-m-d'),
+            'iar_date' => $this->created_at->format('m-d-Y / g:i A'),
             'inspection_date' => $this->inspection_date,
             'inspection_officer_id' => $this->inspection_officer_id,
             'inspection_officer_name' => $this->inspection_officer->name,

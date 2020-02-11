@@ -33,61 +33,56 @@
                         </div>
                     </div>
                     <form @submit.prevent="save_ris()">
-                    <div class="card-body">
-
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr>
+                        <div class="card-body">
+                            <table class="table table-sm table-hover">
+                                <thead>
                                     <tr>
-                                    <th>#</th>
-                                    <th>Item Description</th>
-                                    <th>Unit</th>
-                                    <th>Batch</th>
-                                    <th>Expiry</th>
-                                    <th width="10%">Balance</th>
-                                    <th width="10%">Request Bal.</th>
-                                    <th width="10%">Issued Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(batch, index) in ris.items" :key="index" :class="{ 'table-danger' : batch.item_id == null}">
-                                    <td>{{ index + 1}}</td>
-                                    <td>{{ batch.item_desc }}</td>
-                                    <td>{{ batch.item_unit }}</td>
-                                    <td>{{ batch.batch_no }}</td>
-                                    <td>{{ batch.expiration_date }}</td>
-                                    <td class="text-right">{{ batch.balance }}</td>
-                                    <td class="text-right">{{ batch.requested_quantity }}</td>
-                                    <td class="text-right">
-                                        <span v-show="!editmode">
-                                            {{ batch.issued_quantity }}
-                                        </span>
-                                        <span v-show="editmode">
-                                            <input type="text" class="form-control form-control-sm" v-model="batch.issued_quantity" required>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer text-right">
-                        <button type="button" v-show="!editmode && user.role_id == 2" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
-                        <button type="button" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
-                        <button type="submit" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-success">Save or Update</button>
-                        <button type="button" v-show="user.role_id == 3 && ris.issued_date !== null && ris.received_date == null" class="btn btn-sm btn-success" @click="receive()">Receive</button>
-                    </div>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Item Description</th>
+                                        <th>Unit</th>
+                                        <th>Batch</th>
+                                        <th>Expiry</th>
+                                        <th width="10%">Balance</th>
+                                        <th width="10%">Request Bal.</th>
+                                        <th width="10%">Issued Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(batch, index) in ris.items" :key="index" :class="{ 'table-danger' : batch.item_id == null}">
+                                        <td>{{ index + 1}}</td>
+                                        <td>{{ batch.item_desc }}</td>
+                                        <td>{{ batch.item_unit }}</td>
+                                        <td>{{ batch.batch_no }}</td>
+                                        <td>{{ batch.expiration_date }}</td>
+                                        <td class="text-right">{{ batch.balance }}</td>
+                                        <td class="text-right">{{ batch.requested_quantity }}</td>
+                                        <td class="text-right">
+                                            <span v-show="!editmode">
+                                                {{ batch.issued_quantity }}
+                                            </span>
+                                            <span v-show="editmode">
+                                                <input type="text" class="form-control form-control-sm" v-model="batch.issued_quantity" required>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button type="button" v-show="!editmode && user.role_id == 2" class="btn btn-sm btn-success" @click="edit_ris()">Edit or Issue Quantity</button>
+                            <button type="reset" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-warning" @click="cancel_edit()">Cancel</button>
+                            <button type="submit" v-show="editmode && user.role_id == 2" class="btn btn-sm btn-success">Save or Update</button>
+                            <button type="button" v-show="user.role_id == 3 && ris.issued_date !== null && ris.received_date == null" class="btn btn-sm btn-success" @click="receive()">Receive</button>
+                        </div>
                     </form>
-                    <!-- /.card-footer-->
                 </div>
               </div>
           </div>
       </div>
     </section>
 </div>
-    
 </template>
-
 <script>
 import{ mapActions, mapGetters, mapState } from 'vuex'
 export default {
